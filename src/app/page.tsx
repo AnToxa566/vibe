@@ -1,5 +1,11 @@
+import { Main } from "~/components/components";
+
 const Home = () => {
-  return <main>Vibe Barbershop</main>;
+  return (
+    <main className="xl:container xl:mx-auto px-8">
+      <Main />
+    </main>
+  );
 };
 
 export default Home;
