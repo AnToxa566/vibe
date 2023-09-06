@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Чоловіча стрижка",
+    "topPrice": 400,
+    "expertPrice": 450,
+    "ambassadorPrice": 600
+  },
+  {
+    "id": 2,
+    "title": "Дитяча стрижка",
+    "subtitle": "з 8 років",
+    "topPrice": 400,
+    "expertPrice": 450,
+    "ambassadorPrice": 600
+  },
+  {
+    "id": 3,
+    "title": "Стрижка ножицями",
+    "topPrice": 450,
+    "expertPrice": 500,
+    "ambassadorPrice": 700
+  },
+  {
+    "id": 4,
+    "title": "Стрижка бород",
+    "topPrice": 300,
+    "expertPrice": 350,
+    "ambassadorPrice": 400
+  },
+  {
+    "id": 5,
+    "title": "Стрижка + борода",
+    "topPrice": 600,
+    "expertPrice": 700,
+    "ambassadorPrice": 800
+  },
+  {
+    "id": 6,
+    "title": "Королівське гоління",
+    "topPrice": 350,
+    "expertPrice": 400,
+    "ambassadorPrice": 500
+  },
+  {
+    "id": 7,
+    "title": "Скрабінг обличчя + Black Mask",
+    "topPrice": 300,
+    "expertPrice": 350,
+    "ambassadorPrice": 450
+  },
+  {
+    "id": 8,
+    "title": "Камуфляж сивини",
+    "subtitle": "голова",
+    "topPrice": 400,
+    "expertPrice": 450,
+    "ambassadorPrice": 550
+  },
+  {
+    "id": 9,
+    "title": "Камуфляж сивини",
+    "subtitle": "борода",
+    "topPrice": 350,
+    "expertPrice": 400,
+    "ambassadorPrice": 550
+  },
+  {
+    "id": 10,
+    "title": "Видалення волосся воском",
+    "topPrice": 100,
+    "expertPrice": 150,
+    "ambassadorPrice": 200
+  },
+  {
+    "id": 11,
+    "title": "Укладка волосся",
+    "topPrice": 100,
+    "expertPrice": 150,
+    "ambassadorPrice": 200
+  }
+]

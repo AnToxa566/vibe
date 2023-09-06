@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
 import "./globals.css";
+import { AppSubtitle, AppTitle } from "~/common/enums/enums";
 
 const montserrat = Montserrat({
   weight: ["100", "200", "300", "700", "900"],
@@ -11,9 +12,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Vibe Barbershop", // TODO: Move
-  description:
-    "Ліга досвідчених чоловічих перукарів, де приходять до майстра, а не до перукарні.", // TODO: Move
+  title: AppTitle.MAIN,
+  description: AppSubtitle.MAIN,
 };
 
 interface Props {
