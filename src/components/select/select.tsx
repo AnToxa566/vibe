@@ -1,10 +1,11 @@
 import Image from "next/image";
 
+import { BaseProps } from "~/common/interfaces/interfaces";
+
 import arrow from "~/../public/svg/select-arrow.svg";
 
-interface Props {
+interface Props extends BaseProps {
   data: string[];
-  className?: string;
 }
 
 const Select: React.FC<Props> = ({ data, className = "" }) => {

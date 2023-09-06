@@ -1,6 +1,7 @@
-interface Props {
+import { BaseProps } from "~/common/interfaces/interfaces";
+
+interface Props extends BaseProps {
   price: number;
-  className?: string;
 }
 
 const Price: React.FC<Props> = ({ price, className = "" }) => {

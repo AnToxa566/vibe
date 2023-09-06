@@ -1,13 +1,10 @@
+import { BaseProps } from "~/common/interfaces/interfaces";
 import { Container, Title } from "../components";
 import { PricesTable } from "./components/components";
 
-interface Props {
-  className?: string;
-}
-
 // TODO: Move texts
 
-const Prices: React.FC<Props> = ({ className = "" }) => {
+const Prices: React.FC<BaseProps> = ({ className = "" }) => {
   return (
     <div
       className={`bg-regular-grey text-white rounded-tr-[6.875rem] rounded-bl-[6.875rem] pt-14 pb-32 overflow-hidden ${className}`}

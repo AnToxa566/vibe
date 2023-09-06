@@ -1,17 +1,14 @@
 import Image from "next/image";
 
+import { BaseProps } from "~/common/interfaces/interfaces";
 import { Button, Container } from "../components";
 import { AddressSelect, Logo, Navigation } from "./components/components";
 
 import man from "~/../public/images/home-man.png";
 
-interface Props {
-  className?: string;
-}
-
 // TODO: Move texts
 
-const Main: React.FC<Props> = ({ className = "" }) => {
+const Main: React.FC<BaseProps> = ({ className = "" }) => {
   return (
     <Container>
       <div className={`h-screen flex flex-col justify-around ${className}`}>

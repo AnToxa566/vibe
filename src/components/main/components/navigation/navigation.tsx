@@ -1,8 +1,6 @@
-interface Props {
-  className?: string;
-}
+import { BaseProps } from "~/common/interfaces/interfaces";
 
-const Navigation: React.FC<Props> = ({ className = "" }) => {
+const Navigation: React.FC<BaseProps> = ({ className = "" }) => {
   const links = ["ціни", "майстри", "навчання", "контакти"];
 
   return (

@@ -1,9 +1,8 @@
-// TODO: Add BaseProps
+import { BaseProps } from "~/common/interfaces/interfaces";
 
-interface Props {
+interface Props extends BaseProps {
   title: string;
   white?: boolean;
-  className?: string;
 }
 
 const Title: React.FC<Props> = ({ title, white = false, className = "" }) => {

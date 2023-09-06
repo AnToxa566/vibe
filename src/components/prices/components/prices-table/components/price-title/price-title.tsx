@@ -1,6 +1,7 @@
-interface Props {
+import { BaseProps } from "~/common/interfaces/interfaces";
+
+interface Props extends BaseProps {
   title: string;
-  className?: string;
 }
 
 const PriceTitle: React.FC<Props> = ({ title, className = "" }) => {

@@ -1,3 +1,4 @@
+import { BaseProps } from "~/common/interfaces/interfaces";
 import { Price, PriceTitle } from "../components";
 
 interface IPrice {
@@ -9,11 +10,10 @@ interface IPrice {
   subtitle?: string;
 }
 
-interface Props {
+interface Props extends BaseProps {
   price: IPrice;
   isMuted?: boolean;
   isFirstRow?: boolean;
-  className?: string;
 }
 
 // TODO: Move texts

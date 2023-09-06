@@ -1,12 +1,9 @@
-import prices from "~/assets/data/prices.json";
-
+import { BaseProps } from "~/common/interfaces/interfaces";
 import { PriceRow } from "./components/components";
 
-interface Props {
-  className?: string;
-}
+import prices from "~/assets/data/prices.json";
 
-const PricesTable: React.FC<Props> = ({ className = "" }) => {
+const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
   return (
     <div className={`flex flex-col ${className}`}>
       {prices.map((price, index) => (
