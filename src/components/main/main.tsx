@@ -1,12 +1,11 @@
 import Image from "next/image";
 
 import { BaseProps } from "~/common/interfaces/interfaces";
+import { AppSubtitle, ButtonTitle } from "~/common/enums/enums";
 import { Button, Container } from "../components";
 import { AddressSelect, Logo, Navigation } from "./components/components";
 
 import man from "~/../public/images/home-man.png";
-
-// TODO: Move texts
 
 const Main: React.FC<BaseProps> = ({ className = "" }) => {
   return (
@@ -17,12 +16,9 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
         <Logo className="max-w-[55%] z-10" />
 
         <div className="px-14 flex flex-col gap-6 z-10">
-          <p className="w-2/5">
-            Ліга досвідчених чоловічих перукарів, де приходять до майстра, а не
-            до перукарні.
-          </p>
+          <p className="w-2/5">{AppSubtitle.MAIN}</p>
 
-          <Button title="Онлайн запис" />
+          <Button title={ButtonTitle.ONLINE_ENTRY} />
 
           <AddressSelect />
         </div>

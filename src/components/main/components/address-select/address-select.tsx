@@ -1,10 +1,15 @@
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { Select } from "~/components/components";
 
-const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
-  const addresses = ["вул. Перемоги, 20", "пр. Соборний, 181"]; // TODO: Move
+import addresses from "~/assets/data/addresses.json";
 
-  return <Select data={addresses} className={className} />;
+const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
+  return (
+    <Select
+      data={addresses.map((address) => address.title)}
+      className={className}
+    />
+  );
 };
 
 export { AddressSelect };

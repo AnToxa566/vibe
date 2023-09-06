@@ -1,5 +1,6 @@
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { Price, PriceTitle } from "../components";
+import { Gradation } from "~/common/enums/enums";
 
 interface IPrice {
   id: number;
@@ -15,8 +16,6 @@ interface Props extends BaseProps {
   isMuted?: boolean;
   isFirstRow?: boolean;
 }
-
-// TODO: Move texts
 
 const PriceRow: React.FC<Props> = ({
   price,
@@ -39,17 +38,17 @@ const PriceRow: React.FC<Props> = ({
 
       <div className="flex gap-24">
         <div>
-          {isFirstRow && <PriceTitle title="top-barber" />}
+          {isFirstRow && <PriceTitle title={Gradation.TOP_BARBER} />}
           <Price price={price.topPrice} />
         </div>
 
         <div>
-          {isFirstRow && <PriceTitle title="expert" />}
+          {isFirstRow && <PriceTitle title={Gradation.EXPERT} />}
           <Price price={price.expertPrice} />
         </div>
 
         <div>
-          {isFirstRow && <PriceTitle title="ambassador" />}
+          {isFirstRow && <PriceTitle title={Gradation.AMBASSADOR} />}
           <Price price={price.ambassadorPrice} />
         </div>
       </div>
