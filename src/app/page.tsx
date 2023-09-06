@@ -1,9 +1,10 @@
-import { Main } from "~/components/components";
+import { Main, Prices } from "~/components/components";
 
 const Home = () => {
   return (
-    <main className="xl:container xl:mx-auto px-8">
+    <main>
       <Main />
+      <Prices />
     </main>
   );
 };
