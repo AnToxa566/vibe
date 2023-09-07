@@ -1,25 +1,27 @@
+import { ButtonTitle } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
 
+type colors = "regular-grey" | "white" | "transparent";
+
 interface Props extends BaseProps {
-  title: string;
-  outline?: boolean;
+  title: ButtonTitle;
+  bgColor?: colors;
+  textColor?: colors;
+  borderColor?: colors;
 }
 
 const Button: React.FC<Props> = ({
   title,
-  outline = false,
+  bgColor = "transparent",
+  textColor = "regular-grey",
+  borderColor = "regular-grey",
   className = "",
 }) => {
   return (
     <button
       className={`transition ease-in-out duration-200 
                   p-3 w-max 
-                  border border-regular-grey
-                  ${
-                    outline
-                      ? "bg-transparent text-regular-grey hover:text-white hover:bg-regular-grey"
-                      : "bg-regular-grey text-white hover:bg-dark-grey"
-                  }
+                  border border-${borderColor} text-${textColor} bg-${bgColor}
                   ${className}`}
     >
       {title}

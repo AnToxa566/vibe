@@ -11,14 +11,17 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
   return (
     <Container>
       <div className={`h-screen flex flex-col justify-around ${className}`}>
-        <Navigation className="px-14 z-10" />
+        <Navigation className="z-10" />
 
         <Logo className="max-w-[55%] z-10" />
 
-        <div className="px-14 flex flex-col gap-6 z-10">
+        <div className="flex flex-col gap-6 z-10">
           <p className="w-2/5">{AppSubtitle.MAIN}</p>
 
-          <Button title={ButtonTitle.ONLINE_ENTRY} outline className="px-7" />
+          <Button
+            title={ButtonTitle.ONLINE_ENTRY}
+            className="px-7 hover:bg-regular-grey hover:text-white"
+          />
 
           <AddressSelect />
         </div>
