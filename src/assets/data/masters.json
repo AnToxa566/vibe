@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Олександр",
+    "graduation": "ambassador",
+    "imgPath": "/oleksandr.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Андрій",
+    "graduation": "expert",
+    "imgPath": "/andriy.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Роман",
+    "graduation": "expert",
+    "imgPath": "/roman.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Максим",
+    "graduation": "expert",
+    "imgPath": "/maksim.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Настя",
+    "graduation": "tob-barber",
+    "imgPath": "/nastya.jpg"
+  }
+]

@@ -18,7 +18,7 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
         <div className="px-14 flex flex-col gap-6 z-10">
           <p className="w-2/5">{AppSubtitle.MAIN}</p>
 
-          <Button title={ButtonTitle.ONLINE_ENTRY} />
+          <Button title={ButtonTitle.ONLINE_ENTRY} outline className="px-7" />
 
           <AddressSelect />
         </div>
