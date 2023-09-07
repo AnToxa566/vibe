@@ -34,7 +34,12 @@ const MasterCard: React.FC<Props> = ({ master, className = "" }) => {
         </div>
       </div>
 
-      <Button title={ButtonTitle.ONLINE_ENTRY} className="w-[190px]" />
+      <Button
+        title={ButtonTitle.ONLINE_ENTRY}
+        textColor="white"
+        bgColor="regular-grey"
+        className="w-[190px] hover:bg-dark-grey"
+      />
     </div>
   );
 };

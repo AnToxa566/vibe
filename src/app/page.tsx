@@ -1,4 +1,4 @@
-import { Main, Masters, Prices } from "~/components/components";
+import { Main, Masters, Prices, Study } from "~/components/components";
 
 const Home = () => {
   return (
@@ -6,6 +6,7 @@ const Home = () => {
       <Main />
       <Prices />
       <Masters className="my-[3.75rem]" />
+      <Study />
     </main>
   );
 };

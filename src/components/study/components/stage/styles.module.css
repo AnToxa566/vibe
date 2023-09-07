@@ -1,0 +1,7 @@
+.gradientFirst {
+  border-image: linear-gradient(115deg, white, var(--foreground-hex) 75%) 1;
+}
+
+.gradientSecond {
+  border-image: linear-gradient(212deg, white, var(--foreground-hex) 25%) 1;
+}
