@@ -3,6 +3,7 @@ enum AppTitle {
   PRICES = "\\ ціни",
   MASTERS = "\\ майстри",
   STUDY = "\\ навчання",
+  GALLERY = "\\ галерея",
 }
 
 export { AppTitle };
