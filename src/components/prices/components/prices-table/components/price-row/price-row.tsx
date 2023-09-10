@@ -25,7 +25,7 @@ const PriceRow: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={`flex justify-between px-14 ${
+      className={`flex justify-between px-inner-container ${
         isMuted && "bg-muted-grey"
       } ${className}`}
     >

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
@@ -23,6 +24,10 @@ interface Props {
 const RootLayout: React.FC<Props> = ({ children }) => {
   return (
     <html lang="uk">
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
+
       <body className={montserrat.className}>{children}</body>
     </html>
   );

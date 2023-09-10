@@ -1,4 +1,4 @@
-import { AppSubtitle, AppTitle } from "~/common/enums/enums";
+import { AppSubtitle, AppTitle, ModuleID } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { Carousel, Container, Title } from "../components";
 import { MasterCard } from "./components/components";
@@ -7,7 +7,7 @@ import masters from "~/assets/data/masters.json";
 
 const Masters: React.FC<BaseProps> = ({ className = "" }) => {
   return (
-    <div className={`${className}`}>
+    <div className={`relative z-10 ${className}`} id={ModuleID.MASTERS}>
       <Container>
         <Title title={AppTitle.MASTERS} />
 
