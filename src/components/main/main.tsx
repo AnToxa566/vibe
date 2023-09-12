@@ -3,7 +3,8 @@ import Image from "next/image";
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { AppSubtitle, ButtonTitle } from "~/common/enums/enums";
 import { Button, Container } from "../components";
-import { AddressSelect, Header, Logo } from "./components/components";
+import { Header } from "./components/header/header";
+import { AddressSelect, Logo } from "./components/components";
 
 import man from "~/../public/images/home-man.png";
 

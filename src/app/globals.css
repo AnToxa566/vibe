@@ -4,6 +4,8 @@
 
 :root {
   --foreground-hex: #5a5a5a;
+  --dark-hex: #454545;
+  --muted-hex: #87878726;
   --foreground-font-size: 1.25rem;
 }
 

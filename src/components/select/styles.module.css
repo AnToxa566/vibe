@@ -1,0 +1,16 @@
+.container:hover .options {
+  display: block;
+}
+
+.container:hover .selectArrow {
+  transition: 0.2s linear;
+  transform: rotate(180deg);
+}
+
+.options {
+  display: none;
+}
+
+.option:hover {
+  background-color: var(--dark-hex);
+}

@@ -20,6 +20,10 @@ const Header: React.FC<BaseProps> = ({ className = "" }) => {
   useEffect(() => {
     addEventListener("scroll", handleScroll);
 
+    if (window.scrollY > 50) {
+      setScrolled(true);
+    }
+
     return () => removeEventListener("scroll", handleScroll);
   }, []);
 

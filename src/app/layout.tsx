@@ -2,8 +2,10 @@ import Head from "next/head";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
-import "./globals.css";
 import { AppSubtitle, AppTitle } from "~/common/enums/enums";
+
+import "./globals.css";
+import { BarberProvider } from "~/providers/barber-provider";
 
 const montserrat = Montserrat({
   weight: ["100", "200", "300", "700", "900"],
@@ -28,7 +30,9 @@ const RootLayout: React.FC<Props> = ({ children }) => {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
 
-      <body className={montserrat.className}>{children}</body>
+      <BarberProvider>
+        <body className={montserrat.className}>{children}</body>
+      </BarberProvider>
     </html>
   );
 };

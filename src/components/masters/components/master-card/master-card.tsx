@@ -22,7 +22,7 @@ const MasterCard: React.FC<Props> = ({ master, className = "" }) => {
         alt={`Барбер ${master.name}`}
         width="190"
         height="260"
-        className="rounded-tr-3xl rounded-bl-3xl mb-5"
+        className="rounded-tr-3xl rounded-bl-3xl mb-5 h-[260px] object-cover"
       />
 
       <div className="flex items-center gap-3 mb-5">
