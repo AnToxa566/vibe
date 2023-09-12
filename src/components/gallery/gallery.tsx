@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { AppSubtitle, AppTitle } from "~/common/enums/enums";
+import { AppSubtitle, AppTitle, ModuleID } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { Carousel, Container, Title } from "../components";
 import { GalleryCard } from "./components/components";
@@ -10,7 +10,7 @@ import insta from "~/../public/svg/logos_instagram.svg";
 
 const Gallery: React.FC<BaseProps> = ({ className = "" }) => {
   return (
-    <div className={`${className}`}>
+    <div className={`relative z-10 ${className}`} id={ModuleID.GALLERY}>
       <Container>
         <Title title={AppTitle.GALLERY} />
 

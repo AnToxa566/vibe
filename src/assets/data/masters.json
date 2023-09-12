@@ -1,32 +1,58 @@
 [
   {
     "id": 1,
+    "barberId": 1,
     "name": "Олександр",
     "graduation": "ambassador",
     "imgPath": "/oleksandr.jpg"
   },
   {
     "id": 2,
+    "barberId": 1,
     "name": "Андрій",
     "graduation": "expert",
     "imgPath": "/andriy.jpg"
   },
   {
     "id": 3,
+    "barberId": 1,
     "name": "Роман",
     "graduation": "expert",
     "imgPath": "/roman.jpg"
   },
   {
     "id": 4,
+    "barberId": 1,
     "name": "Максим",
     "graduation": "expert",
-    "imgPath": "/maksim.jpg"
+    "imgPath": "/maksim-1.jpg"
   },
   {
     "id": 5,
-    "name": "Настя",
+    "barberId": 1,
+    "name": "Ліза",
     "graduation": "tob-barber",
-    "imgPath": "/nastya.jpg"
+    "imgPath": "/lisa.jpg"
+  },
+  {
+    "id": 6,
+    "barberId": 2,
+    "name": "Олег",
+    "graduation": "expert",
+    "imgPath": "/oleg.jpg"
+  },
+  {
+    "id": 7,
+    "barberId": 2,
+    "name": "Максим",
+    "graduation": "tob-barber",
+    "imgPath": "/maksim-2.jpg"
+  },
+  {
+    "id": 8,
+    "barberId": 2,
+    "name": "Тетяна",
+    "graduation": "tob-barber",
+    "imgPath": "/tetiana.jpg"
   }
 ]

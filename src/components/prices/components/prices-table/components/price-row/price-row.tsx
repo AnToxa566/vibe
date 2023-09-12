@@ -5,9 +5,10 @@ import { Gradation } from "~/common/enums/enums";
 interface IPrice {
   id: number;
   title: string;
-  topPrice: number;
-  expertPrice: number;
-  ambassadorPrice: number;
+  barberPrice?: number;
+  topPrice?: number;
+  expertPrice?: number;
+  ambassadorPrice?: number;
   subtitle?: string;
 }
 
@@ -25,7 +26,7 @@ const PriceRow: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={`flex justify-between px-14 ${
+      className={`flex justify-between px-inner-container ${
         isMuted && "bg-muted-grey"
       } ${className}`}
     >
@@ -37,20 +38,26 @@ const PriceRow: React.FC<Props> = ({
       </div>
 
       <div className="flex gap-24">
-        <div>
-          {isFirstRow && <PriceTitle title={Gradation.TOP_BARBER} />}
-          <Price price={price.topPrice} />
-        </div>
-
-        <div>
-          {isFirstRow && <PriceTitle title={Gradation.EXPERT} />}
-          <Price price={price.expertPrice} />
-        </div>
-
-        <div>
-          {isFirstRow && <PriceTitle title={Gradation.AMBASSADOR} />}
-          <Price price={price.ambassadorPrice} />
-        </div>
+        <Price
+          price={price.barberPrice}
+          isFirstRow={isFirstRow}
+          gradation={Gradation.BARBER}
+        />
+        <Price
+          price={price.topPrice}
+          isFirstRow={isFirstRow}
+          gradation={Gradation.TOP_BARBER}
+        />
+        <Price
+          price={price.expertPrice}
+          isFirstRow={isFirstRow}
+          gradation={Gradation.EXPERT}
+        />
+        <Price
+          price={price.ambassadorPrice}
+          isFirstRow={isFirstRow}
+          gradation={Gradation.AMBASSADOR}
+        />
       </div>
     </div>
   );

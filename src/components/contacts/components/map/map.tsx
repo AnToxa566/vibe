@@ -5,18 +5,17 @@ import { CSSProperties, useState } from "react";
 
 import { ENV } from "~/common/constants/constants";
 import { BaseProps } from "~/common/interfaces/interfaces";
-import { defaultLatLng } from "../../common/default-lat-lng";
 
 interface Props extends BaseProps {
+  center: google.maps.LatLngLiteral;
   containerStyle?: CSSProperties;
-  center?: google.maps.LatLngLiteral;
   mapOptions?: google.maps.MapOptions;
 }
 
 const Map: React.FC<Props> = ({
+  center,
   containerStyle = {},
   mapOptions = {},
-  center = defaultLatLng,
   className = "",
 }) => {
   const { isLoaded } = useJsApiLoader({
