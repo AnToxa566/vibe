@@ -13,6 +13,9 @@ const config: Config = {
         "dark-grey": "#454545",
         "muted-grey": "#87878726",
       },
+      padding: {
+        "inner-container": "3.5rem",
+      },
     },
   },
   plugins: [],

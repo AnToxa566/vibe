@@ -1,11 +1,26 @@
 import { BaseProps } from "~/common/interfaces/interfaces";
+import { PriceTitle } from "../components";
 
 interface Props extends BaseProps {
-  price: number;
+  isFirstRow: boolean;
+  gradation: string;
+  price?: number;
 }
 
-const Price: React.FC<Props> = ({ price, className = "" }) => {
-  return <div className={`min-w-[3.5rem] ${className}`}>{price}₴</div>;
+const Price: React.FC<Props> = ({
+  price,
+  isFirstRow,
+  gradation,
+  className = "",
+}) => {
+  return (
+    price && (
+      <div>
+        {isFirstRow && <PriceTitle title={gradation} />}
+        <div className={`min-w-[3.5rem] ${className}`}>{price}₴</div>
+      </div>
+    )
+  );
 };
 
 export { Price };

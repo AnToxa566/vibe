@@ -4,15 +4,35 @@
 
 :root {
   --foreground-hex: #5a5a5a;
+  --dark-hex: #454545;
+  --muted-hex: #87878726;
   --foreground-font-size: 1.25rem;
 }
 
 html {
+  position: relative;
+
   font-size: 16px;
   font-weight: 300;
+
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--foreground-hex);
   font-size: var(--foreground-font-size);
+}
+
+body::before {
+  content: "";
+
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 0;
+
+  background: url("/images/noise.png"), lightgray 0% 0% / 100px 100px repeat;
+  opacity: 0.03;
 }
