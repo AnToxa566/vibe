@@ -7,6 +7,8 @@ import { Header } from "./components/header/header";
 import { AddressSelect, Logo } from "./components/components";
 
 import man from "~/../public/images/home-man.png";
+import elipse from "~/../public/svg/ellipse-home.svg";
+
 import styles from "./styles.module.scss";
 
 const Main: React.FC<BaseProps> = ({ className = "" }) => {
@@ -17,16 +19,26 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
       <Container className={styles.main}>
         <Logo className={styles.logo} />
 
+        <Image src={man} alt="Adult man" className={styles.man} />
+        <Image src={elipse} alt="" className={styles.elipse} />
+
         <div className={styles.content}>
           <p className={styles.text}>{AppSubtitle.MAIN}</p>
 
-          <Button title={ButtonTitle.ONLINE_ENTRY} className={styles.btn} />
+          <div className={styles.buttons}>
+            <Button
+              title={ButtonTitle.ONLINE_ENTRY}
+              className={`${styles.btn} ${styles.entryBtn}`}
+            />
+            <Button
+              title={ButtonTitle.CALL}
+              className={`${styles.btn} ${styles.callBtn}`}
+            />
+          </div>
 
-          <AddressSelect />
+          <AddressSelect className={styles.address} />
         </div>
       </Container>
-
-      <Image src={man} alt="Adult man" className={styles.man} />
     </div>
   );
 };

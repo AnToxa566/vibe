@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  @apply text-regular-grey text-[1.25rem];
+  @apply text-regular-grey text-[1.25rem] overflow-x-hidden;
 
   &::before {
     @apply absolute top-0 right-0 bottom-0 left-0 z-0 opacity-[0.03];
@@ -22,5 +22,9 @@ body {
 
   @media screen and (max-width: 768px) {
     @apply text-[0.625rem];
+
+    &::before {
+      background: none;
+    }
   }
 }
