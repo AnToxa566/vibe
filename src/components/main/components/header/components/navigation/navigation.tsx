@@ -1,7 +1,16 @@
+"use client";
+
+import { useState } from "react";
+
 import { ModuleID } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
 
+import styles from "./styles.module.scss";
+import { AddressSelect } from "../../../components";
+
 const Navigation: React.FC<BaseProps> = ({ className = "" }) => {
+  const [isBurgerCollapsed, setIsBurgerCollapsed] = useState<boolean>(false);
+
   const links = [
     { title: "ціни", href: `#${ModuleID.PRICES}` },
     { title: "майстри", href: `#${ModuleID.MASTERS}` },
@@ -10,17 +19,26 @@ const Navigation: React.FC<BaseProps> = ({ className = "" }) => {
   ];
 
   return (
-    <div className={`flex gap-6 flex-wrap ${className}`}>
-      {links.map((link, idx) => (
-        <a
-          key={idx}
-          href={link.href}
-          className="transition ease-in-out duration-200 border-2 border-transparent hover:border-b-regular-grey"
-        >
-          {link.title}
-        </a>
-      ))}
-    </div>
+    <nav className={`${styles.nav} ${className}`}>
+      <div className={`${styles.links} ${isBurgerCollapsed ? styles.in : ""}`}>
+        {links.map((link, idx) => (
+          <a key={idx} href={link.href} className={styles.link}>
+            {link.title}
+          </a>
+        ))}
+      </div>
+
+      <AddressSelect className={styles.address} />
+
+      <div
+        className={`${styles.burger} ${
+          isBurgerCollapsed ? styles.collapsed : ""
+        }`}
+        onClick={() => setIsBurgerCollapsed(!isBurgerCollapsed)}
+      >
+        <span className={styles.lines}></span>
+      </div>
+    </nav>
   );
 };
 

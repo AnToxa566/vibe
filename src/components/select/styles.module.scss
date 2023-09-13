@@ -1,0 +1,23 @@
+.container {
+  .selectArrow {
+    @apply ease-linear duration-200;
+  }
+}
+
+.container:hover {
+  .options {
+    @apply block;
+  }
+
+  .selectArrow {
+    @apply rotate-180;
+  }
+}
+
+.options {
+  @apply hidden;
+
+  &:hover {
+    @apply bg-dark-grey;
+  }
+}
