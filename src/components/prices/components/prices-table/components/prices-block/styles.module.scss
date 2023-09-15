@@ -1,0 +1,19 @@
+.pricesBlock {
+  .title {
+    @apply mb-3;
+  }
+
+  .table {
+    .row {
+      @apply flex justify-between px-3 leading-4 uppercase;
+
+      &.muted {
+        @apply bg-muted-grey;
+      }
+
+      .subtitle {
+        @apply font-thin;
+      }
+    }
+  }
+}

@@ -40,7 +40,7 @@
   }
 
   @media screen and (max-width: 768px) {
-    @apply justify-start py-16;
+    @apply justify-around py-16;
 
     .logo {
       @apply max-w-full mb-4;

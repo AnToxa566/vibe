@@ -1,20 +1,25 @@
 import { BaseProps } from "~/common/interfaces/interfaces";
 
+import styles from "./styles.module.scss";
+
 interface Props extends BaseProps {
   title: string;
+  reverse?: boolean;
 }
 
-const PriceTitle: React.FC<Props> = ({ title, className = "" }) => {
+const PriceTitle: React.FC<Props> = ({
+  title,
+  reverse = false,
+  className = "",
+}) => {
   return (
-    <div className={`relative ${className}`}>
+    <div className={`${styles.container} ${className}`}>
       <div
-        className={`flex items-center gap-1.5 absolute top-0 left-0 origin-top-left rotate-90`}
+        className={`${styles.innerContainer} ${reverse ? styles.reverse : ""}`}
       >
-        <span className="text-3xl font-black uppercase whitespace-nowrap">
-          {title}
-        </span>
+        <span className={styles.title}>{title}</span>
 
-        <div className="bg-white h-5 w-screen" />
+        <div className={styles.box} />
       </div>
     </div>
   );

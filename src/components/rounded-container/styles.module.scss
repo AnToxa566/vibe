@@ -1,0 +1,7 @@
+.container {
+  @apply bg-regular-grey text-white rounded-tr-[6.875rem] rounded-bl-[6.875rem] py-14 overflow-hidden;
+
+  @media screen and (max-width: 768px) {
+    @apply py-8 rounded-tr-[2.5rem] rounded-bl-[2.5rem];
+  }
+}

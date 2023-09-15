@@ -1,0 +1,19 @@
+.row {
+  @apply flex justify-between px-inner-container;
+
+  &.muted {
+    @apply bg-muted-grey;
+  }
+
+  .title {
+    @apply uppercase;
+
+    .subtitle {
+      @apply font-thin;
+    }
+  }
+
+  .prices {
+    @apply flex gap-24;
+  }
+}

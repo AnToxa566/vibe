@@ -12,7 +12,7 @@ const Home = () => {
     <main>
       <Main />
       <Prices />
-      <Masters className="my-[3.75rem]" />
+      <Masters className="my-[3.75rem]" /> {/* mobile: 2.5rem */}
       <Study />
       <Gallery className="my-[3.75rem]" />
       <Contacts />

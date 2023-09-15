@@ -1,0 +1,7 @@
+.title {
+  @apply text-6xl font-black uppercase;
+
+  @media screen and (max-width: 768px) {
+    @apply text-4xl;
+  }
+}
