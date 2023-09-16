@@ -1,0 +1,46 @@
+.stage {
+  @apply p-5 min-h-[10rem] border;
+
+  &.first {
+    @apply rounded-bl-xl;
+    border-image: linear-gradient(115deg, white, var(--foreground-hex) 75%) 1;
+  }
+
+  &.second {
+    @apply rounded-br-xl;
+    border-image: linear-gradient(212deg, white, var(--foreground-hex) 25%) 1;
+  }
+
+  &.third {
+    @apply rounded-tl-xl;
+    border-image: linear-gradient(115deg, white, var(--foreground-hex) 75%) 1;
+  }
+
+  .top {
+    @apply flex justify-between items-center mb-3;
+
+    .count {
+      @apply text-3xl font-bold uppercase whitespace-nowrap;
+    }
+
+    .price {
+      @apply text-3xl font-extralight;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    @apply p-3 min-h-[6rem];
+
+    .top {
+      @apply mb-1;
+
+      .count {
+        @apply text-xl;
+      }
+
+      .price {
+        @apply text-base;
+      }
+    }
+  }
+}

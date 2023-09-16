@@ -1,0 +1,85 @@
+.study {
+  .wrapper {
+    @apply relative overflow-hidden;
+
+    .inner {
+      @apply relative z-10;
+
+      .title {
+        @apply mb-10;
+      }
+
+      .content {
+        @apply flex justify-between gap-12 px-inner-container;
+
+        .info {
+          @apply flex flex-col justify-between gap-6;
+
+          .text {
+            .mainText {
+              @apply font-bold mb-12;
+            }
+
+            .subText {
+              @apply flex flex-col gap-6;
+            }
+          }
+
+          .btn {
+            @apply px-8 hover:bg-white hover:text-regular-grey;
+          }
+        }
+      }
+    }
+
+    .bgItem {
+      @apply absolute z-0;
+
+      &.circle {
+        @apply top-8 left-4;
+      }
+
+      &.elipse {
+        @apply top-32 left-60;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .wrapper {
+      .inner {
+        .title {
+          @apply mb-7;
+        }
+
+        .content {
+          @apply flex-col px-0 gap-16;
+
+          .info {
+            @apply gap-8;
+
+            .text {
+              .mainText {
+                @apply text-xs mb-4;
+              }
+
+              .subText {
+                @apply gap-4;
+              }
+            }
+
+            .btn {
+              @apply mx-auto;
+            }
+          }
+        }
+      }
+
+      .bgItem {
+        &.elipse {
+          @apply top-1/2;
+        }
+      }
+    }
+  }
+}
