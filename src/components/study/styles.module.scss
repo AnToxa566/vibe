@@ -45,6 +45,16 @@
     }
   }
 
+  @media screen and (max-width: 900px) {
+    .wrapper {
+      .inner {
+        .content {
+          @apply px-4;
+        }
+      }
+    }
+  }
+
   @media screen and (max-width: 768px) {
     .wrapper {
       .inner {

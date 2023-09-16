@@ -38,10 +38,18 @@
 
         .masterCard {
           @apply row-span-2;
-        }
 
-        .masterCard:nth-child(2) {
-          @apply row-start-2 col-start-2;
+          &:nth-child(2) {
+            @apply row-start-2 col-start-2;
+          }
+
+          &:nth-child(odd) {
+            @apply justify-self-end;
+          }
+
+          &:nth-child(even) {
+            @apply justify-self-start;
+          }
         }
       }
     }
