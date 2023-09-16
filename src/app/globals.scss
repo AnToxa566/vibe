@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-hex: #5a5a5a;
+}
+
+html {
+  @apply relative font-light scroll-smooth;
+  font-size: 16px;
+}
+
+body {
+  @apply text-regular-grey text-desktop overflow-x-hidden;
+
+  &::before {
+    @apply absolute top-0 right-0 bottom-0 left-0 z-0 opacity-[0.03];
+    content: "";
+    background: url("/images/noise.png"), lightgray 0% 0% / 100px 100px repeat;
+  }
+
+  @media screen and (max-width: 768px) {
+    @apply text-mobile;
+
+    &::before {
+      background: none;
+    }
+  }
+}

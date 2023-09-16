@@ -1,5 +1,7 @@
 import { BaseProps } from "~/common/interfaces/interfaces";
 
+import styles from "./styles.module.scss";
+
 interface Props extends BaseProps {
   title: string;
   content: React.ReactNode;
@@ -7,9 +9,9 @@ interface Props extends BaseProps {
 
 const ContactItem: React.FC<Props> = ({ title, content, className }) => {
   return (
-    <div className={`${className}`}>
-      <h3 className="text-2xl font-bold mb-1">{title}</h3>
-      <p className="text-base whitespace-pre-line">{content}</p>
+    <div className={`${styles.contact} ${className}`}>
+      <h3 className={styles.title}>{title}</h3>
+      <p className={styles.content}>{content}</p>
     </div>
   );
 };

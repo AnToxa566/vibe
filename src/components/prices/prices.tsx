@@ -6,26 +6,29 @@ import { Container, RoundedContainer, Title } from "../components";
 import { PricesTable } from "./components/components";
 
 import elipse from "~/../public/svg/elipse.svg";
+import styles from "./styles.module.scss";
 
 const Prices: React.FC<BaseProps> = ({ className = "" }) => {
   return (
     <div className={`${className}`} id={ModuleID.PRICES}>
-      <RoundedContainer className={`relative pb-32`}>
-        <Container className="relative z-10">
-          <Title title={AppTitle.PRICES} white className="mb-10" />
+      <RoundedContainer className={styles.roundedContainer}>
+        <Container className={styles.container}>
+          <Title title={AppTitle.PRICES} white className={styles.title} />
 
-          <p className="text-center text-base font-extralight max-w-[60%] mx-auto mb-10">
-            {AppSubtitle.PRICES}
-          </p>
+          <p className={styles.subtitle}>{AppSubtitle.PRICES}</p>
 
           <PricesTable />
         </Container>
 
-        <Image src={elipse} alt="" className="absolute right-1/2 top-10 z-0" />
         <Image
           src={elipse}
           alt=""
-          className="absolute left-3/4 bottom-2/4 z-0"
+          className={`${styles.elipse} ${styles.first}`}
+        />
+        <Image
+          src={elipse}
+          alt=""
+          className={`${styles.elipse} ${styles.second}`}
         />
       </RoundedContainer>
     </div>

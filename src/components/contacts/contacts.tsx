@@ -9,6 +9,7 @@ import { ContactItem, Map } from "./components/components";
 import { mapTheme } from "./common/map-theme";
 import { BarberContext } from "~/providers/barber-provider";
 
+import styles from "./styles.module.scss";
 import barbers from "~/assets/data/barbers.json";
 
 const mapOptions = {
@@ -26,14 +27,14 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
   const currentBarber = barbers.find((barber) => barber.id === barberID);
 
   return (
-    <div className={`relative z-10 ${className}`} id={ModuleID.CONTACTS}>
-      <Container>
+    <div className={`${styles.contacts} ${className}`} id={ModuleID.CONTACTS}>
+      <Container className={styles.container}>
         <Title title={AppTitle.CONTACTS} />
 
-        <div className="flex justify-between gap-16 my-11 px-inner-container">
-          <div className="flex gap-16">
+        <div className={styles.content}>
+          <div className={styles.data}>
             {barbers.map((barber) => (
-              <div key={barber.id} className="flex flex-col gap-6">
+              <div key={barber.id} className={styles.col}>
                 <ContactItem title="Адреса" content={barber.address} />
                 <ContactItem
                   title="Контакти"
@@ -48,7 +49,7 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
 
           {currentBarber && (
             <Map
-              className="w-1/2 rounded-tl-[6.25rem] rounded-br-[6.25rem] overflow-hidden"
+              className={styles.map}
               mapOptions={mapOptions}
               containerStyle={{
                 width: "100%",

@@ -1,0 +1,19 @@
+.header {
+  @apply transition ease-in-out duration-300 py-6 z-50;
+
+  @media screen and (max-width: 768px) {
+    @apply py-2 bg-white drop-shadow-md;
+  }
+}
+
+.scrolled {
+  @apply bg-white drop-shadow-md;
+}
+
+.nav {
+  @apply px-inner-container;
+
+  @media screen and (max-width: 768px) {
+    @apply px-0;
+  }
+}

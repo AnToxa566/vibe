@@ -1,0 +1,31 @@
+.roundedContainer {
+  @apply relative pb-32;
+
+  .container {
+    @apply relative z-10;
+
+    .subtitle {
+      @apply text-center text-base font-extralight max-w-[60%] mx-auto my-10;
+    }
+  }
+
+  .elipse {
+    @apply absolute z-0;
+
+    &.first {
+      @apply right-1/2 top-10;
+    }
+
+    &.second {
+      @apply left-3/4 bottom-2/4;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      .subtitle {
+        @apply max-w-full text-mobile leading-4 my-6;
+      }
+    }
+  }
+}

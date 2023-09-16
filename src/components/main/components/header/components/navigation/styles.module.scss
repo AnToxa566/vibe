@@ -1,0 +1,100 @@
+.nav {
+  @apply flex;
+
+  .links {
+    @apply flex gap-6 flex-wrap;
+
+    .link {
+      @apply transition ease-in-out duration-200 border-2 border-transparent hover:border-b-regular-grey;
+    }
+  }
+
+  .address {
+    @apply hidden;
+  }
+
+  .burger {
+    @apply cursor-pointer hidden;
+
+    .lines {
+      --width: 2rem;
+      --height: 3px;
+      --offset: 7px;
+
+      @apply relative -top-[var(--height)] inline-block w-[var(--width)] h-[var(--height)] bg-regular-grey;
+      transition: background 0.1s 0.2s ease;
+
+      &::after,
+      &::before {
+        content: "";
+        @apply absolute left-0 inline-block w-[var(--width)] h-[var(--height)] bg-regular-grey;
+        transition: top 0.1s 0.2s ease, transform 0.1s ease;
+      }
+
+      &::after {
+        @apply -top-[var(--offset)];
+      }
+
+      &::before {
+        @apply top-[var(--offset)];
+      }
+    }
+  }
+
+  .burger.collapsed {
+    .lines {
+      @apply bg-transparent;
+      transition: background 0.1s 0s ease;
+
+      &::after,
+      &::before {
+        @apply top-0;
+        transition: top 0.1s ease, transform 0.1s 0.2s ease;
+      }
+
+      &::after {
+        transform: rotate3d(0, 0, 1, -45deg);
+      }
+
+      &::before {
+        transform: rotate3d(0, 0, 1, 45deg);
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    @apply justify-between items-center;
+
+    .links {
+      @apply absolute top-full left-0 flex-col gap-0 w-full hidden;
+
+      .link {
+        @apply px-8 py-4 w-full bg-regular-grey text-white border-b border-muted-grey hover:bg-dark-grey;
+      }
+    }
+
+    .links.in {
+      @apply flex;
+      animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+
+    .address {
+      @apply block;
+    }
+
+    .burger {
+      @apply block;
+    }
+  }
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,19 @@
+.container {
+  .table {
+    @apply flex flex-col;
+  }
+
+  .mobileTable {
+    @apply hidden;
+  }
+
+  @media screen and (max-width: 768px) {
+    .table {
+      @apply hidden;
+    }
+
+    .mobileTable {
+      @apply flex flex-col gap-4;
+    }
+  }
+}

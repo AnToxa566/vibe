@@ -1,6 +1,8 @@
 import { ButtonTitle } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
 
+import styles from "./styles.module.scss";
+
 type colors = "regular-grey" | "white" | "transparent";
 
 interface Props extends BaseProps {
@@ -19,10 +21,7 @@ const Button: React.FC<Props> = ({
 }) => {
   return (
     <button
-      className={`transition ease-in-out duration-200 
-                  p-3 w-max 
-                  border border-${borderColor} text-${textColor} bg-${bgColor}
-                  ${className}`}
+      className={`${styles.btn} border-${borderColor} text-${textColor} bg-${bgColor} ${className}`}
     >
       {title}
     </button>

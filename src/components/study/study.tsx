@@ -13,29 +13,34 @@ import { BaseProps } from "~/common/interfaces/interfaces";
 import { Button, Container, RoundedContainer, Title } from "../components";
 import { Stage } from "./components/components";
 
+import styles from "./styles.module.scss";
+
 import circle from "~/../public/svg/circle.svg";
 import elipse from "~/../public/svg/elipse.svg";
 
 const Study: React.FC<BaseProps> = ({ className = "" }) => {
   return (
-    <div className={`${className}`} id={ModuleID.STUDY}>
-      <RoundedContainer className={`relative overflow-hidden ${className}`}>
-        <Container className="relative z-10">
-          <Title title={AppTitle.STUDY} white className="mb-10" />
+    <div className={`${styles.study} ${className}`} id={ModuleID.STUDY}>
+      <RoundedContainer className={styles.wrapper}>
+        <Container className={styles.inner}>
+          <Title title={AppTitle.STUDY} white className={styles.title} />
 
-          <div className="flex justify-between gap-12 px-inner-container">
-            <div className="flex flex-col justify-between gap-6">
-              <div>
-                <p className="font-bold mb-12">{StudyText.FIRST}</p>
-                <p className="mb-6">{StudyText.SECOND}</p>
-                <p>{StudyText.THIRD}</p>
+          <div className={styles.content}>
+            <div className={styles.info}>
+              <div className={styles.text}>
+                <p className={styles.mainText}>{StudyText.FIRST}</p>
+
+                <div className={styles.subText}>
+                  <p>{StudyText.SECOND}</p>
+                  <p>{StudyText.THIRD}</p>
+                </div>
               </div>
 
               <Button
                 title={ButtonTitle.REQUEST_CALL}
                 borderColor="white"
                 textColor="white"
-                className="px-8 hover:bg-white hover:text-regular-grey"
+                className={styles.btn}
               />
             </div>
 
@@ -59,8 +64,16 @@ const Study: React.FC<BaseProps> = ({ className = "" }) => {
           </div>
         </Container>
 
-        <Image src={circle} alt="" className="absolute top-8 left-4 z-0" />
-        <Image src={elipse} alt="" className="absolute top-32 left-60 z-0" />
+        <Image
+          src={circle}
+          alt=""
+          className={`${styles.bgItem} ${styles.circle}`}
+        />
+        <Image
+          src={elipse}
+          alt=""
+          className={`${styles.bgItem} ${styles.elipse}`}
+        />
       </RoundedContainer>
     </div>
   );
