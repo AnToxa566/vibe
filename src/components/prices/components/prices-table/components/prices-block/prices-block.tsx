@@ -38,14 +38,14 @@ const PricesBlock: FC<Props> = ({
               key={price.title}
               className={`${styles.row} ${!(index % 2) ? styles.muted : ""}`}
             >
-              <div>
+              <div className={styles.priceTitle}>
                 <span>{price.title}</span>
                 {price.subtitle && (
                   <span className={styles.subtitle}> ({price.subtitle})</span>
                 )}
               </div>
 
-              <span>{price.cost} ₴</span>
+              <span className={styles.priceCost}>{price.cost} ₴</span>
             </div>
           ))}
         </div>
