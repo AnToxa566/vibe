@@ -39,7 +39,11 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
                 <ContactItem
                   title="Контакти"
                   content={
-                    barber.phone_numbers[0] + "\n" + barber.phone_numbers[1]
+                    <>
+                      {barber.phone_numbers[0]}
+                      <br />
+                      {barber.phone_numbers[0]}
+                    </>
                   }
                 />
                 <ContactItem title="Час роботи" content={barber.schedule} />

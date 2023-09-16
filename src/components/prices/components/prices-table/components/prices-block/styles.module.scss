@@ -11,8 +11,16 @@
         @apply bg-muted-grey;
       }
 
-      .subtitle {
-        @apply font-thin;
+      .priceTitle {
+        @apply mr-4;
+
+        .subtitle {
+          @apply font-thin;
+        }
+      }
+
+      .priceCost {
+        @apply whitespace-nowrap;
       }
     }
   }
