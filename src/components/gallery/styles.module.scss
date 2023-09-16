@@ -25,6 +25,18 @@
     }
   }
 
+  @media screen and (max-width: 900px) {
+    .container {
+      .content {
+        .carousel {
+          .galleryCards {
+            @apply gap-4;
+          }
+        }
+      }
+    }
+  }
+
   @media screen and (max-width: 768px) {
     .container {
       .content {

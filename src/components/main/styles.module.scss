@@ -7,14 +7,10 @@
 
   .logo {
     @apply mb-6 max-w-[55%] z-10;
-
-    @media screen and (max-width: 768px) {
-      @apply max-w-full;
-    }
   }
 
   .man {
-    @apply absolute top-0 right-0 max-h-[98vh] w-auto z-0;
+    @apply absolute bottom-4 right-0 max-h-[98vh] w-auto z-0;
   }
 
   .elipse {
@@ -39,15 +35,37 @@
     }
   }
 
+  @media screen and (max-width: 1200px) {
+    .logo {
+      @apply max-w-[50%];
+    }
+
+    .man {
+      @apply max-h-[90vh];
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .man {
+      @apply max-h-[80vh];
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .man {
+      @apply max-h-[70vh];
+    }
+  }
+
   @media screen and (max-width: 768px) {
     @apply justify-around py-16;
 
     .logo {
-      @apply max-w-full mb-4;
+      @apply max-w-[60%] mb-4 mx-auto;
     }
 
     .man {
-      @apply relative mb-5;
+      @apply relative bottom-0 mb-4 object-contain max-h-[60%];
     }
 
     .elipse {
@@ -76,6 +94,16 @@
       .address {
         @apply hidden;
       }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .logo {
+      @apply max-w-full;
+    }
+
+    .man {
+      @apply max-h-[50%];
     }
   }
 }

@@ -6,7 +6,7 @@
   }
 
   .title {
-    @apply uppercase;
+    @apply uppercase mr-10;
 
     .subtitle {
       @apply font-thin;
@@ -15,5 +15,11 @@
 
   .prices {
     @apply flex gap-24;
+  }
+
+  @media screen and (max-width: 900px) {
+    .prices {
+      @apply gap-16;
+    }
   }
 }

@@ -15,9 +15,9 @@ const Stage: React.FC<Props> = ({ count, price, text, className = "" }) => {
   return (
     <div
       className={`${styles.stage}
-                  ${count === StageCount.FIRST && styles.first}
-                  ${count === StageCount.SECOND && styles.second}
-                  ${count === StageCount.THIRD && styles.third}
+                  ${count === StageCount.FIRST ? styles.first : ""}
+                  ${count === StageCount.SECOND ? styles.second : ""}
+                  ${count === StageCount.THIRD ? styles.third : ""}
                   ${className}`}
     >
       <div className={styles.top}>

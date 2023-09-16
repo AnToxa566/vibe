@@ -17,7 +17,7 @@
   }
 
   .top {
-    @apply flex justify-between items-center mb-3;
+    @apply flex justify-between gap-4 items-center mb-3;
 
     .count {
       @apply text-3xl font-bold uppercase whitespace-nowrap;
