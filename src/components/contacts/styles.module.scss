@@ -1,0 +1,41 @@
+.contacts {
+  @apply relative z-10;
+
+  .container {
+    .content {
+      @apply flex justify-between gap-16 my-11 px-inner-container;
+
+      .data {
+        @apply flex gap-16;
+
+        .col {
+          @apply flex flex-col gap-6;
+        }
+      }
+
+      .map {
+        @apply w-1/2 rounded-tl-[6.25rem] rounded-br-[6.25rem] overflow-hidden;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      .content {
+        @apply flex-col gap-10 px-0 my-6;
+
+        .data {
+          @apply justify-center gap-8;
+
+          .col {
+            @apply gap-5;
+          }
+        }
+
+        .map {
+          @apply w-full rounded-tl-[3rem] rounded-br-[3rem];
+        }
+      }
+    }
+  }
+}

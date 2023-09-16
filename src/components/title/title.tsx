@@ -1,5 +1,7 @@
 import { BaseProps } from "~/common/interfaces/interfaces";
 
+import styles from "./styles.module.scss";
+
 interface Props extends BaseProps {
   title: string;
   white?: boolean;
@@ -8,7 +10,7 @@ interface Props extends BaseProps {
 const Title: React.FC<Props> = ({ title, white = false, className = "" }) => {
   return (
     <h2
-      className={`text-6xl font-black uppercase ${
+      className={`${styles.title} ${
         white ? "text-white" : "text-regular-grey"
       } ${className}`}
     >

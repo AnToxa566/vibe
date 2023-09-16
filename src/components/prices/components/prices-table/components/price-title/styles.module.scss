@@ -1,0 +1,37 @@
+.container {
+  @apply relative;
+
+  .innerContainer {
+    @apply flex items-center gap-1.5 absolute top-0 left-0 origin-top-left rotate-90;
+
+    .title {
+      @apply text-3xl font-black uppercase whitespace-nowrap;
+    }
+
+    .box {
+      @apply bg-white h-5 w-screen;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .innerContainer {
+      @apply relative -rotate-0 gap-2;
+
+      .title {
+        @apply text-xl;
+      }
+
+      .box {
+        @apply h-4 -mr-96;
+      }
+
+      &.reverse {
+        @apply flex-row-reverse;
+
+        .box {
+          @apply mr-0 -ml-96;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.btn {
+  @apply transition ease-in-out duration-200 p-3 w-max border;
+
+  @media screen and (max-width: 768px) {
+    @apply p-2;
+  }
+}

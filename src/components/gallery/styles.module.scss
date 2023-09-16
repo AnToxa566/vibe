@@ -1,0 +1,55 @@
+.gallery {
+  @apply relative z-10;
+
+  .container {
+    .content {
+      .carousel {
+        @apply my-11;
+
+        .galleryCards {
+          @apply grid grid-cols-5 grid-flow-row gap-8 snap-start;
+        }
+      }
+
+      .photos {
+        @apply hidden;
+      }
+
+      .footer {
+        @apply flex flex-wrap justify-center gap-1;
+
+        .text {
+          @apply text-base font-extralight text-center;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      .content {
+        @apply flex flex-col-reverse;
+
+        .carousel {
+          @apply hidden;
+        }
+
+        .photos {
+          @apply grid grid-cols-2 gap-3 justify-items-center;
+
+          .photo {
+            @apply min-w-[6rem] w-full;
+          }
+        }
+
+        .footer {
+          @apply flex-col items-center my-6;
+
+          .text {
+            @apply text-mobile;
+          }
+        }
+      }
+    }
+  }
+}

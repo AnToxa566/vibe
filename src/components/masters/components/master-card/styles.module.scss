@@ -1,0 +1,53 @@
+.card {
+  .img {
+    @apply rounded-tr-3xl rounded-bl-3xl mb-5 h-[260px] object-cover;
+  }
+
+  .content {
+    @apply flex items-center gap-3 mb-5;
+
+    .line {
+      @apply bg-regular-grey w-[1px] h-14;
+    }
+
+    .data {
+      @apply flex flex-col uppercase leading-6;
+
+      .name {
+        @apply font-black;
+      }
+
+      .graduation {
+        @apply font-thin text-base;
+      }
+    }
+  }
+
+  .btn {
+    @apply w-full hover:bg-dark-grey whitespace-nowrap;
+  }
+
+  @media screen and (max-width: 768px) {
+    .img {
+      @apply mb-2;
+    }
+
+    .content {
+      @apply mb-2;
+
+      .line {
+        @apply h-8;
+      }
+
+      .data {
+        .name {
+          @apply text-xs;
+        }
+
+        .graduation {
+          @apply text-mobile leading-3;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { PriceTitle } from "../components";
 
+import styles from "./styles.module.scss";
+
 interface Props extends BaseProps {
   isFirstRow: boolean;
   gradation: string;
@@ -15,9 +17,9 @@ const Price: React.FC<Props> = ({
 }) => {
   return (
     price && (
-      <div>
+      <div className={className}>
         {isFirstRow && <PriceTitle title={gradation} />}
-        <div className={`min-w-[3.5rem] ${className}`}>{price}₴</div>
+        <div className={styles.price}>{price}₴</div>
       </div>
     )
   );

@@ -16,6 +16,10 @@ const config: Config = {
       padding: {
         "inner-container": "3.5rem",
       },
+      fontSize: {
+        desktop: "1.25rem",
+        mobile: "0.625rem",
+      },
     },
   },
   plugins: [],

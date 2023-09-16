@@ -31,7 +31,7 @@
     "id": 5,
     "barberId": 1,
     "name": "Ліза",
-    "graduation": "tob-barber",
+    "graduation": "top-barber",
     "imgPath": "/lisa.jpg"
   },
   {
@@ -45,14 +45,14 @@
     "id": 7,
     "barberId": 2,
     "name": "Максим",
-    "graduation": "tob-barber",
+    "graduation": "top-barber",
     "imgPath": "/maksim-2.jpg"
   },
   {
     "id": 8,
     "barberId": 2,
     "name": "Тетяна",
-    "graduation": "tob-barber",
+    "graduation": "top-barber",
     "imgPath": "/tetiana.jpg"
   }
 ]

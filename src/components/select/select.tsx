@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import { BaseProps } from "~/common/interfaces/interfaces";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import arrow from "~/../public/svg/select-arrow.svg";
 
 export interface SelectOption {
@@ -26,12 +26,12 @@ const Select: React.FC<Props> = ({ data, onChange, className = "" }) => {
         <div>{data.find((it) => it.current)?.value}</div>
       </div>
 
-      <div className={`absolute w-full ${styles.options}`}>
+      <div className={`absolute w-full drop-shadow-md ${styles.options}`}>
         {data.map((it) => (
           <div
             key={it.key}
             onClick={() => onChange(it)}
-            className={`text-center text-white bg-regular-grey py-2 ${styles.option}`}
+            className={`text-center text-white bg-regular-grey py-2 whitespace-nowrap hover:bg-dark-grey border-b border-muted-grey ${styles.option}`}
           >
             {it.value}
           </div>

@@ -1,0 +1,81 @@
+.header {
+  @apply fixed top-0 w-screen;
+}
+
+.main {
+  @apply relative h-screen flex flex-col justify-center;
+
+  .logo {
+    @apply mb-6 max-w-[55%] z-10;
+
+    @media screen and (max-width: 768px) {
+      @apply max-w-full;
+    }
+  }
+
+  .man {
+    @apply absolute top-0 right-0 max-h-[98vh] w-auto z-0;
+  }
+
+  .elipse {
+    @apply absolute bottom-[10%] -right-[40%] -z-10;
+  }
+
+  .content {
+    @apply flex flex-col gap-6 z-10 px-inner-container;
+
+    .text {
+      @apply w-2/5;
+    }
+
+    .buttons {
+      .btn {
+        @apply px-7 hover:bg-regular-grey hover:text-white;
+
+        &.callBtn {
+          @apply hidden;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    @apply justify-around py-16;
+
+    .logo {
+      @apply max-w-full mb-4;
+    }
+
+    .man {
+      @apply relative mb-5;
+    }
+
+    .elipse {
+      @apply top-0 left-6 h-full;
+    }
+
+    .content {
+      @apply px-0 gap-4;
+
+      .text {
+        @apply w-full text-center;
+      }
+
+      .buttons {
+        @apply flex gap-2 justify-center;
+
+        .btn {
+          @apply px-4 bg-regular-grey text-white;
+
+          &.callBtn {
+            @apply block;
+          }
+        }
+      }
+
+      .address {
+        @apply hidden;
+      }
+    }
+  }
+}

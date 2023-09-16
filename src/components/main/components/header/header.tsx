@@ -6,11 +6,13 @@ import { BaseProps } from "~/common/interfaces/interfaces";
 import { Navigation } from "./components/components";
 import { Container } from "~/components/components";
 
+import styles from "./styles.module.scss";
+
 const Header: React.FC<BaseProps> = ({ className = "" }) => {
   const [scrolled, setScrolled] = useState<boolean>(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 20) {
       setScrolled(true);
     } else {
       setScrolled(false);
@@ -20,7 +22,7 @@ const Header: React.FC<BaseProps> = ({ className = "" }) => {
   useEffect(() => {
     addEventListener("scroll", handleScroll);
 
-    if (window.scrollY > 50) {
+    if (window.scrollY > 20) {
       setScrolled(true);
     }
 
@@ -29,12 +31,12 @@ const Header: React.FC<BaseProps> = ({ className = "" }) => {
 
   return (
     <header
-      className={`transition ease-in-out duration-300 py-6 z-50 ${
-        scrolled ? "bg-regular-grey text-white drop-shadow-md" : ""
+      className={`${styles.header} ${
+        scrolled ? styles.scrolled : ""
       } ${className}`}
     >
       <Container>
-        <Navigation className="px-inner-container" />
+        <Navigation className={styles.nav} />
       </Container>
     </header>
   );

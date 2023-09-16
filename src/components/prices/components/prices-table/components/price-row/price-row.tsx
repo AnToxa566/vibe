@@ -1,6 +1,8 @@
 import { BaseProps } from "~/common/interfaces/interfaces";
-import { Price, PriceTitle } from "../components";
+import { Price } from "../components";
 import { Gradation } from "~/common/enums/enums";
+
+import styles from "./styles.module.scss";
 
 interface IPrice {
   id: number;
@@ -25,19 +27,15 @@ const PriceRow: React.FC<Props> = ({
   className = "",
 }) => {
   return (
-    <div
-      className={`flex justify-between px-inner-container ${
-        isMuted && "bg-muted-grey"
-      } ${className}`}
-    >
-      <div className="uppercase">
+    <div className={`${styles.row} ${isMuted && styles.muted} ${className}`}>
+      <div className={styles.title}>
         <span>{price.title}</span>
         {price.subtitle && (
-          <span className="font-thin"> ({price.subtitle})</span>
+          <span className={styles.subtitle}> ({price.subtitle})</span>
         )}
       </div>
 
-      <div className="flex gap-24">
+      <div className={styles.prices}>
         <Price
           price={price.barberPrice}
           isFirstRow={isFirstRow}

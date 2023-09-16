@@ -1,7 +1,7 @@
 import { StageCount, StagePrice, StageText } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
 
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 interface Props extends BaseProps {
   count: StageCount;
@@ -14,31 +14,15 @@ const Stage: React.FC<Props> = ({ count, price, text, className = "" }) => {
 
   return (
     <div
-      className={`p-5 min-h-[10rem] border
-                  ${
-                    count === StageCount.FIRST &&
-                    "rounded-bl-xl" &&
-                    styles.gradientFirst
-                  }
-                  ${
-                    count === StageCount.SECOND &&
-                    "rounded-br-xl" &&
-                    styles.gradientSecond
-                  }
-                  ${
-                    count === StageCount.THIRD &&
-                    "rounded-tl-xl" &&
-                    styles.gradientFirst
-                  }
+      className={`${styles.stage}
+                  ${count === StageCount.FIRST && styles.first}
+                  ${count === StageCount.SECOND && styles.second}
+                  ${count === StageCount.THIRD && styles.third}
                   ${className}`}
     >
-      <div className="flex justify-between items-center mb-3">
-        <span className="text-3xl font-bold uppercase whitespace-nowrap">
-          Stage {count}
-        </span>
-        <span className="text-3xl font-extralight">
-          {addDotToPrice(price)}₴
-        </span>
+      <div className={styles.top}>
+        <span className={styles.count}>Stage {count}</span>
+        <span className={styles.price}>{addDotToPrice(price)}₴</span>
       </div>
 
       <p>{text}</p>
