@@ -1,0 +1,61 @@
+.masters {
+  @apply relative z-0;
+
+  .container {
+    @apply relative z-10;
+
+    .subtitle {
+      @apply text-base text-center font-extralight my-11;
+    }
+
+    .carousel {
+      .masterCard {
+        @apply snap-center;
+      }
+    }
+
+    .mastersList {
+      @apply hidden;
+    }
+  }
+
+  .circle {
+    @apply hidden z-0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      .subtitle {
+        @apply text-mobile leading-4 my-6;
+      }
+
+      .carousel {
+        @apply hidden;
+      }
+
+      .mastersList {
+        @apply grid grid-cols-2 grid-flow-row justify-items-center gap-y-3 gap-x-5;
+
+        .masterCard {
+          @apply row-span-2;
+        }
+
+        .masterCard:nth-child(2) {
+          @apply row-start-2 col-start-2;
+        }
+      }
+    }
+
+    .circle {
+      @apply block absolute rounded-full shadow-2xl;
+
+      &.big {
+        @apply top-[10%] right-1/4 w-[40rem] h-[40rem];
+      }
+
+      &.small {
+        @apply -bottom-36 -right-24 w-48 h-48;
+      }
+    }
+  }
+}

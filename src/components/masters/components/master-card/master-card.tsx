@@ -4,6 +4,8 @@ import { ButtonTitle } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { Button } from "~/components/components";
 
+import styles from "./styles.module.scss";
+
 interface IMaster {
   name: string;
   graduation: string;
@@ -16,21 +18,21 @@ interface Props extends BaseProps {
 
 const MasterCard: React.FC<Props> = ({ master, className = "" }) => {
   return (
-    <div className={`${className}`}>
+    <div className={`${styles.card} ${className}`}>
       <Image
         src={`/images/masters${master.imgPath}`}
         alt={`Барбер ${master.name}`}
         width="190"
         height="260"
-        className="rounded-tr-3xl rounded-bl-3xl mb-5 h-[260px] object-cover"
+        className={styles.img}
       />
 
-      <div className="flex items-center gap-3 mb-5">
-        <div className="bg-regular-grey w-[1px] h-14"></div>
+      <div className={styles.content}>
+        <div className={styles.line}></div>
 
-        <div className="flex flex-col uppercase leading-6">
-          <span className="font-black">{master.name}</span>
-          <span className="font-thin text-base">{master.graduation}</span>
+        <div className={styles.data}>
+          <span className={styles.name}>{master.name}</span>
+          <span className={styles.graduation}>{master.graduation}</span>
         </div>
       </div>
 
@@ -38,7 +40,7 @@ const MasterCard: React.FC<Props> = ({ master, className = "" }) => {
         title={ButtonTitle.ONLINE_ENTRY}
         textColor="white"
         bgColor="regular-grey"
-        className="w-[190px] hover:bg-dark-grey"
+        className={styles.btn}
       />
     </div>
   );

@@ -7,14 +7,16 @@ import {
   Study,
 } from "~/components/components";
 
+import styles from "./styles.module.scss";
+
 const Home = () => {
   return (
-    <main>
+    <main className={styles.page}>
       <Main />
       <Prices />
-      <Masters className="my-[3.75rem]" /> {/* mobile: 2.5rem */}
+      <Masters className={styles.masters} />
       <Study />
-      <Gallery className="my-[3.75rem]" />
+      <Gallery className={styles.gallery} />
       <Contacts />
     </main>
   );

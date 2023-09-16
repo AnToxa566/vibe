@@ -7,7 +7,7 @@ import { Header } from "./components/header/header";
 import { AddressSelect, Logo } from "./components/components";
 
 import man from "~/../public/images/home-man.png";
-import elipse from "~/../public/svg/ellipse-home.svg";
+import elipse from "~/../public/svg/ellipse-white.svg";
 
 import styles from "./styles.module.scss";
 
