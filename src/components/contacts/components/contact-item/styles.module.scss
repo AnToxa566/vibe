@@ -1,0 +1,16 @@
+.contact {
+  .title {
+    @apply text-2xl font-bold mb-1;
+  }
+
+  .content {
+    @apply text-base whitespace-pre-line;
+  }
+
+  @media screen and (max-width: 768px) {
+    .title,
+    .content {
+      @apply text-mobile leading-3;
+    }
+  }
+}
