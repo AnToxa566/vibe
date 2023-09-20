@@ -5,47 +5,49 @@ import { PriceTitle } from "../components";
 
 import styles from "./styles.module.scss";
 
-interface IPrice {
+interface IService {
   title: string;
   cost: number;
   subtitle?: string;
 }
 
 interface Props extends BaseProps {
-  gradation: string;
-  prices: IPrice[];
+  graduation: string;
+  services: IService[];
   reverse?: boolean;
 }
 
 const PricesBlock: FC<Props> = ({
-  gradation,
-  prices,
+  graduation,
+  services,
   reverse = false,
   className = "",
 }) => {
+  const isMiss = services.find((service) => !service.cost);
+
   return (
-    prices.length !== 0 && (
+    !isMiss && (
       <div className={`${styles.pricesBlock} ${className}`}>
         <PriceTitle
-          title={gradation}
+          title={graduation}
           reverse={reverse}
           className={styles.title}
         />
 
         <div className={styles.table}>
-          {prices.map((price, index) => (
+          {services.map((service, index) => (
             <div
-              key={price.title}
+              key={service.title}
               className={`${styles.row} ${!(index % 2) ? styles.muted : ""}`}
             >
               <div className={styles.priceTitle}>
-                <span>{price.title}</span>
-                {price.subtitle && (
-                  <span className={styles.subtitle}> ({price.subtitle})</span>
+                <span>{service.title}</span>
+                {service.subtitle && (
+                  <span className={styles.subtitle}> ({service.subtitle})</span>
                 )}
               </div>
 
-              <span className={styles.priceCost}>{price.cost} ₴</span>
+              <span className={styles.priceCost}>{service.cost} ₴</span>
             </div>
           ))}
         </div>

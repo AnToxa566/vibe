@@ -16,7 +16,7 @@ const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
 
   const { mutate: getBarbershops } = useMutation(
     "getBarbershops",
-    async () => await barbershopService.getAll(),
+    () => barbershopService.getAll(),
     {
       onSuccess(data) {
         setBarbershops(data);

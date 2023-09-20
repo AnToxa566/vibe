@@ -1,61 +1,50 @@
-import { BaseProps } from "~/common/interfaces/interfaces";
-import { Price } from "../components";
+"use client";
+
+import { useContext } from "react";
+
+import { BaseProps, IService } from "~/common/interfaces/interfaces";
+import { BarberContext } from "~/providers/barber-provider";
 import { Gradation } from "~/common/enums/enums";
+import { Price } from "../components";
 
 import styles from "./styles.module.scss";
 
-interface IPrice {
-  id: number;
-  title: string;
-  barberPrice?: number;
-  topPrice?: number;
-  expertPrice?: number;
-  ambassadorPrice?: number;
-  subtitle?: string;
-}
-
 interface Props extends BaseProps {
-  price: IPrice;
+  service: IService;
   isMuted?: boolean;
   isFirstRow?: boolean;
 }
 
 const PriceRow: React.FC<Props> = ({
-  price,
+  service,
   isMuted = false,
   isFirstRow = false,
   className = "",
 }) => {
+  const { barberID } = useContext(BarberContext);
+
+  const barberPrices = service.prices.filter(
+    (it) => it.barbershop.id === barberID
+  );
+
   return (
     <div className={`${styles.row} ${isMuted && styles.muted} ${className}`}>
       <div className={styles.title}>
-        <span>{price.title}</span>
-        {price.subtitle && (
-          <span className={styles.subtitle}> ({price.subtitle})</span>
+        <span>{service.title}</span>
+        {service.subtitle && (
+          <span className={styles.subtitle}> ({service.subtitle})</span>
         )}
       </div>
 
       <div className={styles.prices}>
-        <Price
-          price={price.barberPrice}
-          isFirstRow={isFirstRow}
-          gradation={Gradation.BARBER}
-        />
-        <Price
-          price={price.topPrice}
-          isFirstRow={isFirstRow}
-          gradation={Gradation.TOP_BARBER}
-        />
-        <Price
-          price={price.expertPrice}
-          isFirstRow={isFirstRow}
-          gradation={Gradation.EXPERT}
-        />
-        <Price
-          price={price.ambassadorPrice}
-          isFirstRow={isFirstRow}
-          gradation={Gradation.AMBASSADOR}
-        />
+        {barberPrices.map((price) => (
+          <Price
+            key={price.id}
+            price={price.value}
+            isFirstRow={isFirstRow}
+            graduation={price.graduation.title}
+          />
+        ))}
       </div>
     </div>
   );
