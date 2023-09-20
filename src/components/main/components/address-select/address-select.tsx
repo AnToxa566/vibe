@@ -1,31 +1,49 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useMutation } from "react-query";
 
 import { BarberContext } from "~/providers/barber-provider";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps, IBarbershop } from "~/common/interfaces/interfaces";
 import { Select } from "~/components/components";
 import { SelectOption } from "~/components/select/select";
-
-import barbers from "~/assets/data/barbers.json";
+import { barbershopService } from "~/services/services";
 
 const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID, setBarberID } = useContext(BarberContext);
 
-  const handleChange = (option: SelectOption) =>
+  const [barbershops, setBarbershops] = useState<IBarbershop[]>([]);
+
+  const { mutate: getBarbershops } = useMutation(
+    "getBarbershops",
+    async () => await barbershopService.getAll(),
+    {
+      onSuccess(data) {
+        setBarbershops(data);
+      },
+    }
+  );
+
+  const handleChange = (option: SelectOption) => {
     setBarberID(
-      barbers.find((it) => it.address === option.value)?.id || barbers[0].id
+      barbershops.find((it) => it.address === option.value)?.id ||
+        barbershops[0].id
     );
+  };
 
   useEffect(() => {
-    if (!barberID) {
-      setBarberID(barbers[0].id);
+    getBarbershops();
+  }, [getBarbershops]);
+
+  useEffect(() => {
+    if (!barberID && barbershops.length) {
+      setBarberID(barbershops[0].id);
     }
-  }, [barberID, setBarberID]);
+  }, [barberID, barbershops, setBarberID]);
 
   return (
     <Select
-      data={barbers.map((barber) => ({
+      data={barbershops.map((barber) => ({
         key: barber.id.toString(),
         value: barber.address,
         current: barber.id === barberID,

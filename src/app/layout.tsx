@@ -1,6 +1,9 @@
+"use client";
+
 import Head from "next/head";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import { BarberProvider } from "~/providers/barber-provider";
 import { AppSubtitle, AppTitle } from "~/common/enums/enums";
@@ -17,6 +20,23 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: AppTitle.MAIN,
   description: AppSubtitle.MAIN,
+  keywords: [
+    "барбершоп",
+    "барбершоп мужские стрижки",
+    "барбершоп запорожье",
+    "барбершоп запорожье цены",
+    "барбершоп запоріжжя",
+    "барбершоп вайб",
+    "барбершоп центр",
+    "barber",
+    "barbershop",
+    "barbershop запоріжжя",
+    "barbershop запорожье",
+    "vibe barbershop",
+  ],
+  openGraph: {
+    images: "/images/og-image.png",
+  },
 };
 
 interface Props {
@@ -24,6 +44,8 @@ interface Props {
 }
 
 const RootLayout: React.FC<Props> = ({ children }) => {
+  const queryClient = new QueryClient();
+
   return (
     <html lang="uk">
       <Head>
@@ -31,7 +53,9 @@ const RootLayout: React.FC<Props> = ({ children }) => {
       </Head>
 
       <BarberProvider>
-        <body className={montserrat.className}>{children}</body>
+        <QueryClientProvider client={queryClient}>
+          <body className={montserrat.className}>{children}</body>
+        </QueryClientProvider>
       </BarberProvider>
     </html>
   );
