@@ -26,10 +26,14 @@
 
     .buttons {
       .btn {
-        @apply px-7 hover:bg-regular-grey hover:text-white;
+        @apply px-7;
 
         &.callBtn {
           @apply hidden;
+        }
+
+        &:hover {
+          @apply bg-regular-grey text-white;
         }
       }
     }
@@ -84,6 +88,10 @@
 
         .btn {
           @apply px-4 bg-regular-grey text-white;
+
+          &:hover {
+            @apply bg-dark-grey;
+          }
 
           &.callBtn {
             @apply block;

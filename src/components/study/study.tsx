@@ -36,12 +36,7 @@ const Study: React.FC<BaseProps> = ({ className = "" }) => {
                 </div>
               </div>
 
-              <Button
-                title={ButtonTitle.REQUEST_CALL}
-                borderColor="white"
-                textColor="white"
-                className={styles.btn}
-              />
+              <Button title={ButtonTitle.REQUEST_CALL} className={styles.btn} />
             </div>
 
             <div>

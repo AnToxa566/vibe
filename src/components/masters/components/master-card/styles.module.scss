@@ -24,7 +24,11 @@
   }
 
   .btn {
-    @apply w-full hover:bg-dark-grey whitespace-nowrap;
+    @apply text-white bg-regular-grey w-full whitespace-nowrap;
+
+    &:hover {
+      @apply bg-dark-grey;
+    }
   }
 
   @media screen and (max-width: 768px) {

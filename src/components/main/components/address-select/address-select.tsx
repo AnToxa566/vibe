@@ -1,7 +1,7 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
-import { useMutation } from "react-query";
+import { useContext, useEffect } from "react";
+import { useQuery } from "react-query";
 
 import { BarberContext } from "~/providers/barber-provider";
 import { BaseProps, IBarbershop } from "~/common/interfaces/interfaces";
@@ -12,45 +12,38 @@ import { barbershopService } from "~/services/services";
 const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID, setBarberID } = useContext(BarberContext);
 
-  const [barbershops, setBarbershops] = useState<IBarbershop[]>([]);
-
-  const { mutate: getBarbershops } = useMutation(
-    "getBarbershops",
-    () => barbershopService.getAll(),
-    {
-      onSuccess(data) {
-        setBarbershops(data);
-      },
-    }
+  const { data: barbershops } = useQuery(
+    "barbershops",
+    barbershopService.getAll
   );
 
   const handleChange = (option: SelectOption) => {
-    setBarberID(
-      barbershops.find((it) => it.address === option.value)?.id ||
-        barbershops[0].id
-    );
+    if (barbershops) {
+      setBarberID(
+        barbershops.find((it) => it.address === option.value)?.id ||
+          barbershops[0].id
+      );
+    }
   };
 
   useEffect(() => {
-    getBarbershops();
-  }, [getBarbershops]);
-
-  useEffect(() => {
-    if (!barberID && barbershops.length) {
+    if (!barberID && barbershops && barbershops.length) {
       setBarberID(barbershops[0].id);
     }
   }, [barberID, barbershops, setBarberID]);
 
   return (
-    <Select
-      data={barbershops.map((barber) => ({
-        key: barber.id.toString(),
-        value: barber.address,
-        current: barber.id === barberID,
-      }))}
-      onChange={handleChange}
-      className={className}
-    />
+    barbershops && (
+      <Select
+        data={barbershops.map((barber) => ({
+          key: barber.id.toString(),
+          value: barber.address,
+          current: barber.id === barberID,
+        }))}
+        onChange={handleChange}
+        className={className}
+      />
+    )
   );
 };
 
