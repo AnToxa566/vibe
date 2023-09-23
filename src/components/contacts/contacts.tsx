@@ -1,6 +1,7 @@
 "use client";
 
 import { useContext } from "react";
+import { useQuery } from "react-query";
 
 import { AppTitle, ModuleID } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
@@ -8,9 +9,9 @@ import { Container, Title } from "../components";
 import { ContactItem, Map } from "./components/components";
 import { mapTheme } from "./common/map-theme";
 import { BarberContext } from "~/providers/barber-provider";
+import { barbershopService } from "~/services/services";
 
 import styles from "./styles.module.scss";
-import barbers from "~/assets/data/barbers.json";
 
 const mapOptions = {
   styles: mapTheme,
@@ -24,7 +25,12 @@ const mapOptions = {
 const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID } = useContext(BarberContext);
 
-  const currentBarber = barbers.find((barber) => barber.id === barberID);
+  const { data: barbershops } = useQuery(
+    "barbershops",
+    barbershopService.getAll
+  );
+
+  const currentBarbershop = barbershops?.find((it) => it.id === barberID);
 
   return (
     <div className={`${styles.contacts} ${className}`} id={ModuleID.CONTACTS}>
@@ -32,26 +38,28 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
         <Title title={AppTitle.CONTACTS} />
 
         <div className={styles.content}>
-          <div className={styles.data}>
-            {barbers.map((barber) => (
-              <div key={barber.id} className={styles.col}>
-                <ContactItem title="Адреса" content={barber.address} />
-                <ContactItem
-                  title="Контакти"
-                  content={
-                    <>
-                      {barber.phone_numbers[0]}
-                      <br />
-                      {barber.phone_numbers[0]}
-                    </>
-                  }
-                />
-                <ContactItem title="Час роботи" content={barber.schedule} />
-              </div>
-            ))}
-          </div>
+          {barbershops && (
+            <div className={styles.data}>
+              {barbershops.map((it) => (
+                <div key={it.id} className={styles.col}>
+                  <ContactItem title="Адреса" content={it.address} />
+                  <ContactItem
+                    title="Контакти"
+                    content={
+                      <>
+                        {it.phoneNumbers[0]}
+                        <br />
+                        {it.phoneNumbers[1]}
+                      </>
+                    }
+                  />
+                  <ContactItem title="Час роботи" content={it.schedule} />
+                </div>
+              ))}
+            </div>
+          )}
 
-          {currentBarber && (
+          {currentBarbershop && (
             <Map
               className={styles.map}
               mapOptions={mapOptions}
@@ -60,8 +68,8 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
                 minHeight: "25rem",
               }}
               center={{
-                lat: currentBarber.lat,
-                lng: currentBarber.lng,
+                lat: currentBarbershop.lat,
+                lng: currentBarbershop.lng,
               }}
             />
           )}
