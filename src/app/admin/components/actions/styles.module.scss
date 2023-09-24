@@ -1,5 +1,5 @@
 .actions {
-  @apply relative flex justify-center items-center gap-2;
+  @apply relative flex items-center gap-2;
 
   .action {
     @apply text-lg text-regular-grey cursor-pointer active:opacity-50;
