@@ -6,13 +6,19 @@
   --foreground-hex: #5a5a5a;
 }
 
+*,
+*::after,
+*::before {
+  @apply box-border;
+}
+
 html {
   @apply relative font-light scroll-smooth;
   font-size: 16px;
 }
 
 body {
-  @apply text-regular-grey text-desktop overflow-x-hidden;
+  @apply text-regular-grey text-desktop overflow-x-hidden min-h-screen;
 
   &::before {
     @apply absolute top-0 right-0 bottom-0 left-0 z-0 opacity-[0.03];

@@ -1,5 +1,5 @@
 .page {
-  @apply relative h-screen flex flex-col gap-6 justify-center items-center z-10;
+  @apply relative flex flex-col gap-6 justify-center items-center h-screen z-10;
 
   .title {
     @apply text-2xl font-bold uppercase;

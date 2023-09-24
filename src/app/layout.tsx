@@ -44,7 +44,11 @@ interface Props {
 }
 
 const RootLayout: React.FC<Props> = ({ children }) => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: { refetchOnWindowFocus: false },
+    },
+  });
 
   return (
     <html lang="uk">
