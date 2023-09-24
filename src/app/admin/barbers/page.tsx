@@ -48,7 +48,7 @@ const Page = () => {
       case "actions":
         return <Actions />;
       default:
-        return cellValue.toString();
+        return cellValue as string | number;
     }
   };
 

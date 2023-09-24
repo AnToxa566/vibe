@@ -2,8 +2,8 @@
 
 import { useQuery } from "react-query";
 
-import { IPrice } from "~/common/interfaces/interfaces";
-import { priceService } from "~/services/services";
+import { IService } from "~/common/interfaces/interfaces";
+import { serviceService } from "~/services/services";
 import { Actions } from "../components/actions/actions";
 import { AdminTable } from "../components/admin-table/admin-table";
 import { QueryKey } from "~/common/enums/enums";
@@ -14,20 +14,12 @@ const columns = [
     label: "ID",
   },
   {
-    key: "value",
-    label: "VALUE",
+    key: "title",
+    label: "TITLE",
   },
   {
-    key: "service",
-    label: "SERVICE",
-  },
-  {
-    key: "barbershop",
-    label: "BARBERSHOP",
-  },
-  {
-    key: "graduation",
-    label: "GRADUATION",
+    key: "subtitle",
+    label: "SUBTITLE",
   },
   {
     key: "actions",
@@ -37,24 +29,20 @@ const columns = [
 
 const Page = () => {
   const { data, isLoading } = useQuery(
-    QueryKey.GET_PRICES,
-    priceService.getAll
+    QueryKey.GET_SERVICES,
+    serviceService.getAll
   );
 
-  const renderCell = (item: IPrice, key: React.Key) => {
-    const cellValue = item[key as keyof IPrice];
+  const renderCell = (item: IService, key: React.Key) => {
+    const cellValue = item[key as keyof IService];
 
     switch (key) {
-      case "service":
-        return item.service.title;
-      case "barbershop":
-        return item.barbershop.address;
-      case "graduation":
-        return item.graduation.title;
+      case "subtitle":
+        return item.subtitle || "—";
       case "actions":
         return <Actions />;
       default:
-        return cellValue as number;
+        return cellValue as string | number;
     }
   };
 
