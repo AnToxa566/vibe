@@ -1,0 +1,31 @@
+.page {
+  @apply relative h-screen flex flex-col gap-6 justify-center items-center z-10;
+
+  .title {
+    @apply text-2xl font-bold uppercase;
+  }
+
+  .form {
+    @apply flex flex-col gap-2;
+
+    .input {
+      @apply flex flex-col gap-1;
+
+      & input {
+        @apply border border-regular-grey py-2 px-4 rounded-tr-lg rounded-bl-lg;
+      }
+
+      .error {
+        @apply text-red-500 text-sm;
+      }
+    }
+
+    .btn {
+      @apply w-full mt-4;
+    }
+  }
+
+  .notify {
+    @apply text-sm;
+  }
+}

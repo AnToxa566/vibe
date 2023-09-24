@@ -1,6 +1,7 @@
-import { axiosClassic } from "~/api/interceptor";
+import instance, { axiosClassic } from "~/api/interceptor";
 import { IUser } from "~/common/interfaces/interfaces";
 import { removeTokenFromStorage, saveTokenToStorage } from "./auth.helper";
+import { AxiosError } from "axios";
 
 interface IAuthResponse {
   user: IUser;
@@ -32,6 +33,16 @@ class AuthService {
     }
 
     return response.data;
+  }
+
+  async checkAuth() {
+    const response = await instance.get("/users");
+
+    if (response.status === 401) {
+      return false;
+    }
+
+    return true;
   }
 
   logout() {
