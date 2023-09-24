@@ -8,12 +8,13 @@ import { BaseProps, IBarbershop } from "~/common/interfaces/interfaces";
 import { Select } from "~/components/components";
 import { SelectOption } from "~/components/select/select";
 import { barbershopService } from "~/services/services";
+import { QueryKey } from "~/common/enums/enums";
 
 const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID, setBarberID } = useContext(BarberContext);
 
   const { data: barbershops } = useQuery(
-    "barbershops",
+    QueryKey.GET_BARBERSHOPS,
     barbershopService.getAll
   );
 

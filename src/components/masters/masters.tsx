@@ -3,7 +3,12 @@
 import { useContext } from "react";
 import { useQuery } from "react-query";
 
-import { AppSubtitle, AppTitle, ModuleID } from "~/common/enums/enums";
+import {
+  AppSubtitle,
+  AppTitle,
+  ModuleID,
+  QueryKey,
+} from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { Carousel, Container, Title } from "../components";
 import { MasterCard } from "./components/components";
@@ -15,7 +20,10 @@ import styles from "./styles.module.scss";
 const Masters: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID } = useContext(BarberContext);
 
-  const { data: barbers } = useQuery("barbers", barberService.getAll);
+  const { data: barbers } = useQuery(
+    QueryKey.GET_BARBERS,
+    barberService.getAll
+  );
 
   const barberMasters = barbers?.filter((it) => it.barbershop.id === barberID);
 

@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import { useQuery } from "react-query";
 
-import { AppTitle, ModuleID } from "~/common/enums/enums";
+import { AppTitle, ModuleID, QueryKey } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { Container, Title } from "../components";
 import { ContactItem, Map } from "./components/components";
@@ -26,7 +26,7 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID } = useContext(BarberContext);
 
   const { data: barbershops } = useQuery(
-    "barbershops",
+    QueryKey.GET_BARBERSHOPS,
     barbershopService.getAll
   );
 

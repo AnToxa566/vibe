@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { PropsWithChildren, FC } from "react";
 import pluralize from "pluralize";
 
+import { QueryKey } from "~/common/enums/enums";
 import { Button } from "~/components/components";
 import { authService } from "~/services/services";
 
@@ -26,7 +27,7 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
   const router = useRouter();
 
   const { data: isAdmin, isLoading } = useQuery(
-    "checkAuth",
+    QueryKey.CHECK_AUTH,
     authService.checkAuth
   );
 

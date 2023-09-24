@@ -2,8 +2,8 @@
 
 import { useQuery } from "react-query";
 
-import { barbershopService } from "~/services/services";
-import { IBarbershop } from "~/common/interfaces/interfaces";
+import { IBarber } from "~/common/interfaces/interfaces";
+import { barberService } from "~/services/services";
 import { Actions } from "../components/actions/actions";
 import { AdminTable } from "../components/admin-table/admin-table";
 import { QueryKey } from "~/common/enums/enums";
@@ -14,24 +14,16 @@ const columns = [
     label: "ID",
   },
   {
-    key: "lat",
-    label: "LAT",
+    key: "name",
+    label: "NAME",
   },
   {
-    key: "lng",
-    label: "LNG",
+    key: "barbershop",
+    label: "BARBERSHOP",
   },
   {
-    key: "address",
-    label: "ADDRESS",
-  },
-  {
-    key: "phoneNumbers",
-    label: "PHONES",
-  },
-  {
-    key: "schedule",
-    label: "SCHEDULE",
+    key: "graduation",
+    label: "GRADUATION",
   },
   {
     key: "actions",
@@ -41,26 +33,22 @@ const columns = [
 
 const Page = () => {
   const { data, isLoading } = useQuery(
-    QueryKey.GET_BARBERSHOPS,
-    barbershopService.getAll
+    QueryKey.GET_BARBERS,
+    barberService.getAll
   );
 
-  const renderCell = (item: IBarbershop, key: React.Key) => {
-    const cellValue = item[key as keyof IBarbershop];
+  const renderCell = (item: IBarber, key: React.Key) => {
+    const cellValue = item[key as keyof IBarber];
 
     switch (key) {
-      case "phoneNumbers":
-        return (
-          <>
-            {item.phoneNumbers.map((it) => (
-              <div key={it}>{it}</div>
-            ))}
-          </>
-        );
+      case "barbershop":
+        return item.barbershop.address;
+      case "graduation":
+        return item.graduation.title;
       case "actions":
         return <Actions />;
       default:
-        return cellValue;
+        return cellValue.toString();
     }
   };
 

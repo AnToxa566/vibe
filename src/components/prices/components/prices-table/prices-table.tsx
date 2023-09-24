@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 
 import { BarberContext } from "~/providers/barber-provider";
 import { BaseProps } from "~/common/interfaces/interfaces";
+import { QueryKey } from "~/common/enums/enums";
 import { PriceRow, PricesBlock } from "./components/components";
 import { graduationService, serviceService } from "~/services/services";
 
@@ -13,10 +14,13 @@ import styles from "./styles.module.scss";
 const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID } = useContext(BarberContext);
 
-  const { data: services } = useQuery("services", serviceService.getAll);
+  const { data: services } = useQuery(
+    QueryKey.GET_SERVICES,
+    serviceService.getAll
+  );
 
   const { data: graduations } = useQuery(
-    "graduations",
+    QueryKey.GET_GRADUATIONS,
     graduationService.getAll
   );
 

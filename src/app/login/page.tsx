@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Button } from "~/components/components";
-import { ButtonTitle } from "~/common/enums/enums";
+import { ButtonTitle, MutationKey, QueryKey } from "~/common/enums/enums";
 import { authService } from "~/services/services";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -25,14 +25,14 @@ const Login = () => {
   } = useForm<LoginFields>({ mode: "onChange" });
 
   const { data: isAdmin, isLoading } = useQuery(
-    "checkAuth",
+    QueryKey.CHECK_AUTH,
     authService.checkAuth
   );
 
   const router = useRouter();
 
   const { mutate: login } = useMutation(
-    "login",
+    MutationKey.LOGIN,
     (data: LoginFields) => authService.login(data.login, data.password),
     {
       onSuccess() {
