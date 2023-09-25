@@ -7,4 +7,12 @@ interface IBarbershop {
   schedule: string;
 }
 
-export type { IBarbershop };
+interface ICreateBarbershop {
+  lat: number;
+  lng: number;
+  address: string;
+  phoneNumbers: string[];
+  schedule: string;
+}
+
+export type { IBarbershop, ICreateBarbershop };

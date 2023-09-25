@@ -1,5 +1,8 @@
 export type { IBarber } from "./barber/barber.interface";
-export type { IBarbershop } from "./barbershop/barbershop.interface";
+export type {
+  IBarbershop,
+  ICreateBarbershop,
+} from "./barbershop/barbershop.interface";
 export type { IBaseService } from "./base-service/base-service.interface";
 export type { BaseProps } from "./base-props/base-props.interface";
 export type { IGraduation } from "./graduation/graduation.interface";
