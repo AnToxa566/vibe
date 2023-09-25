@@ -1,7 +1,7 @@
 import { axiosClassic } from "~/api/interceptor";
-import { IPrice } from "~/common/interfaces/interfaces";
+import { IBaseService, IPrice } from "~/common/interfaces/interfaces";
 
-class PriceService {
+class PriceService implements IBaseService<IPrice> {
   async getAll() {
     const response = await axiosClassic.get<IPrice[]>("/prices");
 

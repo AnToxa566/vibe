@@ -21,11 +21,7 @@
     }
 
     .btn {
-      @apply w-full mt-4;
+      @apply w-full mt-4 bg-regular-grey text-white hover:bg-dark-grey;
     }
-  }
-
-  .notify {
-    @apply text-sm;
   }
 }

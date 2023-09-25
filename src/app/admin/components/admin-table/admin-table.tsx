@@ -29,7 +29,7 @@ const AdminTable = <T extends { id: number }>({
   onDelete,
 }: Props<T>) => {
   return (
-    <Table>
+    <Table selectionMode="multiple">
       <TableHeader columns={columns}>
         {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>

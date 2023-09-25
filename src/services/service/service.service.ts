@@ -1,7 +1,7 @@
 import { axiosClassic } from "~/api/interceptor";
-import { IService } from "~/common/interfaces/interfaces";
+import { IBaseService, IService } from "~/common/interfaces/interfaces";
 
-class ServiceService {
+class ServiceService implements IBaseService<IService> {
   async getAll() {
     const response = await axiosClassic.get<IService[]>("/services");
 

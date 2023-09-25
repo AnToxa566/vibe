@@ -2,14 +2,13 @@
 
 import { useMutation, useQuery } from "react-query";
 import { useRouter } from "next/navigation";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 import { Button } from "~/components/components";
 import { ButtonTitle, MutationKey, QueryKey } from "~/common/enums/enums";
 import { authService } from "~/services/services";
 
-import "react-toastify/dist/ReactToastify.css";
 import styles from "./styles.module.scss";
 
 interface LoginFields {
@@ -84,20 +83,6 @@ const Login = () => {
 
         <Button title={ButtonTitle.LOGIN} className={styles.btn} />
       </form>
-
-      <ToastContainer
-        className={styles.notify}
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </main>
   );
 };

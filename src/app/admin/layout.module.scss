@@ -32,7 +32,7 @@
       }
 
       .btn {
-        @apply text-base bg-regular-grey text-white;
+        @apply text-base bg-regular-grey text-white rounded-md;
 
         &:hover {
           @apply bg-dark-grey;

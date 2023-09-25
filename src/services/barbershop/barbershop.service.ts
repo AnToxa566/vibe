@@ -1,7 +1,7 @@
 import { axiosClassic } from "~/api/interceptor";
-import { IBarbershop } from "~/common/interfaces/interfaces";
+import { IBarbershop, IBaseService } from "~/common/interfaces/interfaces";
 
-class BarbershopService {
+class BarbershopService implements IBaseService<IBarbershop> {
   async getAll() {
     const response = await axiosClassic.get<IBarbershop[]>("/barbershops");
 
