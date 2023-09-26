@@ -1,6 +1,7 @@
 "use client";
 
-import { useQuery } from "react-query";
+import { toast } from "react-toastify";
+import { useQuery, useMutation } from "react-query";
 
 import { IPrice } from "~/common/interfaces/interfaces";
 import { priceService } from "~/services/services";
@@ -31,9 +32,23 @@ const columns = [
 ];
 
 const Page = () => {
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     QueryKey.GET_PRICES,
     priceService.getAll
+  );
+
+  const { mutate: deletePrice } = useMutation(
+    QueryKey.DELETE_PRICE,
+    (id: number) => priceService.delete(id),
+    {
+      onSuccess: () => {
+        toast.success("Price was deleted!");
+        refetch();
+      },
+      onError: () => {
+        toast.error("Something went wrong!");
+      },
+    }
   );
 
   const renderCell = (item: IPrice, key: React.Key) => {
@@ -62,7 +77,9 @@ const Page = () => {
         columns={columns}
         data={data}
         renderCell={renderCell}
-        onDelete={() => {}}
+        onDelete={(id) => {
+          deletePrice(id);
+        }}
         onEdit={() => {}}
       />
     )

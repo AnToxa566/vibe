@@ -4,7 +4,6 @@ import { IBarber, IBaseService } from "~/common/interfaces/interfaces";
 class BarberService implements IBaseService<IBarber> {
   async getAll() {
     const response = await axiosClassic.get<IBarber[]>("/barbers");
-
     return response.data;
   }
 
