@@ -1,10 +1,23 @@
-import { axiosClassic } from "~/api/interceptor";
-import { IBaseService, IService } from "~/common/interfaces/interfaces";
+import instance, { axiosClassic } from "~/api/interceptor";
+import {
+  IBaseService,
+  ICreateService,
+  IService,
+} from "~/common/interfaces/interfaces";
 
 class ServiceService implements IBaseService<IService> {
   async getAll() {
     const response = await axiosClassic.get<IService[]>("/services");
+    return response.data;
+  }
 
+  async create(payload: ICreateService) {
+    const response = await instance.post<IService>("/services", payload);
+    return response.data;
+  }
+
+  async delete(id: number) {
+    const response = await instance.delete<boolean>(`/services/${id}`);
     return response.data;
   }
 }

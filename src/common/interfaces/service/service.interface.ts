@@ -7,4 +7,9 @@ interface IService {
   subtitle?: string;
 }
 
-export type { IService };
+interface ICreateService {
+  title: string;
+  subtitle?: string;
+}
+
+export type { IService, ICreateService };

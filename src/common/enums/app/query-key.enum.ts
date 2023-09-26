@@ -8,6 +8,8 @@ enum QueryKey {
   DELETE_BARBERSHOP = "deleteBarbershop",
   GET_PRICES = "getPrices",
   GET_SERVICES = "getServices",
+  ADD_SERVICE = "addService",
+  DELETE_SERVICE = "deleteService",
   GET_GRADUATIONS = "getGraduations",
   ADD_GRADUATION = "addGraduation",
   DELETE_GRADUATION = "deleteGraduation",
