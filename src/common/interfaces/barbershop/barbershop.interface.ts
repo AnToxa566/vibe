@@ -1,4 +1,6 @@
-interface IBarbershop {
+import { IResource } from "../interfaces";
+
+interface IBarbershop extends IResource {
   id: number;
   lat: number;
   lng: number;

@@ -1,6 +1,8 @@
 "use client";
 
 import pluralize from "pluralize";
+import { toast } from "react-toastify";
+import { useQuery, useMutation } from "react-query";
 import { useState, ReactNode } from "react";
 import {
   Table,
@@ -17,34 +19,61 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+
 import { Actions } from "../actions/actions";
 import { Resource } from "~/common/enums/enums";
+import { getQueryKeys } from "./helpers/get-query-keys.helper";
+import { IResource } from "~/common/interfaces/interfaces";
+import { getResourceService } from "./helpers/get-service.helper";
 
 interface Column {
   key: string;
   label: string;
 }
 
-interface Props<T> {
+interface Props<T extends IResource> {
   resource: Resource;
   columns: Column[];
-  data: T[];
   renderCell: (item: T, key: React.Key) => ReactNode;
-  onEdit: (id: number) => void;
-  onDelete: (id: number) => void;
 }
 
-const AdminTable = <T extends { id: number }>({
+const AdminTable = <T extends IResource>({
   resource,
   columns,
-  data,
   renderCell,
-  onEdit,
-  onDelete,
 }: Props<T>) => {
   const [id, setId] = useState<number>(0);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const queryKeys = getQueryKeys(resource);
+
+  const resourceService = getResourceService(resource);
+
+  const resourceName = pluralize.singular(resource);
+
+  const { data, isLoading, refetch } = useQuery(
+    queryKeys.get,
+    resourceService.getAll
+  );
+
+  const { mutate: deleteResource } = useMutation(
+    queryKeys.delete,
+    (id: number) => resourceService.delete(id),
+    {
+      onSuccess: () => {
+        toast.success("Item was deleted!");
+        refetch();
+      },
+      onError: () => {
+        toast.error("Something went wrong!");
+      },
+    }
+  );
+
+  if (isLoading) {
+    return <>Loading...</>;
+  }
 
   return (
     <>
@@ -57,14 +86,14 @@ const AdminTable = <T extends { id: number }>({
           )}
         </TableHeader>
 
-        <TableBody items={data}>
+        <TableBody items={data as T[]}>
           {(item) => (
             <TableRow key={item.id}>
               {(columnKey) =>
                 columnKey === "actions" ? (
                   <TableCell>
                     <Actions
-                      onEdit={() => onEdit(item.id)}
+                      onEdit={() => {}}
                       onDelete={() => {
                         setId(item.id);
                         onOpen();
@@ -85,12 +114,10 @@ const AdminTable = <T extends { id: number }>({
           {(onClose) => (
             <>
               <ModalHeader className="text-danger-500">
-                {`Delete ${pluralize.singular(resource)}`}
+                {`Delete ${resourceName}`}
               </ModalHeader>
               <ModalBody className="text-base">
-                {`Are you sure you want to delete this ${pluralize.singular(
-                  resource
-                )}?`}
+                {`Are you sure you want to delete this ${resourceName}?`}
               </ModalBody>
               <ModalFooter>
                 <Button variant="light" onPress={onClose}>
@@ -99,7 +126,7 @@ const AdminTable = <T extends { id: number }>({
                 <Button
                   color="danger"
                   onPress={() => {
-                    onDelete(id);
+                    deleteResource(id);
                     onClose();
                   }}
                 >

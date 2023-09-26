@@ -1,6 +1,6 @@
-import { IPrice } from "../interfaces";
+import { IPrice, IResource } from "../interfaces";
 
-interface IService {
+interface IService extends IResource {
   id: number;
   title: string;
   prices: IPrice[];

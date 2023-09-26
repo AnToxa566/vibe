@@ -1,6 +1,6 @@
-import { IBarbershop, IGraduation } from "../interfaces";
+import { IBarbershop, IGraduation, IResource } from "../interfaces";
 
-interface IBarber {
+interface IBarber extends IResource {
   id: number;
   name: string;
   imgPath: string;

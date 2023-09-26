@@ -1,6 +1,6 @@
-import { IBarbershop, IGraduation, IService } from "../interfaces";
+import { IBarbershop, IGraduation, IResource, IService } from "../interfaces";
 
-interface IPrice {
+interface IPrice extends IResource {
   id: number;
   value: number;
   service: IService;

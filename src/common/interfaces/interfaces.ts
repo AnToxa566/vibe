@@ -10,5 +10,6 @@ export type {
   ICreateGraduation,
 } from "./graduation/graduation.interface";
 export type { IPrice, ICreatePrice } from "./price/price.interface";
+export type { IResource } from "./resource/resource.interface";
 export type { IService, ICreateService } from "./service/service.interface";
 export type { IUser } from "./user/user.interface";
