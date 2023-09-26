@@ -4,9 +4,8 @@ import { useQuery } from "react-query";
 
 import { IService } from "~/common/interfaces/interfaces";
 import { serviceService } from "~/services/services";
-import { Actions } from "../components/actions/actions";
 import { AdminTable } from "../components/admin-table/admin-table";
-import { QueryKey } from "~/common/enums/enums";
+import { QueryKey, Resource } from "~/common/enums/enums";
 
 const columns = [
   {
@@ -20,10 +19,6 @@ const columns = [
   {
     key: "subtitle",
     label: "SUBTITLE",
-  },
-  {
-    key: "actions",
-    label: "ACTIONS",
   },
 ];
 
@@ -39,8 +34,6 @@ const Page = () => {
     switch (key) {
       case "subtitle":
         return item.subtitle || "—";
-      case "actions":
-        return <Actions />;
       default:
         return cellValue as string | number;
     }
@@ -53,6 +46,7 @@ const Page = () => {
   return (
     data && (
       <AdminTable
+        resource={Resource.SERVICES}
         columns={columns}
         data={data}
         renderCell={renderCell}

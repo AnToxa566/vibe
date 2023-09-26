@@ -4,9 +4,8 @@ import { useQuery } from "react-query";
 
 import { IPrice } from "~/common/interfaces/interfaces";
 import { priceService } from "~/services/services";
-import { Actions } from "../components/actions/actions";
 import { AdminTable } from "../components/admin-table/admin-table";
-import { QueryKey } from "~/common/enums/enums";
+import { QueryKey, Resource } from "~/common/enums/enums";
 
 const columns = [
   {
@@ -29,10 +28,6 @@ const columns = [
     key: "graduation",
     label: "GRADUATION",
   },
-  {
-    key: "actions",
-    label: "ACTIONS",
-  },
 ];
 
 const Page = () => {
@@ -51,8 +46,6 @@ const Page = () => {
         return item.barbershop.address;
       case "graduation":
         return item.graduation.title;
-      case "actions":
-        return <Actions />;
       default:
         return cellValue as number;
     }
@@ -65,6 +58,7 @@ const Page = () => {
   return (
     data && (
       <AdminTable
+        resource={Resource.PRICES}
         columns={columns}
         data={data}
         renderCell={renderCell}

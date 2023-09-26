@@ -1,12 +1,12 @@
 "use client";
 
-import { useQuery } from "react-query";
+import { toast } from "react-toastify";
+import { useQuery, useMutation } from "react-query";
 
 import { barbershopService } from "~/services/services";
 import { IBarbershop } from "~/common/interfaces/interfaces";
-import { Actions } from "../components/actions/actions";
 import { AdminTable } from "../components/admin-table/admin-table";
-import { QueryKey } from "~/common/enums/enums";
+import { QueryKey, Resource } from "~/common/enums/enums";
 
 const columns = [
   {
@@ -33,16 +33,26 @@ const columns = [
     key: "schedule",
     label: "SCHEDULE",
   },
-  {
-    key: "actions",
-    label: "ACTIONS",
-  },
 ];
 
 const Page = () => {
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     QueryKey.GET_BARBERSHOPS,
     barbershopService.getAll
+  );
+
+  const { mutate: deleteBarbershop } = useMutation(
+    QueryKey.DELETE_BARBERSHOP,
+    (id: number) => barbershopService.delete(id),
+    {
+      onSuccess: () => {
+        toast.success("Barbershop was deleted!");
+        refetch();
+      },
+      onError: () => {
+        toast.error("Something went wrong!");
+      },
+    }
   );
 
   const renderCell = (item: IBarbershop, key: React.Key) => {
@@ -57,11 +67,13 @@ const Page = () => {
             ))}
           </>
         );
-      case "actions":
-        return <Actions />;
       default:
         return cellValue;
     }
+  };
+
+  const handleDelete = (id: number) => {
+    deleteBarbershop(id);
   };
 
   if (isLoading) {
@@ -70,13 +82,16 @@ const Page = () => {
 
   return (
     data && (
-      <AdminTable
-        columns={columns}
-        data={data}
-        renderCell={renderCell}
-        onDelete={() => {}}
-        onEdit={() => {}}
-      />
+      <>
+        <AdminTable
+          resource={Resource.BARBERSHOPS}
+          columns={columns}
+          data={data}
+          renderCell={renderCell}
+          onDelete={handleDelete}
+          onEdit={() => {}}
+        />
+      </>
     )
   );
 };

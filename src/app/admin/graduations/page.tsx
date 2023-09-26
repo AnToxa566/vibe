@@ -4,9 +4,8 @@ import { useQuery } from "react-query";
 
 import { IGraduation } from "~/common/interfaces/interfaces";
 import { graduationService } from "~/services/services";
-import { Actions } from "../components/actions/actions";
 import { AdminTable } from "../components/admin-table/admin-table";
-import { QueryKey } from "~/common/enums/enums";
+import { QueryKey, Resource } from "~/common/enums/enums";
 
 const columns = [
   {
@@ -16,10 +15,6 @@ const columns = [
   {
     key: "title",
     label: "TITLE",
-  },
-  {
-    key: "actions",
-    label: "ACTIONS",
   },
 ];
 
@@ -33,8 +28,6 @@ const Page = () => {
     const cellValue = item[key as keyof IGraduation];
 
     switch (key) {
-      case "actions":
-        return <Actions />;
       default:
         return cellValue;
     }
@@ -47,6 +40,7 @@ const Page = () => {
   return (
     data && (
       <AdminTable
+        resource={Resource.GRADUATIONS}
         columns={columns}
         data={data}
         renderCell={renderCell}
