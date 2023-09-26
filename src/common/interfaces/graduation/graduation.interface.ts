@@ -3,4 +3,8 @@ interface IGraduation {
   title: string;
 }
 
-export type { IGraduation };
+interface ICreateGraduation {
+  title: string;
+}
+
+export type { IGraduation, ICreateGraduation };

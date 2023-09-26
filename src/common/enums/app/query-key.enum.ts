@@ -9,6 +9,8 @@ enum QueryKey {
   GET_PRICES = "getPrices",
   GET_SERVICES = "getServices",
   GET_GRADUATIONS = "getGraduations",
+  ADD_GRADUATION = "addGraduation",
+  DELETE_GRADUATION = "deleteGraduation",
 }
 
 export { QueryKey };
