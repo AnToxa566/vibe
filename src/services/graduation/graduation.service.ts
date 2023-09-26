@@ -11,6 +11,11 @@ class GraduationService implements IBaseService<IGraduation> {
     return response.data;
   }
 
+  async getOne(id: number) {
+    const response = await axiosClassic.get<IGraduation>(`/graduations/${id}`);
+    return response.data;
+  }
+
   async create(payload: ICreateGraduation) {
     const response = await instance.post<IGraduation>("/graduations", payload);
     return response.data;

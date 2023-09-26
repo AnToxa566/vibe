@@ -11,6 +11,11 @@ class PriceService implements IBaseService<IPrice> {
     return response.data;
   }
 
+  async getOne(id: number) {
+    const response = await axiosClassic.get<IPrice>(`/prices/${id}`);
+    return response.data;
+  }
+
   async create(payload: ICreatePrice) {
     const response = await instance.post<IPrice>("/prices", payload);
     return response.data;

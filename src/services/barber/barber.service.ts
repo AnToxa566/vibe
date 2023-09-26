@@ -7,6 +7,11 @@ class BarberService implements IBaseService<IBarber> {
     return response.data;
   }
 
+  async getOne(id: number) {
+    const response = await axiosClassic.get<IBarber>(`/barbers/${id}`);
+    return response.data;
+  }
+
   async create(payload: FormData) {
     const response = await instance.post<IBarber>("/barbers", payload, {
       headers: { "Content-Type": "multipart/form-data" },

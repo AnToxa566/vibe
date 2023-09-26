@@ -11,6 +11,11 @@ class ServiceService implements IBaseService<IService> {
     return response.data;
   }
 
+  async getOne(id: number) {
+    const response = await axiosClassic.get<IService>(`/services/${id}`);
+    return response.data;
+  }
+
   async create(payload: ICreateService) {
     const response = await instance.post<IService>("/services", payload);
     return response.data;
