@@ -72,10 +72,6 @@ const Page = () => {
     }
   };
 
-  const handleDelete = (id: number) => {
-    deleteBarbershop(id);
-  };
-
   if (isLoading) {
     return <>Loading...</>;
   }
@@ -88,7 +84,7 @@ const Page = () => {
           columns={columns}
           data={data}
           renderCell={renderCell}
-          onDelete={handleDelete}
+          onDelete={(id) => deleteBarbershop(id)}
           onEdit={() => {}}
         />
       </>

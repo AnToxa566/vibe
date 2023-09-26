@@ -1,6 +1,7 @@
 "use client";
 
-import { useQuery } from "react-query";
+import { toast } from "react-toastify";
+import { useQuery, useMutation } from "react-query";
 
 import { IBarber } from "~/common/interfaces/interfaces";
 import { barberService } from "~/services/services";
@@ -27,9 +28,23 @@ const columns = [
 ];
 
 const Page = () => {
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     QueryKey.GET_BARBERS,
     barberService.getAll
+  );
+
+  const { mutate: deleteBarber } = useMutation(
+    QueryKey.DELETE_BARBER,
+    (id: number) => barberService.delete(id),
+    {
+      onSuccess: () => {
+        toast.success("Barber was deleted!");
+        refetch();
+      },
+      onError: () => {
+        toast.error("Something went wrong!");
+      },
+    }
   );
 
   const renderCell = (item: IBarber, key: React.Key) => {
@@ -56,7 +71,7 @@ const Page = () => {
         columns={columns}
         data={data}
         renderCell={renderCell}
-        onDelete={() => {}}
+        onDelete={(id) => deleteBarber(id)}
         onEdit={() => {}}
       />
     )

@@ -15,6 +15,11 @@ class BarberService implements IBaseService<IBarber> {
 
     return response.data;
   }
+
+  async delete(id: number) {
+    const response = await instance.delete<boolean>(`/barbers/${id}`);
+    return response.data;
+  }
 }
 
 export { BarberService };
