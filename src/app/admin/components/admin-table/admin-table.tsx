@@ -2,6 +2,7 @@
 
 import pluralize from "pluralize";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 import { useQuery, useMutation } from "react-query";
 import { useState, ReactNode } from "react";
 import {
@@ -22,9 +23,9 @@ import {
 
 import { Actions } from "../actions/actions";
 import { Resource } from "~/common/enums/enums";
-import { getQueryKeys } from "./helpers/get-query-keys.helper";
+import { getQueryKeys } from "../../helpers/get-query-keys.helper";
 import { IResource } from "~/common/interfaces/interfaces";
-import { getResourceService } from "./helpers/get-service.helper";
+import { getResourceService } from "../../helpers/get-service.helper";
 
 interface Column {
   key: string;
@@ -42,6 +43,8 @@ const AdminTable = <T extends IResource>({
   columns,
   renderCell,
 }: Props<T>) => {
+  const router = useRouter();
+
   const [id, setId] = useState<number>(0);
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -93,7 +96,7 @@ const AdminTable = <T extends IResource>({
                 columnKey === "actions" ? (
                   <TableCell>
                     <Actions
-                      onEdit={() => {}}
+                      onEdit={() => router.push(`${resource}/${item.id}`)}
                       onDelete={() => {
                         setId(item.id);
                         onOpen();

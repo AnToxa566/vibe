@@ -16,6 +16,14 @@ class GraduationService implements IBaseService<IGraduation> {
     return response.data;
   }
 
+  async update(payload: ICreateGraduation, id: number) {
+    const response = await instance.put<IGraduation>(
+      `/graduations/${id}`,
+      payload
+    );
+    return response.data;
+  }
+
   async delete(id: number) {
     const response = await instance.delete<boolean>(`/graduations/${id}`);
     return response.data;

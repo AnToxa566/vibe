@@ -16,6 +16,11 @@ class PriceService implements IBaseService<IPrice> {
     return response.data;
   }
 
+  async update(payload: ICreatePrice, id: number) {
+    const response = await instance.put<IPrice>(`/prices/${id}`, payload);
+    return response.data;
+  }
+
   async delete(id: number) {
     const response = await instance.delete<boolean>(`/prices/${id}`);
     return response.data;

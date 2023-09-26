@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import pluralize from "pluralize";
 import { usePathname } from "next/navigation";
 import { useQuery } from "react-query";
 import { useRouter } from "next/navigation";
 import { PropsWithChildren, FC } from "react";
-import pluralize from "pluralize";
 
 import { QueryKey, Resource } from "~/common/enums/enums";
 import { Button } from "~/components/components";

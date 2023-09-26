@@ -11,8 +11,21 @@ class BarbershopService implements IBaseService<IBarbershop> {
     return response.data;
   }
 
+  async getOne(id: number) {
+    const response = await axiosClassic.get<IBarbershop>(`/barbershops/${id}`);
+    return response.data;
+  }
+
   async create(payload: ICreateBarbershop) {
     const response = await instance.post<IBarbershop>("/barbershops", payload);
+    return response.data;
+  }
+
+  async update(payload: ICreateBarbershop, id: number) {
+    const response = await instance.put<IBarbershop>(
+      `/barbershops/${id}`,
+      payload
+    );
     return response.data;
   }
 

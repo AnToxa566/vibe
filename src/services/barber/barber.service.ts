@@ -11,7 +11,11 @@ class BarberService implements IBaseService<IBarber> {
     const response = await instance.post<IBarber>("/barbers", payload, {
       headers: { "Content-Type": "multipart/form-data" },
     });
+    return response.data;
+  }
 
+  async update(payload: FormData, id: number) {
+    const response = await instance.put<IBarber>(`/barbers/${id}`, payload);
     return response.data;
   }
 

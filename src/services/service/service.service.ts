@@ -16,6 +16,11 @@ class ServiceService implements IBaseService<IService> {
     return response.data;
   }
 
+  async update(payload: ICreateService, id: number) {
+    const response = await instance.put<IService>(`/services/${id}`, payload);
+    return response.data;
+  }
+
   async delete(id: number) {
     const response = await instance.delete<boolean>(`/services/${id}`);
     return response.data;
