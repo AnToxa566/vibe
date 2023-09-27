@@ -43,8 +43,7 @@ const GraduationForm: FC<Props> = ({ graduation }) => {
       onSuccess() {
         toast.success("Graduation updated!");
       },
-      onError(err) {
-        console.log(err);
+      onError() {
         toast.error("Something went wrong!");
       },
     }

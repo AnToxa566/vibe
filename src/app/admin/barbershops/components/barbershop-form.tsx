@@ -48,8 +48,7 @@ const BarbershopForm: FC<Props> = ({ barbershop }) => {
       onSuccess() {
         toast.success("Barbershop updated!");
       },
-      onError(err) {
-        console.log(err);
+      onError() {
         toast.error("Something went wrong!");
       },
     }

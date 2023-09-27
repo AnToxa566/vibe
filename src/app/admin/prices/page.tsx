@@ -32,7 +32,9 @@ const renderCell = (item: IPrice, key: React.Key) => {
 
   switch (key) {
     case "service":
-      return item.service.title;
+      return `${item.service.title} ${
+        item.service.subtitle ? `(${item.service.subtitle})` : ""
+      }`;
     case "barbershop":
       return item.barbershop.address;
     case "graduation":

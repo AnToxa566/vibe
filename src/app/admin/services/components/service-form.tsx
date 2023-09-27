@@ -43,8 +43,7 @@ const ServiceForm: FC<Props> = ({ service }) => {
       onSuccess() {
         toast.success("Service updated!");
       },
-      onError(err) {
-        console.log(err);
+      onError() {
         toast.error("Something went wrong!");
       },
     }
