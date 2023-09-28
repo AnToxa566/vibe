@@ -1,5 +1,6 @@
 enum QueryKey {
   CHECK_AUTH = "checkAuth",
+  UPDATE_PASSWORD = "updatePassword",
 
   GET_BARBER = "getBarber",
   GET_BARBERS = "getBarbers",

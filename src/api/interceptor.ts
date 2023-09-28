@@ -2,6 +2,7 @@ import axios from "axios";
 import cookie from "js-cookie";
 
 import { ENV } from "~/common/constants/constants";
+import { StorageKey } from "~/common/enums/enums";
 
 const getHeaders = () => ({
   "Content-Type": "application/json",
@@ -18,7 +19,7 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-  const accessToken = cookie.get("accessToken");
+  const accessToken = cookie.get(StorageKey.ACCESS_TOKEN);
 
   if (config.headers && accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;

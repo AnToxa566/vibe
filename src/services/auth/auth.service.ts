@@ -1,10 +1,22 @@
 import instance, { axiosClassic } from "~/api/interceptor";
 import { IUser } from "~/common/interfaces/interfaces";
-import { removeTokenFromStorage, saveTokenToStorage } from "./auth.helper";
+import {
+  getUserFromStorage,
+  removeTokenFromStorage,
+  removeUserFromStorage,
+  saveTokenToStorage,
+  saveUserToStorage,
+} from "./auth.helper";
 
-interface IAuthResponse {
+export interface IAuthResponse {
   user: IUser;
   accessToken: string;
+}
+
+export interface IUpdatePassword {
+  login: string;
+  oldPassword: string;
+  newPassword: string;
 }
 
 class AuthService {
@@ -16,6 +28,21 @@ class AuthService {
 
     if (response.data.accessToken) {
       saveTokenToStorage(response.data.accessToken);
+      saveUserToStorage(response.data.user);
+    }
+
+    return response.data;
+  }
+
+  async updatePassword(payload: IUpdatePassword) {
+    const response = await instance.put<IAuthResponse>(
+      "/users/update-password",
+      payload
+    );
+
+    if (response.data.accessToken) {
+      saveTokenToStorage(response.data.accessToken);
+      saveUserToStorage(response.data.user);
     }
 
     return response.data;
@@ -29,6 +56,7 @@ class AuthService {
 
     if (response.data.accessToken) {
       saveTokenToStorage(response.data.accessToken);
+      saveUserToStorage(response.data.user);
     }
 
     return response.data;
@@ -44,8 +72,19 @@ class AuthService {
     return true;
   }
 
+  getUser(): IUser {
+    const user = getUserFromStorage();
+
+    if (user) {
+      return JSON.parse(user);
+    }
+
+    return {} as IUser;
+  }
+
   logout() {
     removeTokenFromStorage();
+    removeUserFromStorage();
   }
 }
 
