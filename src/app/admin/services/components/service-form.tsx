@@ -23,7 +23,7 @@ const ServiceForm: FC<Props> = ({ service }) => {
     mode: "onChange",
   });
 
-  const { mutate: addService } = useMutation(
+  const { mutate: addService, isLoading: addLoading } = useMutation(
     QueryKey.ADD_SERVICE,
     (data: ICreateService) => serviceService.create(data),
     {
@@ -36,7 +36,7 @@ const ServiceForm: FC<Props> = ({ service }) => {
     }
   );
 
-  const { mutate: updateService } = useMutation(
+  const { mutate: updateService, isLoading: updateLoading } = useMutation(
     QueryKey.EDIT_SERVICE,
     (data: ICreateService) => serviceService.update(data, service?.id ?? 0),
     {
@@ -60,7 +60,11 @@ const ServiceForm: FC<Props> = ({ service }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} isUpdate={!!service}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      isUpdate={!!service}
+      isLoading={addLoading || updateLoading}
+    >
       <Input
         type="text"
         label="Title"

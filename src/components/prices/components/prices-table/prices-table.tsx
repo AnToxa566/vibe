@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import { BarberContext } from "~/providers/barber-provider";
 import { BaseProps } from "~/common/interfaces/interfaces";
 import { QueryKey } from "~/common/enums/enums";
+import { FullSpinner } from "~/components/components";
 import { PriceRow, PricesBlock } from "./components/components";
 import { graduationService, serviceService } from "~/services/services";
 
@@ -14,15 +15,19 @@ import styles from "./styles.module.scss";
 const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID } = useContext(BarberContext);
 
-  const { data: services } = useQuery(
+  const { data: services, isLoading: servicesLoading } = useQuery(
     QueryKey.GET_SERVICES,
     serviceService.getAll
   );
 
-  const { data: graduations } = useQuery(
+  const { data: graduations, isLoading: graduationsLoading } = useQuery(
     QueryKey.GET_GRADUATIONS,
     graduationService.getAll
   );
+
+  if (servicesLoading || graduationsLoading) {
+    return <FullSpinner />;
+  }
 
   return (
     <div className={`${styles.container} ${className}`}>

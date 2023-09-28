@@ -27,7 +27,7 @@ const BarbershopForm: FC<Props> = ({ barbershop }) => {
     mode: "onChange",
   });
 
-  const { mutate: addBarbershop } = useMutation(
+  const { mutate: addBarbershop, isLoading: addLoading } = useMutation(
     QueryKey.ADD_BARBERSHOP,
     (data: ICreateBarbershop) => barbershopService.create(data),
     {
@@ -40,7 +40,7 @@ const BarbershopForm: FC<Props> = ({ barbershop }) => {
     }
   );
 
-  const { mutate: updateBarbershop } = useMutation(
+  const { mutate: updateBarbershop, isLoading: updateLoading } = useMutation(
     QueryKey.EDIT_BARBERSHOP,
     (data: ICreateBarbershop) =>
       barbershopService.update(data, barbershop?.id ?? 0),
@@ -71,7 +71,11 @@ const BarbershopForm: FC<Props> = ({ barbershop }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} isUpdate={!!barbershop}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      isUpdate={!!barbershop}
+      isLoading={addLoading || updateLoading}
+    >
       <Input
         type="text"
         label="Address"

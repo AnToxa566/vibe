@@ -9,4 +9,5 @@ export { Button } from "./button/button";
 export { Select } from "./select/select";
 export { Carousel } from "./carousel/carousel";
 export { Container } from "./container/container";
+export { FullSpinner } from "./full-spinner/full-spinner";
 export { RoundedContainer } from "./rounded-container/rounded-container";

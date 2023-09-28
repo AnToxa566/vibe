@@ -10,7 +10,7 @@ import {
   QueryKey,
 } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
-import { Carousel, Container, Title } from "../components";
+import { Carousel, Container, FullSpinner, Title } from "../components";
 import { MasterCard } from "./components/components";
 import { BarberContext } from "~/providers/barber-provider";
 import { barberService } from "~/services/services";
@@ -20,12 +20,16 @@ import styles from "./styles.module.scss";
 const Masters: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID } = useContext(BarberContext);
 
-  const { data: barbers } = useQuery(
+  const { data: barbers, isLoading } = useQuery(
     QueryKey.GET_BARBERS,
     barberService.getAll
   );
 
   const barberMasters = barbers?.filter((it) => it.barbershop.id === barberID);
+
+  if (isLoading) {
+    return <FullSpinner />;
+  }
 
   return (
     barberMasters && (

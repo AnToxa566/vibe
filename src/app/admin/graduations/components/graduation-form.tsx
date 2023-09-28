@@ -22,7 +22,7 @@ const GraduationForm: FC<Props> = ({ graduation }) => {
     mode: "onChange",
   });
 
-  const { mutate: addGraduation } = useMutation(
+  const { mutate: addGraduation, isLoading: addLoading } = useMutation(
     QueryKey.ADD_GRADUATION,
     (data: ICreateGraduation) => graduationService.create(data),
     {
@@ -35,7 +35,7 @@ const GraduationForm: FC<Props> = ({ graduation }) => {
     }
   );
 
-  const { mutate: updateGraduation } = useMutation(
+  const { mutate: updateGraduation, isLoading: updateLoading } = useMutation(
     QueryKey.EDIT_GRADUATION,
     (data: ICreateGraduation) =>
       graduationService.update(data, graduation?.id ?? 0),
@@ -58,7 +58,11 @@ const GraduationForm: FC<Props> = ({ graduation }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} isUpdate={!!graduation}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      isUpdate={!!graduation}
+      isLoading={addLoading || updateLoading}
+    >
       <Input
         type="text"
         label="Title"

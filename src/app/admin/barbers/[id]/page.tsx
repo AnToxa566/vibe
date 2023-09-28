@@ -2,6 +2,7 @@
 
 import { FC } from "react";
 import { useQuery } from "react-query";
+import { Spinner } from "@nextui-org/react";
 
 import { QueryKey } from "~/common/enums/enums";
 import { barberService } from "~/services/services";
@@ -18,7 +19,7 @@ const Page: FC<Props> = ({ params }) => {
   );
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <Spinner color="default" />;
   }
 
   return barber && <BarberForm barber={barber} />;

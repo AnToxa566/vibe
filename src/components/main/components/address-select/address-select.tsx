@@ -4,8 +4,8 @@ import { useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 
 import { BarberContext } from "~/providers/barber-provider";
-import { BaseProps, IBarbershop } from "~/common/interfaces/interfaces";
-import { Select } from "~/components/components";
+import { BaseProps } from "~/common/interfaces/interfaces";
+import { FullSpinner, Select } from "~/components/components";
 import { SelectOption } from "~/components/select/select";
 import { barbershopService } from "~/services/services";
 import { QueryKey } from "~/common/enums/enums";
@@ -13,7 +13,7 @@ import { QueryKey } from "~/common/enums/enums";
 const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID, setBarberID } = useContext(BarberContext);
 
-  const { data: barbershops } = useQuery(
+  const { data: barbershops, isLoading } = useQuery(
     QueryKey.GET_BARBERSHOPS,
     barbershopService.getAll
   );
@@ -32,6 +32,10 @@ const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
       setBarberID(barbershops[0].id);
     }
   }, [barberID, barbershops, setBarberID]);
+
+  if (isLoading) {
+    return <FullSpinner />;
+  }
 
   return (
     barbershops && (

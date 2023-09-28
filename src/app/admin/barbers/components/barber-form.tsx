@@ -39,7 +39,7 @@ const BarberForm: FC<Props> = ({ barber }) => {
     graduationService.getAll
   );
 
-  const { mutate: addBarber } = useMutation(
+  const { mutate: addBarber, isLoading: addLoading } = useMutation(
     QueryKey.ADD_BARBER,
     (data: FormData) => barberService.create(data),
     {
@@ -52,7 +52,7 @@ const BarberForm: FC<Props> = ({ barber }) => {
     }
   );
 
-  const { mutate: updateBarber } = useMutation(
+  const { mutate: updateBarber, isLoading: updateLoading } = useMutation(
     QueryKey.EDIT_BARBER,
     (data: FormData) => barberService.update(data, barber?.id ?? 0),
     {
@@ -81,7 +81,11 @@ const BarberForm: FC<Props> = ({ barber }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} isUpdate={!!barber}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      isUpdate={!!barber}
+      isLoading={addLoading || updateLoading}
+    >
       <Input
         type="text"
         label="Name"

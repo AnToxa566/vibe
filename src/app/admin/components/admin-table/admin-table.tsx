@@ -19,6 +19,7 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
+  Spinner,
 } from "@nextui-org/react";
 
 import { Actions } from "../actions/actions";
@@ -60,7 +61,7 @@ const AdminTable = <T extends IResource>({
     resourceService.getAll
   );
 
-  const { mutate: deleteResource } = useMutation(
+  const { mutate: deleteResource, isLoading: deleteLoading } = useMutation(
     queryKeys.delete,
     (id: number) => resourceService.delete(id),
     {
@@ -74,13 +75,14 @@ const AdminTable = <T extends IResource>({
     }
   );
 
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
   return (
     <>
-      <Table selectionMode="multiple">
+      <Table
+        selectionMode="multiple"
+        classNames={{
+          table: "min-h-[200px]",
+        }}
+      >
         <TableHeader
           columns={[...columns, { key: "actions", label: "ACTIONS" }]}
         >
@@ -89,7 +91,11 @@ const AdminTable = <T extends IResource>({
           )}
         </TableHeader>
 
-        <TableBody items={data as T[]}>
+        <TableBody
+          items={(data as T[]) || []}
+          isLoading={isLoading}
+          loadingContent={<Spinner color="default" />}
+        >
           {(item) => (
             <TableRow key={item.id}>
               {(columnKey) =>
@@ -128,6 +134,7 @@ const AdminTable = <T extends IResource>({
                 </Button>
                 <Button
                   color="danger"
+                  isLoading={deleteLoading}
                   onPress={() => {
                     deleteResource(id);
                     onClose();

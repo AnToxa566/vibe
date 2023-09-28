@@ -6,13 +6,21 @@ import styles from "./styles.module.scss";
 interface Props extends PropsWithChildren {
   isUpdate: boolean;
   onSubmit: () => void;
+  isLoading?: boolean;
 }
 
-const Form: FC<Props> = ({ isUpdate, onSubmit, children }) => {
+const Form: FC<Props> = ({
+  isUpdate,
+  onSubmit,
+  children,
+  isLoading = false,
+}) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       {children}
-      <Button type="submit">{isUpdate ? "Update" : "Add"}</Button>
+      <Button type="submit" isLoading={isLoading}>
+        {isUpdate ? "Update" : "Add"}
+      </Button>
     </form>
   );
 };

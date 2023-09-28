@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-import { Button } from "~/components/components";
+import { Button } from "@nextui-org/react";
+
+import { FullSpinner } from "~/components/components";
 import { ButtonTitle, MutationKey, QueryKey } from "~/common/enums/enums";
 import { authService } from "~/services/services";
 
@@ -23,14 +25,15 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginFields>({ mode: "onChange" });
 
-  const { data: isAdmin, isLoading } = useQuery(
-    QueryKey.CHECK_AUTH,
-    authService.checkAuth
-  );
+  const {
+    data: isAdmin,
+    isLoading,
+    isFetched,
+  } = useQuery(QueryKey.CHECK_AUTH, authService.checkAuth);
 
   const router = useRouter();
 
-  const { mutate: login } = useMutation(
+  const { mutate: login, isLoading: loginLoading } = useMutation(
     MutationKey.LOGIN,
     (data: LoginFields) => authService.login(data.login, data.password),
     {
@@ -48,42 +51,47 @@ const Login = () => {
   };
 
   if (isLoading) {
-    return <main>Loading...</main>;
+    return <FullSpinner />;
   }
 
-  if (isAdmin) {
+  if (isFetched && isAdmin) {
     router.push("/admin");
   }
 
   return (
-    <main className={styles.page}>
-      <h2 className={styles.title}>\ Login</h2>
+    isFetched &&
+    !isAdmin && (
+      <main className={styles.page}>
+        <h2 className={styles.title}>\ Login</h2>
 
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.input}>
-          <input
-            placeholder="login"
-            {...register("login", { required: true })}
-          />
-          {errors.login && (
-            <span className={styles.error}>Login is required</span>
-          )}
-        </div>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.input}>
+            <input
+              placeholder="login"
+              {...register("login", { required: true })}
+            />
+            {errors.login && (
+              <span className={styles.error}>Login is required</span>
+            )}
+          </div>
 
-        <div className={styles.input}>
-          <input
-            type="password"
-            placeholder="password"
-            {...register("password", { required: true })}
-          />
-          {errors.password && (
-            <span className={styles.error}>Password is required</span>
-          )}
-        </div>
+          <div className={styles.input}>
+            <input
+              type="password"
+              placeholder="password"
+              {...register("password", { required: true })}
+            />
+            {errors.password && (
+              <span className={styles.error}>Password is required</span>
+            )}
+          </div>
 
-        <Button title={ButtonTitle.LOGIN} className={styles.btn} />
-      </form>
-    </main>
+          <Button className={styles.btn} isLoading={loginLoading} type="submit">
+            {ButtonTitle.LOGIN}
+          </Button>
+        </form>
+      </main>
+    )
   );
 };
 

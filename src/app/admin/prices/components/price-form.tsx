@@ -45,7 +45,7 @@ const PriceForm: FC<Props> = ({ price }) => {
     graduationService.getAll
   );
 
-  const { mutate: addPrice } = useMutation(
+  const { mutate: addPrice, isLoading: addLoading } = useMutation(
     QueryKey.ADD_PRICE,
     (data: ICreatePrice) => priceService.create(data),
     {
@@ -58,7 +58,7 @@ const PriceForm: FC<Props> = ({ price }) => {
     }
   );
 
-  const { mutate: updatePrice } = useMutation(
+  const { mutate: updatePrice, isLoading: updateLoading } = useMutation(
     QueryKey.EDIT_PRICE,
     (data: ICreatePrice) => priceService.update(data, price?.id ?? 0),
     {
@@ -87,7 +87,11 @@ const PriceForm: FC<Props> = ({ price }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} isUpdate={!!price}>
+    <Form
+      onSubmit={handleSubmit(onSubmit)}
+      isUpdate={!!price}
+      isLoading={addLoading || updateLoading}
+    >
       <Input
         type="number"
         label="Value"

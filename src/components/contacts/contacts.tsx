@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 
 import { AppTitle, ModuleID, QueryKey } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
-import { Container, Title } from "../components";
+import { Container, FullSpinner, Title } from "../components";
 import { ContactItem, Map } from "./components/components";
 import { mapTheme } from "./common/map-theme";
 import { BarberContext } from "~/providers/barber-provider";
@@ -25,18 +25,21 @@ const mapOptions = {
 const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
   const { barberID } = useContext(BarberContext);
 
-  const { data: barbershops } = useQuery(
+  const { data: barbershops, isLoading } = useQuery(
     QueryKey.GET_BARBERSHOPS,
     barbershopService.getAll
   );
 
   const currentBarbershop = barbershops?.find((it) => it.id === barberID);
 
+  if (isLoading) {
+    return <FullSpinner />;
+  }
+
   return (
     <div className={`${styles.contacts} ${className}`} id={ModuleID.CONTACTS}>
       <Container className={styles.container}>
         <Title title={AppTitle.CONTACTS} />
-
         <div className={styles.content}>
           {barbershops && (
             <div className={styles.data}>
@@ -74,6 +77,7 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
             />
           )}
         </div>
+        )
       </Container>
     </div>
   );
