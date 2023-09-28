@@ -32,6 +32,11 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
     authService.checkAuth
   );
 
+  const handleLogout = () => {
+    authService.logout();
+    router.push("/login");
+  };
+
   if (isLoading) {
     return <FullSpinner />;
   }
@@ -79,6 +84,14 @@ const AdminLayout: FC<PropsWithChildren> = ({ children }) => {
               <DropdownMenu>
                 <DropdownItem key="update">
                   <Link href={`/admin/settings`}>Change password</Link>
+                </DropdownItem>
+                <DropdownItem
+                  key="logout"
+                  className="text-danger"
+                  color="danger"
+                  onClick={handleLogout}
+                >
+                  Logout
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
