@@ -77,7 +77,6 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
             />
           )}
         </div>
-        )
       </Container>
     </div>
   );

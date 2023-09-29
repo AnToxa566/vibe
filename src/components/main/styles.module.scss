@@ -6,7 +6,7 @@
   @apply relative h-screen flex flex-col justify-center;
 
   .logo {
-    @apply mb-6 max-w-[55%] z-10;
+    @apply mb-6 max-w-[45%] z-10;
   }
 
   .man {
@@ -26,24 +26,20 @@
 
     .buttons {
       .btn {
-        @apply px-7;
+        @apply px-7 bg-regular-grey text-white whitespace-nowrap;
+
+        &:hover {
+          @apply bg-dark-grey;
+        }
 
         &.callBtn {
           @apply hidden;
-        }
-
-        &:hover {
-          @apply bg-regular-grey text-white;
         }
       }
     }
   }
 
   @media screen and (max-width: 1200px) {
-    .logo {
-      @apply max-w-[50%];
-    }
-
     .man {
       @apply max-h-[90vh];
     }
@@ -69,7 +65,7 @@
     }
 
     .man {
-      @apply relative bottom-0 mb-4 object-contain max-h-[60%];
+      @apply relative bottom-0 mb-4 object-contain max-h-[50%];
     }
 
     .elipse {
@@ -87,11 +83,7 @@
         @apply flex gap-2 justify-center;
 
         .btn {
-          @apply px-4 bg-regular-grey text-white;
-
-          &:hover {
-            @apply bg-dark-grey;
-          }
+          @apply px-4;
 
           &.callBtn {
             @apply block;
@@ -106,12 +98,14 @@
   }
 
   @media screen and (max-width: 576px) {
+    @apply justify-center;
+
     .logo {
       @apply max-w-full;
     }
 
     .man {
-      @apply max-h-[50%];
+      @apply hidden;
     }
   }
 }

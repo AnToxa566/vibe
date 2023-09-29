@@ -5,7 +5,7 @@
 
   .table {
     .row {
-      @apply flex justify-between px-3 leading-4 uppercase;
+      @apply flex justify-between px-3 leading-6 uppercase;
 
       &.muted {
         @apply bg-muted-grey;
@@ -15,7 +15,7 @@
         @apply mr-4;
 
         .subtitle {
-          @apply font-thin;
+          @apply font-extralight;
         }
       }
 

@@ -13,7 +13,7 @@
     @apply hidden absolute w-full drop-shadow-md;
 
     .option {
-      @apply text-center text-white bg-regular-grey py-2 whitespace-nowrap border-b border-muted-grey;
+      @apply text-center text-white bg-regular-grey py-3 whitespace-nowrap border-b border-muted-grey;
 
       &:hover {
         @apply bg-dark-grey;

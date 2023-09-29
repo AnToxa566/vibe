@@ -26,10 +26,10 @@
           }
 
           .btn {
-            @apply px-8 border border-white text-white;
+            @apply px-8 border border-white bg-white text-regular-grey;
 
             &:hover {
-              @apply bg-white text-regular-grey;
+              @apply shadow-lg scale-105;
             }
           }
         }

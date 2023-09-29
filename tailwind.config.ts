@@ -20,7 +20,7 @@ const config: Config = {
       },
       fontSize: {
         desktop: "1.25rem",
-        mobile: "0.625rem",
+        mobile: ["0.875rem", "120%"],
       },
     },
   },
