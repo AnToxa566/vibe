@@ -5,6 +5,7 @@ import { BaseProps, IBarber } from "~/common/interfaces/interfaces";
 import { Button } from "~/components/components";
 
 import styles from "./styles.module.scss";
+import { ENV } from "~/common/constants/constants";
 
 interface Props extends BaseProps {
   barber: IBarber;
@@ -14,7 +15,7 @@ const MasterCard: React.FC<Props> = ({ barber, className = "" }) => {
   return (
     <div className={`${styles.card} ${className}`}>
       <Image
-        src={`/images/masters${barber.imgPath}`}
+        src={`${ENV.API_URL}/${barber.imgPath}`}
         alt={`Барбер ${barber.name}`}
         width="190"
         height="260"
