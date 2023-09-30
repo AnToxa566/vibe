@@ -2,6 +2,8 @@
 
 import { useContext } from "react";
 import { useQuery } from "react-query";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Keyboard, Pagination, Navigation } from "swiper/modules";
 
 import {
   AppSubtitle,
@@ -10,11 +12,15 @@ import {
   QueryKey,
 } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/interfaces";
-import { Carousel, Container, FullSpinner, Title } from "../components";
+import { Container, FullSpinner, Title } from "../components";
 import { MasterCard } from "./components/components";
 import { BarberContext } from "~/providers/barber-provider";
 import { barberService } from "~/services/services";
 
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "./swiper.scss";
 import styles from "./styles.module.scss";
 
 const Masters: React.FC<BaseProps> = ({ className = "" }) => {
@@ -39,15 +45,36 @@ const Masters: React.FC<BaseProps> = ({ className = "" }) => {
 
           <p className={styles.subtitle}>{AppSubtitle.MASTERS}</p>
 
-          <Carousel className={styles.carousel}>
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={10}
+            grabCursor={true}
+            keyboard={{ enabled: true }}
+            pagination={{ clickable: true, dynamicBullets: true }}
+            navigation={true}
+            breakpoints={{
+              640: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              900: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+              },
+              1100: {
+                slidesPerView: 5,
+                spaceBetween: 50,
+              },
+            }}
+            modules={[Keyboard, Pagination, Navigation]}
+            className={styles.carousel}
+          >
             {barberMasters.map((it) => (
-              <MasterCard
-                key={it.id}
-                barber={it}
-                className={styles.masterCard}
-              />
+              <SwiperSlide key={it.id}>
+                <MasterCard barber={it} className={styles.masterCard} />
+              </SwiperSlide>
             ))}
-          </Carousel>
+          </Swiper>
 
           <div className={styles.mastersList}>
             {barberMasters.map((it) => (

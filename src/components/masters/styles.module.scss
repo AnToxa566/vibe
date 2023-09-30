@@ -9,9 +9,11 @@
     }
 
     .carousel {
-      .masterCard {
-        @apply snap-center;
-      }
+      --swiper-theme-color: var(--foreground-hex);
+      --swiper-pagination-bottom: -1.5rem;
+      --swiper-navigation-sides-offset: 1rem;
+
+      @apply overflow-y-visible;
     }
 
     .mastersList {

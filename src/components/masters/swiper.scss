@@ -1,0 +1,21 @@
+.swiper-button-next,
+.swiper-button-prev {
+  &::after {
+    content: "";
+
+    width: 26px;
+    height: 42px;
+  }
+}
+
+.swiper-button-next {
+  &::after {
+    background-image: url("/svg/carousel-right-arrow.svg");
+  }
+}
+
+.swiper-button-prev {
+  &::after {
+    background-image: url("/svg/carousel-left-arrow.svg");
+  }
+}

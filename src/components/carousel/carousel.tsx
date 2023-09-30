@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import { BaseProps } from "~/common/interfaces/interfaces";
