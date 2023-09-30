@@ -8,14 +8,6 @@
       @apply text-base text-center font-extralight my-11;
     }
 
-    .carousel {
-      --swiper-theme-color: var(--foreground-hex);
-      --swiper-pagination-bottom: -1.5rem;
-      --swiper-navigation-sides-offset: 1rem;
-
-      @apply overflow-y-visible;
-    }
-
     .mastersList {
       @apply hidden;
     }

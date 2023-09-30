@@ -6,8 +6,8 @@
       .carousel {
         @apply my-11;
 
-        .galleryCards {
-          @apply grid grid-cols-5 grid-flow-row gap-8 snap-start;
+        .gridCol {
+          @apply flex flex-col gap-8;
         }
       }
 
