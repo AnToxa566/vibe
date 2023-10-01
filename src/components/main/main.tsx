@@ -1,10 +1,16 @@
+"use client";
+
+import { useContext } from "react";
+
 import Image from "next/image";
+import Link from "next/link";
 
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { AppSubtitle, ButtonTitle } from "~/common/enums/enums";
 import { Button, Container } from "../components";
 import { Header } from "./components/header/header";
 import { AddressSelect, Logo } from "./components/components";
+import { BarbershopContext } from "~/providers/barberhop-provider";
 
 import man from "~/../public/images/home-man.png";
 import elipse from "~/../public/svg/ellipse-white.svg";
@@ -12,6 +18,12 @@ import elipse from "~/../public/svg/ellipse-white.svg";
 import styles from "./styles.module.scss";
 
 const Main: React.FC<BaseProps> = ({ className = "" }) => {
+  const { barbershop } = useContext(BarbershopContext);
+
+  const getNumberForLink = (phoneNumber: string) => {
+    return phoneNumber.replace(/\D/g, "");
+  };
+
   return (
     <div className={`${className}`}>
       <Header className={styles.header} />
@@ -30,10 +42,17 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
               title={ButtonTitle.ONLINE_ENTRY}
               className={`${styles.btn} ${styles.entryBtn}`}
             />
-            <Button
-              title={ButtonTitle.CALL}
-              className={`${styles.btn} ${styles.callBtn}`}
-            />
+
+            {barbershop && barbershop.phoneNumbers.length && (
+              <Link
+                href={`tel:${getNumberForLink(barbershop.phoneNumbers[0])}`}
+              >
+                <Button
+                  title={ButtonTitle.CALL}
+                  className={`${styles.btn} ${styles.callBtn}`}
+                />
+              </Link>
+            )}
           </div>
 
           <AddressSelect className={styles.address} />
