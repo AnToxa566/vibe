@@ -12,7 +12,10 @@ import {
   priceService,
   serviceService,
 } from "~/services/services";
-import { ICreatePrice, IPrice } from "~/common/interfaces/interfaces";
+import {
+  ICreatePrice,
+  IPrice,
+} from "~/common/interfaces/price/price.interface";
 
 interface Props {
   price?: IPrice;

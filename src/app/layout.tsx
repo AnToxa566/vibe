@@ -6,7 +6,7 @@ import { Montserrat } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import { BarberProvider } from "~/providers/barber-provider";
+import { BarberProvider } from "~/providers/barberhop-provider";
 import { AppSubtitle, AppTitle } from "~/common/enums/enums";
 
 import "react-toastify/dist/ReactToastify.css";

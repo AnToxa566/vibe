@@ -1,19 +1,20 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { useQuery } from "react-query";
 
-import { BarberContext } from "~/providers/barber-provider";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BarbershopContext } from "~/providers/barberhop-provider";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { QueryKey } from "~/common/enums/enums";
 import { FullSpinner } from "~/components/components";
-import { PriceRow, PricesBlock } from "./components/components";
+import { PriceRow } from "./components/price-row/price-row";
+import { PricesBlock } from "./components/prices-block/prices-block";
 import { graduationService, serviceService } from "~/services/services";
 
 import styles from "./styles.module.scss";
 
 const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
-  const { barberID } = useContext(BarberContext);
+  const { barbershop } = useContext(BarbershopContext);
 
   const { data: services, isLoading: servicesLoading } = useQuery(
     QueryKey.GET_SERVICES,
@@ -58,7 +59,7 @@ const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
                   cost:
                     service.prices.find(
                       (price) =>
-                        price.barbershop.id === barberID &&
+                        price.barbershop.id === barbershop?.id &&
                         price.graduation.title === graduation.title
                     )?.value || 0,
                   subtitle: service.subtitle,

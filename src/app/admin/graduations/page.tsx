@@ -1,6 +1,6 @@
 "use client";
 
-import { IGraduation } from "~/common/interfaces/interfaces";
+import { IGraduation } from "~/common/interfaces/graduation/graduation.interface";
 import { AdminTable } from "../components/admin-table/admin-table";
 import { Resource } from "~/common/enums/enums";
 

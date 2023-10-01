@@ -1,6 +1,6 @@
 "use client";
 
-import { IService } from "~/common/interfaces/interfaces";
+import { IService } from "~/common/interfaces/service/service.interface";
 import { AdminTable } from "../components/admin-table/admin-table";
 import { Resource } from "~/common/enums/enums";
 

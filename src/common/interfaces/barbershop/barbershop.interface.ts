@@ -1,4 +1,4 @@
-import { IResource } from "../interfaces";
+import { IResource } from "../resource/resource.interface";
 
 interface IBarbershop extends IResource {
   id: number;

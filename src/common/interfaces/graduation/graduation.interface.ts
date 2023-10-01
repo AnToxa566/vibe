@@ -1,4 +1,4 @@
-import { IResource } from "../interfaces";
+import { IResource } from "../resource/resource.interface";
 
 interface IGraduation extends IResource {
   id: number;

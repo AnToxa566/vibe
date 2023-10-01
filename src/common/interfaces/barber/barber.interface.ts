@@ -1,4 +1,6 @@
-import { IBarbershop, IGraduation, IResource } from "../interfaces";
+import { IBarbershop } from "../barbershop/barbershop.interface";
+import { IGraduation } from "../graduation/graduation.interface";
+import { IResource } from "../resource/resource.interface";
 
 interface IBarber extends IResource {
   id: number;

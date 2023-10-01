@@ -1,5 +1,6 @@
 import { Resource } from "~/common/enums/enums";
-import { IBaseService, IResource } from "~/common/interfaces/interfaces";
+import { IResource } from "~/common/interfaces/resource/resource.interface";
+import { IBaseService } from "~/common/interfaces/base-service/base-service.interface";
 import {
   barberService,
   barbershopService,

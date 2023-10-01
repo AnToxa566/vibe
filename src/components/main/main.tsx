@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { AppSubtitle, ButtonTitle } from "~/common/enums/enums";
 import { Button, Container } from "../components";
 import { Header } from "./components/header/header";

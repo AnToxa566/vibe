@@ -1,9 +1,9 @@
 import instance, { axiosClassic } from "~/api/interceptor";
 import {
-  IBaseService,
-  ICreateGraduation,
   IGraduation,
-} from "~/common/interfaces/interfaces";
+  ICreateGraduation,
+} from "~/common/interfaces/graduation/graduation.interface";
+import { IBaseService } from "~/common/interfaces/base-service/base-service.interface";
 
 class GraduationService implements IBaseService<IGraduation> {
   async getAll() {

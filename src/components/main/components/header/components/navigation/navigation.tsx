@@ -3,10 +3,10 @@
 import { useState } from "react";
 
 import { ModuleID } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { AddressSelect } from "../../../components";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 
 import styles from "./styles.module.scss";
-import { AddressSelect } from "../../../components";
 
 const Navigation: React.FC<BaseProps> = ({ className = "" }) => {
   const [isBurgerCollapsed, setIsBurgerCollapsed] = useState<boolean>(false);

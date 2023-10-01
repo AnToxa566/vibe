@@ -1,4 +1,8 @@
-import { IBarbershop, IGraduation, IResource, IService } from "../interfaces";
+import { IBarbershop } from "../barbershop/barbershop.interface";
+import { IGraduation } from "../graduation/graduation.interface";
+import { IResource } from "../resource/resource.interface";
+// eslint-disable-next-line import/no-cycle
+import { IService } from "../service/service.interface";
 
 interface IPrice extends IResource {
   id: number;

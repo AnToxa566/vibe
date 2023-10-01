@@ -7,7 +7,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { QueryKey } from "~/common/enums/enums";
 import { Form } from "../../components/form/form";
 import { graduationService } from "~/services/services";
-import { ICreateGraduation, IGraduation } from "~/common/interfaces/interfaces";
+import {
+  ICreateGraduation,
+  IGraduation,
+} from "~/common/interfaces/graduation/graduation.interface";
 
 interface Props {
   graduation?: IGraduation;

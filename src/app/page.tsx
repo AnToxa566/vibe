@@ -1,11 +1,9 @@
-import {
-  Contacts,
-  Gallery,
-  Main,
-  Masters,
-  Prices,
-  Study,
-} from "~/components/components";
+import { Main } from "~/components/main/main";
+import { Prices } from "~/components/prices/prices";
+import { Masters } from "~/components/masters/masters";
+import { Study } from "~/components/study/study";
+import { Gallery } from "~/components/gallery/gallery";
+import { Contacts } from "~/components/contacts/contacts";
 
 import styles from "./styles.module.scss";
 

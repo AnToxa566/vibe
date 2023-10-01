@@ -1,6 +1,6 @@
 "use client";
 
-import { IBarber } from "~/common/interfaces/interfaces";
+import { IBarber } from "~/common/interfaces/barber/barber.interface";
 import { AdminTable } from "../components/admin-table/admin-table";
 import { Resource } from "~/common/enums/enums";
 

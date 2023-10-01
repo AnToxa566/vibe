@@ -1,5 +1,6 @@
 import instance, { axiosClassic } from "~/api/interceptor";
-import { IBarber, IBaseService } from "~/common/interfaces/interfaces";
+import { IBarber } from "~/common/interfaces/barber/barber.interface";
+import { IBaseService } from "~/common/interfaces/base-service/base-service.interface";
 
 class BarberService implements IBaseService<IBarber> {
   async getAll() {

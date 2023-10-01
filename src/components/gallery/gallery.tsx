@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Keyboard } from "swiper/modules";
 
 import { AppSubtitle, AppTitle, ModuleID } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Container, Title } from "../components";
 import { GalleryCard } from "./components/components";
 

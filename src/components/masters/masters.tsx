@@ -11,10 +11,10 @@ import {
   ModuleID,
   QueryKey,
 } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Container, FullSpinner, Title } from "../components";
 import { MasterCard } from "./components/components";
-import { BarberContext } from "~/providers/barber-provider";
+import { BarbershopContext } from "~/providers/barberhop-provider";
 import { barberService } from "~/services/services";
 
 import "swiper/css";
@@ -24,14 +24,16 @@ import "./swiper.scss";
 import styles from "./styles.module.scss";
 
 const Masters: React.FC<BaseProps> = ({ className = "" }) => {
-  const { barberID } = useContext(BarberContext);
+  const { barbershop } = useContext(BarbershopContext);
 
   const { data: barbers, isLoading } = useQuery(
     QueryKey.GET_BARBERS,
     barberService.getAll
   );
 
-  const barberMasters = barbers?.filter((it) => it.barbershop.id === barberID);
+  const barberMasters = barbers?.filter(
+    (it) => it.barbershop.id === barbershop?.id
+  );
 
   if (isLoading) {
     return <FullSpinner />;

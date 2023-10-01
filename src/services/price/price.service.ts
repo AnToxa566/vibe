@@ -1,9 +1,9 @@
 import instance, { axiosClassic } from "~/api/interceptor";
 import {
-  IBaseService,
-  ICreatePrice,
   IPrice,
-} from "~/common/interfaces/interfaces";
+  ICreatePrice,
+} from "~/common/interfaces/price/price.interface";
+import { IBaseService } from "~/common/interfaces/base-service/base-service.interface";
 
 class PriceService implements IBaseService<IPrice> {
   async getAll() {

@@ -1,4 +1,4 @@
-import { IResource } from "../interfaces";
+import { IResource } from "../resource/resource.interface";
 
 interface IUser extends IResource {
   id: number;

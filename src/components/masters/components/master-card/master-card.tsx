@@ -1,7 +1,8 @@
 import Image from "next/image";
 
 import { ButtonTitle } from "~/common/enums/enums";
-import { BaseProps, IBarber } from "~/common/interfaces/interfaces";
+import { IBarber } from "~/common/interfaces/barber/barber.interface";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Button } from "~/components/components";
 
 import styles from "./styles.module.scss";

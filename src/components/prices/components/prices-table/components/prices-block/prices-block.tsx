@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { BaseProps } from "~/common/interfaces/interfaces";
-import { PriceTitle } from "../components";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
+import { PriceTitle } from "../price-title/price-title";
 
 import styles from "./styles.module.scss";
 

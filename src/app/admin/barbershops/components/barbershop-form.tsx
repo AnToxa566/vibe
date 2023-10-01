@@ -7,7 +7,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { QueryKey } from "~/common/enums/enums";
 import { Form } from "../../components/form/form";
 import { barbershopService } from "~/services/services";
-import { IBarbershop, ICreateBarbershop } from "~/common/interfaces/interfaces";
+import {
+  IBarbershop,
+  ICreateBarbershop,
+} from "~/common/interfaces/barbershop/barbershop.interface";
 
 interface Props {
   barbershop?: IBarbershop;

@@ -25,7 +25,7 @@ import {
 import { Actions } from "../actions/actions";
 import { Resource } from "~/common/enums/enums";
 import { getQueryKeys } from "../../helpers/get-query-keys.helper";
-import { IResource } from "~/common/interfaces/interfaces";
+import { IResource } from "~/common/interfaces/resource/resource.interface";
 import { getResourceService } from "../../helpers/get-service.helper";
 
 interface Column {

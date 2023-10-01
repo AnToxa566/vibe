@@ -7,7 +7,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { QueryKey } from "~/common/enums/enums";
 import { Form } from "../../components/form/form";
 import { serviceService } from "~/services/services";
-import { ICreateService, IService } from "~/common/interfaces/interfaces";
+import {
+  ICreateService,
+  IService,
+} from "~/common/interfaces/service/service.interface";
 
 interface Props {
   service?: IService;

@@ -1,5 +1,5 @@
 import instance, { axiosClassic } from "~/api/interceptor";
-import { IUser } from "~/common/interfaces/interfaces";
+import { IUser } from "~/common/interfaces/user/user.interface";
 import {
   getUserFromStorage,
   removeTokenFromStorage,

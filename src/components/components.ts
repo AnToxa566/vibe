@@ -1,9 +1,3 @@
-export { Main } from "./main/main";
-export { Prices } from "./prices/prices";
-export { Masters } from "./masters/masters";
-export { Study } from "./study/study";
-export { Gallery } from "./gallery/gallery";
-export { Contacts } from "./contacts/contacts";
 export { Title } from "./title/title";
 export { Button } from "./button/button";
 export { Select } from "./select/select";

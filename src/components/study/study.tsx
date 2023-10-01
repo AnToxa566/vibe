@@ -9,7 +9,7 @@ import {
   StageText,
   StudyText,
 } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Button, Container, RoundedContainer, Title } from "../components";
 import { Stage } from "./components/components";
 

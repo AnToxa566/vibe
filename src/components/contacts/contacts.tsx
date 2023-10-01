@@ -4,11 +4,11 @@ import { useContext } from "react";
 import { useQuery } from "react-query";
 
 import { AppTitle, ModuleID, QueryKey } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Container, FullSpinner, Title } from "../components";
 import { ContactItem, Map } from "./components/components";
 import { mapTheme } from "./common/map-theme";
-import { BarberContext } from "~/providers/barber-provider";
+import { BarbershopContext } from "~/providers/barberhop-provider";
 import { barbershopService } from "~/services/services";
 
 import styles from "./styles.module.scss";
@@ -23,14 +23,12 @@ const mapOptions = {
 };
 
 const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
-  const { barberID } = useContext(BarberContext);
+  const { barbershop } = useContext(BarbershopContext);
 
   const { data: barbershops, isLoading } = useQuery(
     QueryKey.GET_BARBERSHOPS,
     barbershopService.getAll
   );
-
-  const currentBarbershop = barbershops?.find((it) => it.id === barberID);
 
   if (isLoading) {
     return <FullSpinner />;
@@ -62,7 +60,7 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
             </div>
           )}
 
-          {currentBarbershop && (
+          {barbershop && (
             <Map
               className={styles.map}
               mapOptions={mapOptions}
@@ -71,8 +69,8 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
                 minHeight: "25rem",
               }}
               center={{
-                lat: currentBarbershop.lat,
-                lng: currentBarbershop.lng,
+                lat: barbershop.lat,
+                lng: barbershop.lng,
               }}
             />
           )}

@@ -2,10 +2,10 @@
 
 import { useContext } from "react";
 
-import { BaseProps, IService } from "~/common/interfaces/interfaces";
-import { BarberContext } from "~/providers/barber-provider";
-import { Gradation } from "~/common/enums/enums";
-import { Price } from "../components";
+import { Price } from "../price/price";
+import { IService } from "~/common/interfaces/service/service.interface";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
+import { BarbershopContext } from "~/providers/barberhop-provider";
 
 import styles from "./styles.module.scss";
 
@@ -21,10 +21,10 @@ const PriceRow: React.FC<Props> = ({
   isFirstRow = false,
   className = "",
 }) => {
-  const { barberID } = useContext(BarberContext);
+  const { barbershop } = useContext(BarbershopContext);
 
-  const barberPrices = service.prices.filter(
-    (it) => it.barbershop.id === barberID
+  const prices = service.prices.filter(
+    (it) => it.barbershop.id === barbershop?.id
   );
 
   return (
@@ -37,7 +37,7 @@ const PriceRow: React.FC<Props> = ({
       </div>
 
       <div className={styles.prices}>
-        {barberPrices.map((price) => (
+        {prices.map((price) => (
           <Price
             key={price.id}
             price={price.value}

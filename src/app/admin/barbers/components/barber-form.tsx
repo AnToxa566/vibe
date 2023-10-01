@@ -11,7 +11,7 @@ import {
   barbershopService,
   graduationService,
 } from "~/services/services";
-import { IBarber } from "~/common/interfaces/interfaces";
+import { IBarber } from "~/common/interfaces/barber/barber.interface";
 
 interface Props {
   barber?: IBarber;

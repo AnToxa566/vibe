@@ -1,6 +1,6 @@
 "use client";
 
-import { IPrice } from "~/common/interfaces/interfaces";
+import { IPrice } from "~/common/interfaces/price/price.interface";
 import { AdminTable } from "../components/admin-table/admin-table";
 import { Resource } from "~/common/enums/enums";
 
