@@ -37,7 +37,9 @@ const PricesBlock: FC<Props> = ({
         <div className={styles.table}>
           {services.map((service, index) => (
             <div
-              key={service.title}
+              key={`${
+                service.title + service.subtitle ? service.subtitle : ""
+              }`}
               className={`${styles.row} ${!(index % 2) ? styles.muted : ""}`}
             >
               <div className={styles.priceTitle}>

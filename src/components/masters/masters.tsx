@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Pagination, Navigation } from "swiper/modules";
@@ -24,6 +24,8 @@ import "./swiper.scss";
 import styles from "./styles.module.scss";
 
 const Masters: React.FC<BaseProps> = ({ className = "" }) => {
+  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
+
   const { barbershop } = useContext(BarbershopContext);
 
   const { data: barbers, isLoading } = useQuery(
@@ -34,6 +36,20 @@ const Masters: React.FC<BaseProps> = ({ className = "" }) => {
   const barberMasters = barbers?.filter(
     (it) => it.barbershop.id === barbershop?.id
   );
+
+  useEffect(() => {
+    if (!isLoading && barberMasters) {
+      const script = document.createElement("script");
+
+      script.type = "text/javascript";
+      script.src = "https://w822235.alteg.io/widgetJS";
+      script.onload = () => {
+        setIsScriptLoaded(true);
+      };
+
+      document.head.appendChild(script);
+    }
+  }, [isLoading, barberMasters]);
 
   if (isLoading) {
     return <FullSpinner />;

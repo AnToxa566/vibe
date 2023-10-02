@@ -6,6 +6,7 @@ interface IBarber extends IResource {
   id: number;
   name: string;
   imgPath: string;
+  altegioId: number;
   barbershop: IBarbershop;
   graduation: IGraduation;
 }

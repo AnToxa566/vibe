@@ -2,8 +2,8 @@
 
 import { useContext } from "react";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { AppSubtitle, ButtonTitle } from "~/common/enums/enums";
@@ -38,10 +38,16 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
           <p className={styles.text}>{AppSubtitle.MAIN}</p>
 
           <div className={styles.buttons}>
-            <Button
-              title={ButtonTitle.ONLINE_ENTRY}
-              className={`${styles.btn} ${styles.entryBtn}`}
-            />
+            <Link
+              href="#"
+              className="ms_booking"
+              data-url="https://n822098.alteg.io/"
+            >
+              <Button
+                title={ButtonTitle.ONLINE_ENTRY}
+                className={`${styles.btn} ${styles.entryBtn}`}
+              />
+            </Link>
 
             {barbershop && barbershop.phoneNumbers.length && (
               <Link

@@ -1,12 +1,15 @@
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
 
 import { ButtonTitle } from "~/common/enums/enums";
+import { ENV } from "~/common/constants/constants";
 import { IBarber } from "~/common/interfaces/barber/barber.interface";
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Button } from "~/components/components";
 
 import styles from "./styles.module.scss";
-import { ENV } from "~/common/constants/constants";
 
 interface Props extends BaseProps {
   barber: IBarber;
@@ -32,7 +35,13 @@ const MasterCard: React.FC<Props> = ({ barber, className = "" }) => {
         </div>
       </div>
 
-      <Button title={ButtonTitle.ONLINE_ENTRY} className={styles.btn} />
+      <Link
+        href="#"
+        className="ms_booking"
+        data-url={`https://n822235.alteg.io/company/${barber.barbershop.companyId}/menu?o=m${barber.altegioId}`}
+      >
+        <Button title={ButtonTitle.ONLINE_ENTRY} className={styles.btn} />
+      </Link>
     </div>
   );
 };

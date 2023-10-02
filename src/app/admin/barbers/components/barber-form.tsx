@@ -19,6 +19,7 @@ interface Props {
 
 export interface BarberFields {
   name: string;
+  altegioId: string;
   barbershop: string;
   graduation: string;
   images: FileList;
@@ -69,6 +70,7 @@ const BarberForm: FC<Props> = ({ barber }) => {
     const formData = new FormData();
 
     formData.append("name", data.name);
+    formData.append("altegioId", data.altegioId);
     formData.append("barbershopId", data.barbershop);
     formData.append("graduationId", data.graduation);
     formData.append("image", data.images[0]);
@@ -89,11 +91,21 @@ const BarberForm: FC<Props> = ({ barber }) => {
       <Input
         type="text"
         label="Name"
-        placeholder="Enter barber name"
+        placeholder="Enter barber's name"
         defaultValue={barber?.name ?? ""}
         isRequired
         isClearable
         {...register("name", { required: true })}
+      />
+
+      <Input
+        type="number"
+        label="Altegio ID"
+        placeholder="Enter altegio id"
+        defaultValue={barber?.altegioId.toString() ?? ""}
+        isRequired
+        isClearable
+        {...register("altegioId", { required: true })}
       />
 
       <Select

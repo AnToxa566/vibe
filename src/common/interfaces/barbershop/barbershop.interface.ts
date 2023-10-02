@@ -4,6 +4,7 @@ interface IBarbershop extends IResource {
   id: number;
   lat: number;
   lng: number;
+  companyId: number;
   address: string;
   phoneNumbers: string[];
   schedule: string;
@@ -12,6 +13,7 @@ interface IBarbershop extends IResource {
 interface ICreateBarbershop {
   lat: number;
   lng: number;
+  companyId: number;
   address: string;
   phoneNumbers: string[];
   schedule: string;

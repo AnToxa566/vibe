@@ -19,6 +19,7 @@ interface Props {
 export interface BarbershopFields {
   lat: number;
   lng: number;
+  companyId: number;
   address: string;
   firstPhoneNumber: string;
   secondPhoneNumber: string;
@@ -63,6 +64,7 @@ const BarbershopForm: FC<Props> = ({ barbershop }) => {
       schedule: data.schedule,
       lat: Number(data.lat),
       lng: Number(data.lng),
+      companyId: Number(data.companyId),
       phoneNumbers: [data.firstPhoneNumber, data.secondPhoneNumber],
     };
 
@@ -87,6 +89,16 @@ const BarbershopForm: FC<Props> = ({ barbershop }) => {
         isRequired
         isClearable
         {...register("address", { required: true })}
+      />
+
+      <Input
+        type="number"
+        label="Company ID"
+        placeholder="Enter company id from altegio"
+        defaultValue={barbershop?.companyId.toString() ?? ""}
+        isRequired
+        isClearable
+        {...register("companyId", { required: true })}
       />
 
       <Input

@@ -1,4 +1,17 @@
+"use client";
+
 import Image from "next/image";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+  Input,
+  Button as NextButton,
+  Link,
+} from "@nextui-org/react";
 
 import {
   AppTitle,
@@ -19,6 +32,8 @@ import circle from "~/../public/svg/circle.svg";
 import elipse from "~/../public/svg/elipse.svg";
 
 const Study: React.FC<BaseProps> = ({ className = "" }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   return (
     <div className={`${styles.study} ${className}`} id={ModuleID.STUDY}>
       <RoundedContainer className={styles.wrapper}>
@@ -36,7 +51,11 @@ const Study: React.FC<BaseProps> = ({ className = "" }) => {
                 </div>
               </div>
 
-              <Button title={ButtonTitle.REQUEST_CALL} className={styles.btn} />
+              <Button
+                title={ButtonTitle.REQUEST_CALL}
+                onClick={onOpen}
+                className={styles.btn}
+              />
             </div>
 
             <div>
@@ -70,6 +89,25 @@ const Study: React.FC<BaseProps> = ({ className = "" }) => {
           className={`${styles.bgItem} ${styles.elipse}`}
         />
       </RoundedContainer>
+
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader>Замовити дзвінок</ModalHeader>
+              <ModalBody>
+                <Input autoFocus label="Ім'я" variant="bordered" />
+                <Input label="Номер телефону" variant="bordered" />
+              </ModalBody>
+              <ModalFooter>
+                <NextButton radius="none" onPress={onClose}>
+                  Замовити
+                </NextButton>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </div>
   );
 };
