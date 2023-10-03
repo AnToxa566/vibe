@@ -1,21 +1,15 @@
 "use client";
 
 import { useContext, useState, useEffect } from "react";
-import { useQuery } from "react-query";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Pagination, Navigation } from "swiper/modules";
 
-import {
-  AppSubtitle,
-  AppTitle,
-  ModuleID,
-  QueryKey,
-} from "~/common/enums/enums";
+import { AppSubtitle, AppTitle, ModuleID } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
-import { Container, FullSpinner, Title } from "../components";
+import { Container, Title } from "../components";
 import { MasterCard } from "./components/components";
 import { BarbershopContext } from "~/providers/barberhop-provider";
-import { barberService } from "~/services/services";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -28,17 +22,8 @@ const Masters: React.FC<BaseProps> = ({ className = "" }) => {
 
   const { barbershop } = useContext(BarbershopContext);
 
-  const { data: barbers, isLoading } = useQuery(
-    QueryKey.GET_BARBERS,
-    barberService.getAll
-  );
-
-  const barberMasters = barbers?.filter(
-    (it) => it.barbershop.id === barbershop?.id
-  );
-
   useEffect(() => {
-    if (!isLoading && barberMasters) {
+    if (barbershop) {
       const script = document.createElement("script");
 
       script.type = "text/javascript";
@@ -49,14 +34,10 @@ const Masters: React.FC<BaseProps> = ({ className = "" }) => {
 
       document.head.appendChild(script);
     }
-  }, [isLoading, barberMasters]);
-
-  if (isLoading) {
-    return <FullSpinner />;
-  }
+  }, [barbershop]);
 
   return (
-    barberMasters && (
+    barbershop.barbers && (
       <div className={`${styles.masters} ${className}`} id={ModuleID.MASTERS}>
         <Container className={styles.container}>
           <Title title={AppTitle.MASTERS} />
@@ -87,7 +68,7 @@ const Masters: React.FC<BaseProps> = ({ className = "" }) => {
             modules={[Keyboard, Pagination, Navigation]}
             className={styles.carousel}
           >
-            {barberMasters.map((it) => (
+            {barbershop.barbers.map((it) => (
               <SwiperSlide key={it.id}>
                 <MasterCard barber={it} className={styles.masterCard} />
               </SwiperSlide>
@@ -95,7 +76,7 @@ const Masters: React.FC<BaseProps> = ({ className = "" }) => {
           </Swiper>
 
           <div className={styles.mastersList}>
-            {barberMasters.map((it) => (
+            {barbershop.barbers.map((it) => (
               <MasterCard
                 key={it.id}
                 barber={it}

@@ -96,8 +96,8 @@ const Study: React.FC<BaseProps> = ({ className = "" }) => {
             <>
               <ModalHeader>Замовити дзвінок</ModalHeader>
               <ModalBody>
-                <Input autoFocus label="Ім'я" variant="bordered" />
-                <Input label="Номер телефону" variant="bordered" />
+                <Input autoFocus label="Ім'я" variant="bordered" isRequired />
+                <Input label="Номер телефону" variant="bordered" isRequired />
               </ModalBody>
               <ModalFooter>
                 <NextButton radius="none" onPress={onClose}>

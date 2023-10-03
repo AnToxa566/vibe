@@ -1,3 +1,6 @@
+/* eslint-disable import/no-cycle */
+import { IBarber } from "../barber/barber.interface";
+import { IPrice } from "../price/price.interface";
 import { IResource } from "../resource/resource.interface";
 
 interface IBarbershop extends IResource {
@@ -8,6 +11,8 @@ interface IBarbershop extends IResource {
   address: string;
   phoneNumbers: string[];
   schedule: string;
+  barbers: IBarber[];
+  prices: IPrice[];
 }
 
 interface ICreateBarbershop {

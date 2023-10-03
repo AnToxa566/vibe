@@ -1,22 +1,15 @@
 "use client";
 
-import { useContext, useEffect } from "react";
-import { useQuery } from "react-query";
+import { useContext } from "react";
 
 import { BarbershopContext } from "~/providers/barberhop-provider";
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
-import { FullSpinner, Select } from "~/components/components";
+import { Select } from "~/components/components";
 import { SelectOption } from "~/components/select/select";
-import { barbershopService } from "~/services/services";
-import { QueryKey } from "~/common/enums/enums";
 
 const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
-  const { barbershop, setBarbershop } = useContext(BarbershopContext);
-
-  const { data: barbershops, isLoading } = useQuery(
-    QueryKey.GET_BARBERSHOPS,
-    barbershopService.getAll
-  );
+  const { barbershop, barbershops, setBarbershop } =
+    useContext(BarbershopContext);
 
   const handleChange = (option: SelectOption) => {
     if (barbershops && barbershops.length) {
@@ -25,16 +18,6 @@ const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
       );
     }
   };
-
-  useEffect(() => {
-    if (!barbershop && barbershops && barbershops.length) {
-      setBarbershop(barbershops[0]);
-    }
-  }, [barbershop, barbershops, setBarbershop]);
-
-  if (isLoading) {
-    return <FullSpinner />;
-  }
 
   return (
     barbershops && (

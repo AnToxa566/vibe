@@ -1,15 +1,13 @@
 "use client";
 
 import { useContext } from "react";
-import { useQuery } from "react-query";
 
-import { AppTitle, ModuleID, QueryKey } from "~/common/enums/enums";
+import { AppTitle, ModuleID } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
-import { Container, FullSpinner, Title } from "../components";
+import { Container, Title } from "../components";
 import { ContactItem, Map } from "./components/components";
 import { mapTheme } from "./common/map-theme";
 import { BarbershopContext } from "~/providers/barberhop-provider";
-import { barbershopService } from "~/services/services";
 
 import styles from "./styles.module.scss";
 
@@ -23,16 +21,7 @@ const mapOptions = {
 };
 
 const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
-  const { barbershop } = useContext(BarbershopContext);
-
-  const { data: barbershops, isLoading } = useQuery(
-    QueryKey.GET_BARBERSHOPS,
-    barbershopService.getAll
-  );
-
-  if (isLoading) {
-    return <FullSpinner />;
-  }
+  const { barbershop, barbershops } = useContext(BarbershopContext);
 
   return (
     <div className={`${styles.contacts} ${className}`} id={ModuleID.CONTACTS}>

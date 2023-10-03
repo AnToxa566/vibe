@@ -13,3 +13,7 @@
     }
   }
 }
+
+.option {
+  @apply flex items-center gap-1 bg-regular-grey text-white p-5 rounded-tr-2xl rounded-bl-2xl cursor-pointer hover:bg-dark-grey;
+}

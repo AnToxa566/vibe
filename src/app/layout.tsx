@@ -7,7 +7,7 @@ import { Montserrat } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import { BarberProvider } from "~/providers/barberhop-provider";
+import { BarbershopProvider } from "~/providers/barberhop-provider";
 import { AppSubtitle, AppTitle } from "~/common/enums/enums";
 
 import "./globals.scss";
@@ -60,8 +60,8 @@ const RootLayout: React.FC<Props> = ({ children }) => {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
 
-      <BarberProvider>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <BarbershopProvider>
           <body className={montserrat.className}>
             {children}
 
@@ -86,8 +86,8 @@ const RootLayout: React.FC<Props> = ({ children }) => {
               src="https://w822098.alteg.io/widgetJS"
             />
           </body>
-        </QueryClientProvider>
-      </BarberProvider>
+        </BarbershopProvider>
+      </QueryClientProvider>
     </html>
   );
 };
