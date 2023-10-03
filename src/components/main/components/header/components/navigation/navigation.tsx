@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { ModuleID } from "~/common/enums/enums";
@@ -22,9 +23,9 @@ const Navigation: React.FC<BaseProps> = ({ className = "" }) => {
     <nav className={`${styles.nav} ${className}`}>
       <div className={`${styles.links} ${isBurgerCollapsed ? styles.in : ""}`}>
         {links.map((link, idx) => (
-          <a key={idx} href={link.href} className={styles.link}>
+          <Link key={idx} href={link.href} className={styles.link}>
             {link.title}
-          </a>
+          </Link>
         ))}
       </div>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -47,7 +48,9 @@ const Gallery: React.FC<BaseProps> = ({ className = "" }) => {
                 <SwiperSlide key={photo.id}>
                   <div className={styles.gridCol}>
                     <GalleryCard imgPath={photo.imgPath} />
-                    <GalleryCard imgPath={photos[index + 1].imgPath} />
+                    {index + 1 !== photos.length && (
+                      <GalleryCard imgPath={photos[index + 1].imgPath} />
+                    )}
                   </div>
                 </SwiperSlide>
               ) : (
@@ -69,7 +72,7 @@ const Gallery: React.FC<BaseProps> = ({ className = "" }) => {
           <div className={styles.footer}>
             <span className={styles.text}>{AppSubtitle.GALLERY}</span>
 
-            <a
+            <Link
               href="https://www.instagram.com/barbershop.vibe/"
               target="_blank"
             >
@@ -77,7 +80,7 @@ const Gallery: React.FC<BaseProps> = ({ className = "" }) => {
                 src={insta}
                 alt="Link to Instagram profile of barbershop"
               />
-            </a>
+            </Link>
           </div>
         </div>
       </Container>

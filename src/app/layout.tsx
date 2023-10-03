@@ -1,7 +1,6 @@
 "use client";
 
 import Head from "next/head";
-import Script from "next/script";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { ToastContainer } from "react-toastify";
@@ -77,13 +76,6 @@ const RootLayout: React.FC<Props> = ({ children }) => {
               draggable
               pauseOnHover
               theme="light"
-            />
-
-            {/* Фиксированная кнопка Altegio в правом нижнем углу */}
-            <Script
-              defer={true}
-              type="text/javascript"
-              src="https://w822098.alteg.io/widgetJS"
             />
           </body>
         </BarbershopProvider>

@@ -13,16 +13,23 @@ interface Props {
 }
 
 const Page: FC<Props> = ({ params }) => {
-  const { data: service, isLoading } = useQuery(
-    `${QueryKey.GET_SERVICE}-${params.id}`,
-    () => serviceService.getOne(params.id)
+  const {
+    data: service,
+    isLoading,
+    refetch,
+  } = useQuery(`${QueryKey.GET_SERVICE}-${params.id}`, () =>
+    serviceService.getOne(params.id)
   );
+
+  const handleUpdate = () => {
+    refetch();
+  };
 
   if (isLoading) {
     return <Spinner color="default" />;
   }
 
-  return service && <ServiceForm service={service} />;
+  return service && <ServiceForm service={service} onUpdate={handleUpdate} />;
 };
 
 export default Page;

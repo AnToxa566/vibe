@@ -10,6 +10,10 @@ const columns = [
     label: "ID",
   },
   {
+    key: "altegioId",
+    label: "ALTEGIO ID",
+  },
+  {
     key: "name",
     label: "NAME",
   },

@@ -10,6 +10,10 @@ const columns = [
     label: "ID",
   },
   {
+    key: "companyId",
+    label: "COMPANY ID",
+  },
+  {
     key: "lat",
     label: "LAT",
   },
@@ -44,7 +48,7 @@ const renderCell = (item: IBarbershop, key: React.Key) => {
         </>
       );
     default:
-      return cellValue;
+      return cellValue.toString();
   }
 };
 

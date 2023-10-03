@@ -13,16 +13,27 @@ interface Props {
 }
 
 const Page: FC<Props> = ({ params }) => {
-  const { data: graduation, isLoading } = useQuery(
-    `${QueryKey.GET_GRADUATION}-${params.id}`,
-    () => graduationService.getOne(params.id)
+  const {
+    data: graduation,
+    isLoading,
+    refetch,
+  } = useQuery(`${QueryKey.GET_GRADUATION}-${params.id}`, () =>
+    graduationService.getOne(params.id)
   );
+
+  const handleUpdate = () => {
+    refetch();
+  };
 
   if (isLoading) {
     return <Spinner color="default" />;
   }
 
-  return graduation && <GraduationForm graduation={graduation} />;
+  return (
+    graduation && (
+      <GraduationForm graduation={graduation} onUpdate={handleUpdate} />
+    )
+  );
 };
 
 export default Page;

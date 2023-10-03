@@ -14,6 +14,7 @@ import {
 
 interface Props {
   service?: IService;
+  onUpdate?: () => void;
 }
 
 export interface ServiceFields {
@@ -21,7 +22,7 @@ export interface ServiceFields {
   subtitle?: string;
 }
 
-const ServiceForm: FC<Props> = ({ service }) => {
+const ServiceForm: FC<Props> = ({ service, onUpdate = () => {} }) => {
   const { register, handleSubmit } = useForm<ServiceFields>({
     mode: "onChange",
   });
@@ -45,6 +46,7 @@ const ServiceForm: FC<Props> = ({ service }) => {
     {
       onSuccess() {
         toast.success("Service updated!");
+        onUpdate();
       },
       onError() {
         toast.error("Something went wrong!");

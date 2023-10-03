@@ -19,6 +19,7 @@ import {
 
 interface Props {
   price?: IPrice;
+  onUpdate?: () => void;
 }
 
 export interface PriceFields {
@@ -28,7 +29,7 @@ export interface PriceFields {
   graduation: string;
 }
 
-const PriceForm: FC<Props> = ({ price }) => {
+const PriceForm: FC<Props> = ({ price, onUpdate = () => {} }) => {
   const { register, handleSubmit } = useForm<PriceFields>({
     mode: "onChange",
   });
@@ -67,6 +68,7 @@ const PriceForm: FC<Props> = ({ price }) => {
     {
       onSuccess() {
         toast.success("Price updated!");
+        onUpdate();
       },
       onError() {
         toast.error("Something went wrong!");

@@ -13,16 +13,27 @@ interface Props {
 }
 
 const Page: FC<Props> = ({ params }) => {
-  const { data: barbershop, isLoading } = useQuery(
-    `${QueryKey.GET_BARBERSHOP}-${params.id}`,
-    () => barbershopService.getOne(params.id)
+  const {
+    data: barbershop,
+    isLoading,
+    refetch,
+  } = useQuery(`${QueryKey.GET_BARBERSHOP}-${params.id}`, () =>
+    barbershopService.getOne(params.id)
   );
+
+  const handleUpdate = () => {
+    refetch();
+  };
 
   if (isLoading) {
     return <Spinner color="default" />;
   }
 
-  return barbershop && <BarbershopForm barbershop={barbershop} />;
+  return (
+    barbershop && (
+      <BarbershopForm barbershop={barbershop} onUpdate={handleUpdate} />
+    )
+  );
 };
 
 export default Page;

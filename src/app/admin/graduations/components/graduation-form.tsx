@@ -14,13 +14,15 @@ import {
 
 interface Props {
   graduation?: IGraduation;
+  onUpdate?: () => void;
 }
 
 export interface GraduationFields {
   title: string;
+  priority: string;
 }
 
-const GraduationForm: FC<Props> = ({ graduation }) => {
+const GraduationForm: FC<Props> = ({ graduation, onUpdate = () => {} }) => {
   const { register, handleSubmit } = useForm<GraduationFields>({
     mode: "onChange",
   });
@@ -45,6 +47,7 @@ const GraduationForm: FC<Props> = ({ graduation }) => {
     {
       onSuccess() {
         toast.success("Graduation updated!");
+        onUpdate();
       },
       onError() {
         toast.error("Something went wrong!");
@@ -53,10 +56,15 @@ const GraduationForm: FC<Props> = ({ graduation }) => {
   );
 
   const onSubmit: SubmitHandler<GraduationFields> = (data) => {
+    const payload = {
+      ...data,
+      priority: Number(data.priority),
+    };
+
     if (!graduation) {
-      addGraduation(data);
+      addGraduation(payload);
     } else {
-      updateGraduation(data);
+      updateGraduation(payload);
     }
   };
 
@@ -74,6 +82,16 @@ const GraduationForm: FC<Props> = ({ graduation }) => {
         isRequired
         isClearable
         {...register("title", { required: true })}
+      />
+
+      <Input
+        type="number"
+        label="Priority"
+        placeholder="Enter graduation's priority"
+        defaultValue={graduation?.priority.toString() ?? ""}
+        isRequired
+        isClearable
+        {...register("priority", { required: true })}
       />
     </Form>
   );

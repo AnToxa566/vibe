@@ -5,6 +5,10 @@
 
   @apply overflow-y-visible;
 
+  .swiper-wrapper {
+    @apply w-fit mx-auto;
+  }
+
   .swiper-button-next,
   .swiper-button-prev {
     &::after {

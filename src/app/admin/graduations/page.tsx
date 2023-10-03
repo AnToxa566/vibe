@@ -13,6 +13,10 @@ const columns = [
     key: "title",
     label: "TITLE",
   },
+  {
+    key: "priority",
+    label: "PRIORITY",
+  },
 ];
 
 const renderCell = (item: IGraduation, key: React.Key) => {

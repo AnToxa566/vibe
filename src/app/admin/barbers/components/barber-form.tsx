@@ -15,6 +15,7 @@ import { IBarber } from "~/common/interfaces/barber/barber.interface";
 
 interface Props {
   barber?: IBarber;
+  onUpdate?: () => void;
 }
 
 export interface BarberFields {
@@ -25,17 +26,21 @@ export interface BarberFields {
   images: FileList;
 }
 
-const BarberForm: FC<Props> = ({ barber }) => {
-  const { register, handleSubmit } = useForm<BarberFields>({
+const BarberForm: FC<Props> = ({ barber, onUpdate = () => {} }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<BarberFields>({
     mode: "onChange",
   });
 
-  const { data: barbershops, isLoading: barbershopsLoading } = useQuery(
+  const { data: barbershops } = useQuery(
     QueryKey.GET_BARBERSHOPS,
     barbershopService.getAll
   );
 
-  const { data: graduations, isLoading: graduationsLoading } = useQuery(
+  const { data: graduations } = useQuery(
     QueryKey.GET_GRADUATIONS,
     graduationService.getAll
   );
@@ -59,6 +64,7 @@ const BarberForm: FC<Props> = ({ barber }) => {
     {
       onSuccess() {
         toast.success("Barber updated!");
+        onUpdate();
       },
       onError() {
         toast.error("Something went wrong!");
@@ -83,75 +89,73 @@ const BarberForm: FC<Props> = ({ barber }) => {
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit(onSubmit)}
-      isUpdate={!!barber}
-      isLoading={addLoading || updateLoading}
-    >
-      <Input
-        type="text"
-        label="Name"
-        placeholder="Enter barber's name"
-        defaultValue={barber?.name ?? ""}
-        isRequired
-        isClearable
-        {...register("name", { required: true })}
-      />
-
-      <Input
-        type="number"
-        label="Altegio ID"
-        placeholder="Enter altegio id"
-        defaultValue={barber?.altegioId.toString() ?? ""}
-        isRequired
-        isClearable
-        {...register("altegioId", { required: true })}
-      />
-
-      <Select
-        label="Barbershop"
-        placeholder="Select a barbershop"
-        defaultSelectedKeys={[barber?.barbershop.id.toString() ?? ""]}
-        isRequired
-        isLoading={barbershopsLoading}
-        {...register("barbershop", { required: true })}
+    barbershops &&
+    graduations && (
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        isUpdate={!!barber}
+        isLoading={addLoading || updateLoading}
       >
-        {barbershops
-          ? barbershops.map((it) => (
-              <SelectItem key={it.id} value={it.id}>
-                {it.address}
-              </SelectItem>
-            ))
-          : []}
-      </Select>
+        <Input
+          type="text"
+          label="Name"
+          placeholder="Enter barber's name"
+          defaultValue={barber?.name ?? ""}
+          isRequired
+          isClearable
+          {...register("name", { required: true })}
+        />
 
-      <Select
-        label="Graduation"
-        placeholder="Select a graduation"
-        defaultSelectedKeys={[barber?.graduation.id.toString() ?? ""]}
-        isRequired
-        isLoading={graduationsLoading}
-        {...register("graduation", { required: true })}
-      >
-        {graduations
-          ? graduations.map((it) => (
-              <SelectItem key={it.id} value={it.id}>
-                {it.title}
-              </SelectItem>
-            ))
-          : []}
-      </Select>
+        <Input
+          type="number"
+          label="Altegio ID"
+          placeholder="Enter altegio id"
+          defaultValue={barber?.altegioId.toString() ?? ""}
+          isRequired
+          isClearable
+          {...register("altegioId", { required: true })}
+        />
 
-      <Input
-        type="file"
-        accept="image/*"
-        label="Image"
-        placeholder="Select image of barber"
-        isRequired={!barber}
-        isClearable
-        {...register("images", { required: !barber })}
-      />
-    </Form>
+        <Select
+          label="Barbershop"
+          placeholder="Select a barbershop"
+          defaultSelectedKeys={[barber?.barbershop.id.toString() ?? ""]}
+          isRequired
+          {...register("barbershop", { required: true })}
+        >
+          {barbershops.map((it) => (
+            <SelectItem key={it.id} value={it.id}>
+              {it.address}
+            </SelectItem>
+          ))}
+        </Select>
+
+        <Select
+          label="Graduation"
+          placeholder="Select a graduation"
+          defaultSelectedKeys={[barber?.graduation.id.toString() ?? ""]}
+          isRequired
+          {...register("graduation", { required: true })}
+        >
+          {graduations.map((it) => (
+            <SelectItem key={it.id} value={it.id}>
+              {it.title}
+            </SelectItem>
+          ))}
+        </Select>
+        {errors.graduation && <span>{errors.graduation.message}</span>}
+
+        <Input
+          type="file"
+          accept="image/*"
+          label="Image"
+          placeholder="Select image of barber"
+          isRequired={!barber}
+          isClearable
+          {...register("images", { required: !barber })}
+        />
+      </Form>
+    )
   );
 };
 

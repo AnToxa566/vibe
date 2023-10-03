@@ -14,6 +14,7 @@ import {
 
 interface Props {
   barbershop?: IBarbershop;
+  onUpdate?: () => void;
 }
 
 export interface BarbershopFields {
@@ -26,7 +27,7 @@ export interface BarbershopFields {
   schedule: string;
 }
 
-const BarbershopForm: FC<Props> = ({ barbershop }) => {
+const BarbershopForm: FC<Props> = ({ barbershop, onUpdate = () => {} }) => {
   const { register, handleSubmit } = useForm<BarbershopFields>({
     mode: "onChange",
   });
@@ -51,6 +52,7 @@ const BarbershopForm: FC<Props> = ({ barbershop }) => {
     {
       onSuccess() {
         toast.success("Barbershop updated!");
+        onUpdate();
       },
       onError() {
         toast.error("Something went wrong!");

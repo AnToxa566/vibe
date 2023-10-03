@@ -13,16 +13,23 @@ interface Props {
 }
 
 const Page: FC<Props> = ({ params }) => {
-  const { data: price, isLoading } = useQuery(
-    `${QueryKey.GET_PRICE}-${params.id}`,
-    () => priceService.getOne(params.id)
+  const {
+    data: price,
+    isLoading,
+    refetch,
+  } = useQuery(`${QueryKey.GET_PRICE}-${params.id}`, () =>
+    priceService.getOne(params.id)
   );
+
+  const handleUpdate = () => {
+    refetch();
+  };
 
   if (isLoading) {
     return <Spinner color="default" />;
   }
 
-  return price && <PriceForm price={price} />;
+  return price && <PriceForm price={price} onUpdate={handleUpdate} />;
 };
 
 export default Page;

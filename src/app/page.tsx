@@ -9,6 +9,7 @@ import {
   ModalFooter,
 } from "@nextui-org/react";
 import Image from "next/image";
+import Script from "next/script";
 import { useContext } from "react";
 
 import { Main } from "~/components/main/main";
@@ -71,6 +72,13 @@ const Home = () => {
             <ModalFooter></ModalFooter>
           </ModalContent>
         </Modal>
+
+        {/* Фиксированная кнопка Altegio в правом нижнем углу */}
+        <Script
+          defer={true}
+          type="text/javascript"
+          src="https://w822098.alteg.io/widgetJS"
+        />
       </main>
     )
   );
