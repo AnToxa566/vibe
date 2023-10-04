@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formspree/react": "^2.5.1",
     "@nextui-org/react": "^2.1.13",
     "@react-google-maps/api": "^2.19.2",
     "@types/node": "20.5.9",

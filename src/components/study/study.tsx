@@ -6,11 +6,13 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   useDisclosure,
   Input,
   Button as NextButton,
 } from "@nextui-org/react";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
+import { useForm } from "@formspree/react";
 
 import {
   AppTitle,
@@ -21,6 +23,7 @@ import {
   StageText,
   StudyText,
 } from "~/common/enums/enums";
+import { ENV } from "~/common/constants/constants";
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Button, Container, RoundedContainer, Title } from "../components";
 import { Stage } from "./components/components";
@@ -31,7 +34,16 @@ import circle from "~/../public/svg/circle.svg";
 import elipse from "~/../public/svg/elipse.svg";
 
 const Study: React.FC<BaseProps> = ({ className = "" }) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [state, handleSubmit] = useForm(ENV.FOORMSPREE_KEY);
+
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+
+  useEffect(() => {
+    if (state.succeeded) {
+      onClose();
+      toast.success("Ваш запит отримано! ❤️");
+    }
+  }, [onClose, state.succeeded]);
 
   return (
     <div className={`${styles.study} ${className}`} id={ModuleID.STUDY}>
@@ -91,20 +103,35 @@ const Study: React.FC<BaseProps> = ({ className = "" }) => {
 
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader>Замовити дзвінок</ModalHeader>
-              <ModalBody>
-                <Input autoFocus label="Ім'я" variant="bordered" isRequired />
-                <Input label="Номер телефону" variant="bordered" isRequired />
-              </ModalBody>
-              <ModalFooter>
-                <NextButton radius="none" onPress={onClose}>
+          <>
+            <ModalHeader>Замовити дзвінок</ModalHeader>
+            <ModalBody>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <Input
+                  autoFocus
+                  label="Ім'я"
+                  variant="bordered"
+                  name="name"
+                  isRequired
+                />
+                <Input
+                  label="Номер телефону"
+                  variant="bordered"
+                  name="phone"
+                  isRequired
+                />
+
+                <NextButton
+                  type="submit"
+                  radius="none"
+                  disabled={state.submitting}
+                  className="w-fit self-end mb-3"
+                >
                   Замовити
                 </NextButton>
-              </ModalFooter>
-            </>
-          )}
+              </form>
+            </ModalBody>
+          </>
         </ModalContent>
       </Modal>
     </div>
