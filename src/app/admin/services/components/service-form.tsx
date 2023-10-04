@@ -19,6 +19,7 @@ interface Props {
 
 export interface ServiceFields {
   title: string;
+  priority: number;
   subtitle?: string;
 }
 
@@ -56,6 +57,7 @@ const ServiceForm: FC<Props> = ({ service, onUpdate = () => {} }) => {
 
   const onSubmit: SubmitHandler<ServiceFields> = (data) => {
     data.subtitle = data.subtitle || undefined;
+    data.priority = Number(data.priority);
 
     if (!service) {
       addService(data);
@@ -78,6 +80,16 @@ const ServiceForm: FC<Props> = ({ service, onUpdate = () => {} }) => {
         isRequired
         isClearable
         {...register("title", { required: true })}
+      />
+
+      <Input
+        type="number"
+        label="Priority"
+        placeholder="Enter service's priority"
+        defaultValue={service?.priority.toString() ?? ""}
+        isRequired
+        isClearable
+        {...register("priority", { required: true })}
       />
 
       <Input

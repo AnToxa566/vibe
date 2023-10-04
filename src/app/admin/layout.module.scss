@@ -2,7 +2,7 @@
   @apply grid grid-cols-[20%_1fr] gap-2 relative z-20;
 
   .sideBar {
-    @apply flex flex-col justify-between h-screen overflow-x-hidden;
+    @apply sticky top-0 flex flex-col justify-between h-screen overflow-x-hidden;
 
     .top {
       @apply p-4;

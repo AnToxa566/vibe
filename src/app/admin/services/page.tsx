@@ -17,6 +17,10 @@ const columns = [
     key: "subtitle",
     label: "SUBTITLE",
   },
+  {
+    key: "priority",
+    label: "PRIORITY",
+  },
 ];
 
 const renderCell = (item: IService, key: React.Key) => {
