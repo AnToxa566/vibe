@@ -14,17 +14,23 @@ import { QueryKey } from "~/common/enums/enums";
 import { barbershopService } from "~/services/services";
 import { IBarbershop } from "~/common/interfaces/barbershop/barbershop.interface";
 
+type BarbershopType = IBarbershop | null;
+
 export interface IContext {
   isLoading: boolean;
-  barbershop: IBarbershop;
+  barbershop: BarbershopType;
   barbershops: IBarbershop[];
-  setBarbershop: Dispatch<SetStateAction<IBarbershop>>;
+  setBarbershop: Dispatch<SetStateAction<BarbershopType>>;
   setBarbershops: Dispatch<SetStateAction<IBarbershop[]>>;
 }
 
 export const BarbershopContext = createContext({} as IContext);
 
 const BarbershopProvider: FC<PropsWithChildren> = ({ children }) => {
+  const [barbershop, setBarbershop] = useState<BarbershopType>(null);
+
+  const [barbershops, setBarbershops] = useState<IBarbershop[]>([]);
+
   const { isLoading } = useQuery(
     QueryKey.GET_BARBERSHOPS,
     barbershopService.getAll,
@@ -35,10 +41,6 @@ const BarbershopProvider: FC<PropsWithChildren> = ({ children }) => {
       },
     }
   );
-
-  const [barbershop, setBarbershop] = useState<IBarbershop>({} as IBarbershop);
-
-  const [barbershops, setBarbershops] = useState<IBarbershop[]>([]);
 
   return (
     <BarbershopContext.Provider

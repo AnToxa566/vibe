@@ -44,6 +44,13 @@ const getQueryKeys = (resource: Resource): QueryKeys => {
         edit: QueryKey.EDIT_SERVICE,
         delete: QueryKey.DELETE_SERVICE,
       };
+    case Resource.PHOTOS:
+      return {
+        get: QueryKey.GET_PHOTOS,
+        add: QueryKey.ADD_PHOTO,
+        edit: QueryKey.EDIT_SERVICE,
+        delete: QueryKey.DELETE_SERVICE,
+      };
   }
 };
 

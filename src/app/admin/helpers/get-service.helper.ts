@@ -5,6 +5,7 @@ import {
   barberService,
   barbershopService,
   graduationService,
+  photoService,
   priceService,
   serviceService,
 } from "~/services/services";
@@ -21,6 +22,8 @@ const getResourceService = (resource: Resource): IBaseService<IResource> => {
       return priceService;
     case Resource.SERVICES:
       return serviceService;
+    case Resource.PHOTOS:
+      return photoService;
   }
 };
 

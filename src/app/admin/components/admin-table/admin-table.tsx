@@ -37,12 +37,16 @@ interface Props<T extends IResource> {
   resource: Resource;
   columns: Column[];
   renderCell: (item: T, key: React.Key) => ReactNode;
+  isEdited?: boolean;
+  isDeleted?: boolean;
 }
 
 const AdminTable = <T extends IResource>({
   resource,
   columns,
   renderCell,
+  isEdited = true,
+  isDeleted = true,
 }: Props<T>) => {
   const router = useRouter();
 
@@ -78,7 +82,7 @@ const AdminTable = <T extends IResource>({
   return (
     <>
       <Table
-        selectionMode="multiple"
+        selectionMode="single"
         classNames={{
           table: "min-h-[200px]",
         }}
@@ -107,6 +111,8 @@ const AdminTable = <T extends IResource>({
                         setId(item.id);
                         onOpen();
                       }}
+                      isEdited={isEdited}
+                      isDeleted={isDeleted}
                     />
                   </TableCell>
                 ) : (

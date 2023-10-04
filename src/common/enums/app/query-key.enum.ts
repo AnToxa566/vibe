@@ -31,6 +31,11 @@ enum QueryKey {
   ADD_GRADUATION = "addGraduation",
   EDIT_GRADUATION = "editGraduation",
   DELETE_GRADUATION = "deleteGraduation",
+
+  GET_PHOTOS = "getPhotos",
+  ADD_PHOTO = "addPhoto",
+  EDIT_PHOTO = "editPhoto",
+  DELETE_PHOTO = "deletePhoto",
 }
 
 export { QueryKey };

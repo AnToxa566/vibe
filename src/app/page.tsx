@@ -46,13 +46,16 @@ const Home = () => {
     barbershops && (
       <main className={styles.page}>
         <Main />
-        <Prices />
-        <Masters className={styles.masters} />
-        <Study />
-        <Gallery className={styles.gallery} />
-        <Contacts />
 
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <div className={styles.content}>
+          <Prices />
+          <Masters />
+          <Study />
+          <Gallery />
+          <Contacts />
+        </div>
+
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
           <ModalContent>
             <ModalHeader>Оберіть бажану адресу</ModalHeader>
 

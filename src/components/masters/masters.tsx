@@ -37,6 +37,7 @@ const Masters: React.FC<BaseProps> = ({ className = "" }) => {
   }, [barbershop]);
 
   return (
+    barbershop &&
     barbershop.barbers && (
       <div className={`${styles.masters} ${className}`} id={ModuleID.MASTERS}>
         <Container className={styles.container}>

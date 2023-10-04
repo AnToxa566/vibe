@@ -89,7 +89,7 @@ const Study: React.FC<BaseProps> = ({ className = "" }) => {
         />
       </RoundedContainer>
 
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
         <ModalContent>
           {(onClose) => (
             <>

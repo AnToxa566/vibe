@@ -4,6 +4,7 @@ enum Resource {
   GRADUATIONS = "graduations",
   PRICES = "prices",
   SERVICES = "services",
+  PHOTOS = "photos",
 }
 
 export { Resource };

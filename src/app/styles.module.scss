@@ -1,15 +1,13 @@
 .page {
   @apply overflow-x-hidden;
 
-  .masters,
-  .gallery {
-    @apply my-[3.75rem];
+  .content {
+    @apply flex flex-col gap-[3.75rem];
   }
 
   @media screen and (max-width: 768px) {
-    .masters,
-    .gallery {
-      @apply my-10;
+    .content {
+      @apply gap-10;
     }
   }
 }

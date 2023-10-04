@@ -9,24 +9,36 @@ import styles from "./styles.module.scss";
 interface Props {
   onEdit: () => void;
   onDelete: () => void;
+  isEdited?: boolean;
+  isDeleted?: boolean;
 }
 
-const Actions: FC<Props> = ({ onEdit, onDelete }) => {
+const Actions: FC<Props> = ({
+  onEdit,
+  onDelete,
+  isEdited = true,
+  isDeleted = true,
+}) => {
   return (
     <div className={styles.actions}>
-      <Tooltip content="Edit">
-        <span className={styles.action} onClick={() => onEdit()}>
-          <EditIcon />
-        </span>
-      </Tooltip>
-      <Tooltip color="danger" content="Delete">
-        <span
-          className={`${styles.action} ${styles.danger}`}
-          onClick={() => onDelete()}
-        >
-          <DeleteIcon />
-        </span>
-      </Tooltip>
+      {isEdited && (
+        <Tooltip content="Edit">
+          <span className={styles.action} onClick={() => onEdit()}>
+            <EditIcon />
+          </span>
+        </Tooltip>
+      )}
+
+      {isDeleted && (
+        <Tooltip color="danger" content="Delete">
+          <span
+            className={`${styles.action} ${styles.danger}`}
+            onClick={() => onDelete()}
+          >
+            <DeleteIcon />
+          </span>
+        </Tooltip>
+      )}
     </div>
   );
 };
