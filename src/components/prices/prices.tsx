@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-import { AppSubtitle, AppTitle, ModuleID } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Container, RoundedContainer, Title } from "../components";
-import { PricesTable } from "./components/components";
+import { PricesTable } from "./components/prices-table/prices-table";
+import { AppSubtitle, AppTitle, ModuleID } from "~/common/enums/enums";
 
 import elipse from "~/../public/svg/elipse.svg";
 import styles from "./styles.module.scss";

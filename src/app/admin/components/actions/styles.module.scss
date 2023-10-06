@@ -1,0 +1,11 @@
+.actions {
+  @apply relative flex items-center gap-2;
+
+  .action {
+    @apply text-lg text-regular-grey cursor-pointer active:opacity-50;
+
+    &.danger {
+      @apply text-danger;
+    }
+  }
+}

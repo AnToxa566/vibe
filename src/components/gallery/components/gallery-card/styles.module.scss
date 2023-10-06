@@ -1,5 +1,5 @@
 .card {
   .img {
-    @apply rounded-tl-3xl rounded-br-3xl w-full;
+    @apply rounded-tl-3xl rounded-br-3xl w-full h-[180px] object-cover;
   }
 }

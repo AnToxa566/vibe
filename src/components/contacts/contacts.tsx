@@ -3,14 +3,13 @@
 import { useContext } from "react";
 
 import { AppTitle, ModuleID } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Container, Title } from "../components";
 import { ContactItem, Map } from "./components/components";
 import { mapTheme } from "./common/map-theme";
-import { BarberContext } from "~/providers/barber-provider";
+import { BarbershopContext } from "~/providers/barberhop-provider";
 
 import styles from "./styles.module.scss";
-import barbers from "~/assets/data/barbers.json";
 
 const mapOptions = {
   styles: mapTheme,
@@ -22,36 +21,35 @@ const mapOptions = {
 };
 
 const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
-  const { barberID } = useContext(BarberContext);
-
-  const currentBarber = barbers.find((barber) => barber.id === barberID);
+  const { barbershop, barbershops } = useContext(BarbershopContext);
 
   return (
     <div className={`${styles.contacts} ${className}`} id={ModuleID.CONTACTS}>
       <Container className={styles.container}>
         <Title title={AppTitle.CONTACTS} />
-
         <div className={styles.content}>
-          <div className={styles.data}>
-            {barbers.map((barber) => (
-              <div key={barber.id} className={styles.col}>
-                <ContactItem title="Адреса" content={barber.address} />
-                <ContactItem
-                  title="Контакти"
-                  content={
-                    <>
-                      {barber.phone_numbers[0]}
-                      <br />
-                      {barber.phone_numbers[0]}
-                    </>
-                  }
-                />
-                <ContactItem title="Час роботи" content={barber.schedule} />
-              </div>
-            ))}
-          </div>
+          {barbershops && (
+            <div className={styles.data}>
+              {barbershops.map((it) => (
+                <div key={it.id} className={styles.col}>
+                  <ContactItem title="Адреса" content={it.address} />
+                  <ContactItem
+                    title="Контакти"
+                    content={
+                      <>
+                        {it.phoneNumbers[0]}
+                        <br />
+                        {it.phoneNumbers[1]}
+                      </>
+                    }
+                  />
+                  <ContactItem title="Час роботи" content={it.schedule} />
+                </div>
+              ))}
+            </div>
+          )}
 
-          {currentBarber && (
+          {barbershop && (
             <Map
               className={styles.map}
               mapOptions={mapOptions}
@@ -60,8 +58,8 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
                 minHeight: "25rem",
               }}
               center={{
-                lat: currentBarber.lat,
-                lng: currentBarber.lng,
+                lat: barbershop.lat,
+                lng: barbershop.lng,
               }}
             />
           )}

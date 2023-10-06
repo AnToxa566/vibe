@@ -1,28 +1,21 @@
-import { ButtonTitle } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+"use client";
+
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 
 import styles from "./styles.module.scss";
 
-type colors = "regular-grey" | "white" | "transparent";
-
 interface Props extends BaseProps {
-  title: ButtonTitle;
-  bgColor?: colors;
-  textColor?: colors;
-  borderColor?: colors;
+  title: string;
+  onClick?: () => void;
 }
 
 const Button: React.FC<Props> = ({
   title,
-  bgColor = "transparent",
-  textColor = "regular-grey",
-  borderColor = "regular-grey",
+  onClick = () => {},
   className = "",
 }) => {
   return (
-    <button
-      className={`${styles.btn} border-${borderColor} text-${textColor} bg-${bgColor} ${className}`}
-    >
+    <button onClick={() => onClick()} className={`${styles.btn} ${className}`}>
       {title}
     </button>
   );

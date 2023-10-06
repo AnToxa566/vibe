@@ -1,0 +1,64 @@
+.layout {
+  @apply grid grid-cols-[20%_1fr] gap-2 relative z-20;
+
+  .sideBar {
+    @apply sticky top-0 flex flex-col justify-between h-screen overflow-x-hidden;
+
+    .top {
+      @apply p-4;
+
+      .title {
+        @apply uppercase font-bold mb-4;
+      }
+
+      .resources {
+        @apply flex flex-col gap-1;
+
+        .resource {
+          @apply px-3 py-2 rounded-tr-lg rounded-bl-lg text-base capitalize;
+
+          &.active {
+            @apply bg-regular-grey text-white;
+          }
+
+          &:hover {
+            @apply cursor-pointer bg-regular-grey text-white;
+          }
+        }
+      }
+    }
+
+    .bottom {
+      @apply flex justify-between p-4;
+      box-shadow: 0px -2px 100px rgba(0, 0, 0, 0.1);
+
+      .nickname {
+        @apply text-base font-bold;
+      }
+
+      .menu {
+        @apply cursor-pointer;
+      }
+    }
+  }
+
+  .main {
+    @apply p-4;
+
+    .top {
+      @apply flex justify-between items-center mb-6;
+
+      .title {
+        @apply uppercase font-bold text-2xl;
+      }
+
+      .btn {
+        @apply text-base bg-regular-grey text-white rounded-md;
+
+        &:hover {
+          @apply bg-dark-grey;
+        }
+      }
+    }
+  }
+}

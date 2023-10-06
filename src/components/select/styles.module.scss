@@ -1,23 +1,33 @@
 .container {
-  .selectArrow {
-    @apply ease-linear duration-200;
-  }
-}
+  @apply relative w-max cursor-pointer z-30;
 
-.container:hover {
+  .select {
+    @apply flex items-center gap-2 py-2;
+
+    .selectArrow {
+      @apply ease-linear duration-200;
+    }
+  }
+
   .options {
-    @apply block;
-  }
+    @apply hidden absolute w-full drop-shadow-md;
 
-  .selectArrow {
-    @apply rotate-180;
-  }
-}
+    .option {
+      @apply text-center text-white bg-regular-grey py-3 whitespace-nowrap border-b border-muted-grey;
 
-.options {
-  @apply hidden;
+      &:hover {
+        @apply bg-dark-grey;
+      }
+    }
+  }
 
   &:hover {
-    @apply bg-dark-grey;
+    .options {
+      @apply block;
+    }
+
+    .selectArrow {
+      @apply rotate-180;
+    }
   }
 }

@@ -1,27 +1,26 @@
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
 
 import { ButtonTitle } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { ENV } from "~/common/constants/constants";
+import { IBarber } from "~/common/interfaces/barber/barber.interface";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Button } from "~/components/components";
 
 import styles from "./styles.module.scss";
 
-interface IMaster {
-  name: string;
-  graduation: string;
-  imgPath: string;
-}
-
 interface Props extends BaseProps {
-  master: IMaster;
+  barber: IBarber;
 }
 
-const MasterCard: React.FC<Props> = ({ master, className = "" }) => {
+const MasterCard: React.FC<Props> = ({ barber, className = "" }) => {
   return (
     <div className={`${styles.card} ${className}`}>
       <Image
-        src={`/images/masters${master.imgPath}`}
-        alt={`Барбер ${master.name}`}
+        src={`${ENV.API_URL}/${barber.imgPath}`}
+        alt={`Барбер ${barber.name}`}
         width="190"
         height="260"
         className={styles.img}
@@ -31,17 +30,18 @@ const MasterCard: React.FC<Props> = ({ master, className = "" }) => {
         <div className={styles.line}></div>
 
         <div className={styles.data}>
-          <span className={styles.name}>{master.name}</span>
-          <span className={styles.graduation}>{master.graduation}</span>
+          <span className={styles.name}>{barber.name}</span>
+          <span className={styles.graduation}>{barber.graduation.title}</span>
         </div>
       </div>
 
-      <Button
-        title={ButtonTitle.ONLINE_ENTRY}
-        textColor="white"
-        bgColor="regular-grey"
-        className={styles.btn}
-      />
+      <Link
+        href="#"
+        className="ms_booking"
+        data-url={`https://n822235.alteg.io/company/${barber.barbershop.companyId}/menu?o=m${barber.altegioId}`}
+      >
+        <Button title={ButtonTitle.ONLINE_ENTRY} className={styles.btn} />
+      </Link>
     </div>
   );
 };

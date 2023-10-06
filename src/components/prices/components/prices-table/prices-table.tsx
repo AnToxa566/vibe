@@ -1,80 +1,73 @@
 "use client";
 
 import { useContext } from "react";
+import { useQuery } from "react-query";
 
-import { Gradation } from "~/common/enums/enums";
-import { BarberContext } from "~/providers/barber-provider";
-import { BaseProps } from "~/common/interfaces/interfaces";
-import { PriceRow, PricesBlock } from "./components/components";
+import { BarbershopContext } from "~/providers/barberhop-provider";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
+import { QueryKey } from "~/common/enums/enums";
+import { FullSpinner } from "~/components/components";
+import { PriceRow } from "./components/price-row/price-row";
+import { PricesBlock } from "./components/prices-block/prices-block";
+import { graduationService, serviceService } from "~/services/services";
 
-import prices from "~/assets/data/prices.json";
 import styles from "./styles.module.scss";
 
 const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
-  const { barberID } = useContext(BarberContext);
+  const { barbershop } = useContext(BarbershopContext);
 
-  const barberPrices = prices.filter((price) => price.barberId === barberID);
+  const { data: services, isLoading: servicesLoading } = useQuery(
+    QueryKey.GET_SERVICES,
+    serviceService.getAll
+  );
+
+  const { data: graduations, isLoading: graduationsLoading } = useQuery(
+    QueryKey.GET_GRADUATIONS,
+    graduationService.getAll
+  );
+
+  if (servicesLoading || graduationsLoading) {
+    return <FullSpinner />;
+  }
 
   return (
     <div className={`${styles.container} ${className}`}>
-      <div className={styles.table}>
-        {barberPrices.map((price, index) => (
-          <PriceRow
-            key={price.id}
-            price={price}
-            isMuted={index % 2 === 0}
-            isFirstRow={index === 0}
-          />
-        ))}
-      </div>
+      {services && (
+        <div className={styles.table}>
+          {services.map((service, index) => (
+            <PriceRow
+              key={service.id}
+              service={service}
+              isMuted={index % 2 === 0}
+              isFirstRow={index === 0}
+            />
+          ))}
+        </div>
+      )}
 
-      <div className={styles.mobileTable}>
-        <PricesBlock
-          gradation={Gradation.BARBER}
-          reverse
-          prices={barberPrices
-            .filter((price) => price.barberPrice)
-            .map((price) => ({
-              title: price.title,
-              cost: price.barberPrice as number,
-              subtitle: price.subtitle,
-            }))}
-        />
-
-        <PricesBlock
-          gradation={Gradation.TOP_BARBER}
-          prices={barberPrices
-            .filter((price) => price.topPrice)
-            .map((price) => ({
-              title: price.title,
-              cost: price.topPrice,
-              subtitle: price.subtitle,
-            }))}
-        />
-
-        <PricesBlock
-          gradation={Gradation.EXPERT}
-          reverse
-          prices={barberPrices
-            .filter((price) => price.expertPrice)
-            .map((price) => ({
-              title: price.title,
-              cost: price.expertPrice,
-              subtitle: price.subtitle,
-            }))}
-        />
-
-        <PricesBlock
-          gradation={Gradation.AMBASSADOR}
-          prices={barberPrices
-            .filter((price) => price.ambassadorPrice)
-            .map((price) => ({
-              title: price.title,
-              cost: price.ambassadorPrice as number,
-              subtitle: price.subtitle,
-            }))}
-        />
-      </div>
+      {graduations && services && (
+        <div className={styles.mobileTable}>
+          {graduations
+            .sort((a, b) => a.id - b.id)
+            .map((graduation, index) => (
+              <PricesBlock
+                key={graduation.id}
+                graduation={graduation.title}
+                reverse={index % 2 === 0}
+                services={services.map((service) => ({
+                  title: service.title,
+                  cost:
+                    service.prices.find(
+                      (price) =>
+                        price.barbershop.id === barbershop?.id &&
+                        price.graduation.title === graduation.title
+                    )?.value || 0,
+                  subtitle: service.subtitle,
+                }))}
+              />
+            ))}
+        </div>
+      )}
     </div>
   );
 };

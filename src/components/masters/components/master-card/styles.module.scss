@@ -1,10 +1,12 @@
 .card {
+  @apply flex flex-col items-center;
+
   .img {
     @apply rounded-tr-3xl rounded-bl-3xl mb-5 h-[260px] object-cover;
   }
 
   .content {
-    @apply flex items-center gap-3 mb-5;
+    @apply flex items-center gap-3 mb-5 self-start;
 
     .line {
       @apply bg-regular-grey w-[1px] h-14;
@@ -18,13 +20,17 @@
       }
 
       .graduation {
-        @apply font-thin text-base;
+        @apply font-light text-base;
       }
     }
   }
 
   .btn {
-    @apply w-full hover:bg-dark-grey whitespace-nowrap;
+    @apply text-white bg-regular-grey w-full whitespace-nowrap;
+
+    &:hover {
+      @apply bg-dark-grey;
+    }
   }
 
   @media screen and (max-width: 768px) {

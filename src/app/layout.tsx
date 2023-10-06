@@ -1,14 +1,20 @@
+"use client";
+
 import Head from "next/head";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-import { BarberProvider } from "~/providers/barber-provider";
+import { BarbershopProvider } from "~/providers/barberhop-provider";
 import { AppSubtitle, AppTitle } from "~/common/enums/enums";
 
 import "./globals.scss";
+import styles from "./layout.module.scss";
+import "react-toastify/dist/ReactToastify.css";
 
 const montserrat = Montserrat({
-  weight: ["100", "200", "300", "700", "900"],
+  weight: ["100", "200", "300", "400", "700", "900"],
   style: ["normal"],
   subsets: ["latin", "cyrillic"],
   display: "swap",
@@ -17,6 +23,23 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: AppTitle.MAIN,
   description: AppSubtitle.MAIN,
+  keywords: [
+    "барбершоп",
+    "барбершоп мужские стрижки",
+    "барбершоп запорожье",
+    "барбершоп запорожье цены",
+    "барбершоп запоріжжя",
+    "барбершоп вайб",
+    "барбершоп центр",
+    "barber",
+    "barbershop",
+    "barbershop запоріжжя",
+    "barbershop запорожье",
+    "vibe barbershop",
+  ],
+  openGraph: {
+    images: "/images/og-image.png",
+  },
 };
 
 interface Props {
@@ -24,15 +47,39 @@ interface Props {
 }
 
 const RootLayout: React.FC<Props> = ({ children }) => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: { refetchOnWindowFocus: false },
+    },
+  });
+
   return (
     <html lang="uk">
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
 
-      <BarberProvider>
-        <body className={montserrat.className}>{children}</body>
-      </BarberProvider>
+      <QueryClientProvider client={queryClient}>
+        <BarbershopProvider>
+          <body className={montserrat.className}>
+            {children}
+
+            <ToastContainer
+              className={styles.notify}
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+          </body>
+        </BarbershopProvider>
+      </QueryClientProvider>
     </html>
   );
 };

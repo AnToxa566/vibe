@@ -1,12 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { ModuleID } from "~/common/enums/enums";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { AddressSelect } from "../../../components";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 
 import styles from "./styles.module.scss";
-import { AddressSelect } from "../../../components";
 
 const Navigation: React.FC<BaseProps> = ({ className = "" }) => {
   const [isBurgerCollapsed, setIsBurgerCollapsed] = useState<boolean>(false);
@@ -22,9 +23,9 @@ const Navigation: React.FC<BaseProps> = ({ className = "" }) => {
     <nav className={`${styles.nav} ${className}`}>
       <div className={`${styles.links} ${isBurgerCollapsed ? styles.in : ""}`}>
         {links.map((link, idx) => (
-          <a key={idx} href={link.href} className={styles.link}>
+          <Link key={idx} href={link.href} className={styles.link}>
             {link.title}
-          </a>
+          </Link>
         ))}
       </div>
 

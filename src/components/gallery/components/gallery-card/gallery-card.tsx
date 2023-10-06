@@ -1,6 +1,7 @@
 import Image from "next/image";
 
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { ENV } from "~/common/constants/constants";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 
 import styles from "./styles.module.scss";
 
@@ -12,10 +13,10 @@ const GalleryCard: React.FC<Props> = ({ imgPath, className = "" }) => {
   return (
     <div className={`${styles.card} ${className}`}>
       <Image
-        src={imgPath}
+        src={`${ENV.API_URL}/${imgPath}`}
         alt="Photo in the gallery"
         width={180}
-        height={180}
+        height={200}
         className={styles.img}
       />
     </div>
