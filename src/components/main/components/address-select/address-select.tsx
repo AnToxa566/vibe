@@ -1,38 +1,36 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
-import { BarberContext } from "~/providers/barber-provider";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BarbershopContext } from "~/providers/barberhop-provider";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Select } from "~/components/components";
 import { SelectOption } from "~/components/select/select";
 
-import barbers from "~/assets/data/barbers.json";
-
 const AddressSelect: React.FC<BaseProps> = ({ className = "" }) => {
-  const { barberID, setBarberID } = useContext(BarberContext);
+  const { barbershop, barbershops, setBarbershop } =
+    useContext(BarbershopContext);
 
-  const handleChange = (option: SelectOption) =>
-    setBarberID(
-      barbers.find((it) => it.address === option.value)?.id || barbers[0].id
-    );
-
-  useEffect(() => {
-    if (!barberID) {
-      setBarberID(barbers[0].id);
+  const handleChange = (option: SelectOption) => {
+    if (barbershops && barbershops.length) {
+      setBarbershop(
+        barbershops.find((it) => it.address === option.value) || barbershops[0]
+      );
     }
-  }, [barberID, setBarberID]);
+  };
 
   return (
-    <Select
-      data={barbers.map((barber) => ({
-        key: barber.id.toString(),
-        value: barber.address,
-        current: barber.id === barberID,
-      }))}
-      onChange={handleChange}
-      className={className}
-    />
+    barbershops && (
+      <Select
+        data={barbershops.map((barber) => ({
+          key: barber.id.toString(),
+          value: barber.address,
+          current: barber.id === barbershop?.id,
+        }))}
+        onChange={handleChange}
+        className={className}
+      />
+    )
   );
 };
 

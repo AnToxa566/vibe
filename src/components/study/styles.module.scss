@@ -26,7 +26,11 @@
           }
 
           .btn {
-            @apply px-8 hover:bg-white hover:text-regular-grey;
+            @apply px-8 border border-white bg-white text-regular-grey;
+
+            &:hover {
+              @apply shadow-lg scale-105;
+            }
           }
         }
       }

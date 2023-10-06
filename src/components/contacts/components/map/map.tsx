@@ -4,7 +4,7 @@ import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { CSSProperties, useState } from "react";
 
 import { ENV } from "~/common/constants/constants";
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 
 interface Props extends BaseProps {
   center: google.maps.LatLngLiteral;

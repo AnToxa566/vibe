@@ -1,0 +1,13 @@
+.form {
+  @apply flex flex-col gap-8;
+
+  .settingsGroup {
+    .title {
+      @apply text-2xl font-bold mb-4;
+    }
+
+    .inputs {
+      @apply flex flex-col gap-3;
+    }
+  }
+}

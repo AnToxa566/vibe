@@ -1,6 +1,10 @@
 .btn {
   @apply transition ease-in-out duration-200 p-3 w-max border;
 
+  &:hover {
+    @apply bg-dark-grey text-white;
+  }
+
   @media screen and (max-width: 768px) {
     @apply p-2;
   }

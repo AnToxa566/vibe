@@ -1,10 +1,16 @@
+"use client";
+
+import { useContext } from "react";
+
+import Link from "next/link";
 import Image from "next/image";
 
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { AppSubtitle, ButtonTitle } from "~/common/enums/enums";
 import { Button, Container } from "../components";
 import { Header } from "./components/header/header";
 import { AddressSelect, Logo } from "./components/components";
+import { BarbershopContext } from "~/providers/barberhop-provider";
 
 import man from "~/../public/images/home-man.png";
 import elipse from "~/../public/svg/ellipse-white.svg";
@@ -12,6 +18,12 @@ import elipse from "~/../public/svg/ellipse-white.svg";
 import styles from "./styles.module.scss";
 
 const Main: React.FC<BaseProps> = ({ className = "" }) => {
+  const { barbershop } = useContext(BarbershopContext);
+
+  const getNumberForLink = (phoneNumber: string) => {
+    return phoneNumber.replace(/\D/g, "");
+  };
+
   return (
     <div className={`${className}`}>
       <Header className={styles.header} />
@@ -26,14 +38,27 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
           <p className={styles.text}>{AppSubtitle.MAIN}</p>
 
           <div className={styles.buttons}>
-            <Button
-              title={ButtonTitle.ONLINE_ENTRY}
-              className={`${styles.btn} ${styles.entryBtn}`}
-            />
-            <Button
-              title={ButtonTitle.CALL}
-              className={`${styles.btn} ${styles.callBtn}`}
-            />
+            <Link
+              href="#"
+              className="ms_booking"
+              data-url="https://n822098.alteg.io/select-city"
+            >
+              <Button
+                title={ButtonTitle.ONLINE_ENTRY}
+                className={`${styles.btn} ${styles.entryBtn}`}
+              />
+            </Link>
+
+            {barbershop && barbershop.phoneNumbers.length && (
+              <Link
+                href={`tel:${getNumberForLink(barbershop.phoneNumbers[0])}`}
+              >
+                <Button
+                  title={ButtonTitle.CALL}
+                  className={`${styles.btn} ${styles.callBtn}`}
+                />
+              </Link>
+            )}
           </div>
 
           <AddressSelect className={styles.address} />

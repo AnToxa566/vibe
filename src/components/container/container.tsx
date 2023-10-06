@@ -1,4 +1,4 @@
-import { BaseProps } from "~/common/interfaces/interfaces";
+import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 
 import styles from "./styles.module.scss";
 
