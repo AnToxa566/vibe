@@ -55,5 +55,13 @@
         }
       }
     }
+
+    .link {
+      @apply w-full;
+
+      .btn {
+        @apply w-full;
+      }
+    }
   }
 }

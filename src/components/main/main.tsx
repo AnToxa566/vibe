@@ -51,6 +51,7 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
 
             {barbershop && barbershop.phoneNumbers.length && (
               <Link
+                target="_blank"
                 href={`tel:${getNumberForLink(barbershop.phoneNumbers[0])}`}
               >
                 <Button

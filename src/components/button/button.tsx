@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 
 import styles from "./styles.module.scss";
@@ -14,8 +16,19 @@ const Button: React.FC<Props> = ({
   onClick = () => {},
   className = "",
 }) => {
+  const ref = useRef<HTMLButtonElement>(null);
+
+  const handleClick = () => {
+    onClick();
+    ref.current?.blur();
+  };
+
   return (
-    <button onClick={() => onClick()} className={`${styles.btn} ${className}`}>
+    <button
+      onClick={handleClick}
+      ref={ref}
+      className={`${styles.btn} ${className}`}
+    >
       {title}
     </button>
   );

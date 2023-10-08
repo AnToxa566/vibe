@@ -23,7 +23,12 @@ const Navigation: React.FC<BaseProps> = ({ className = "" }) => {
     <nav className={`${styles.nav} ${className}`}>
       <div className={`${styles.links} ${isBurgerCollapsed ? styles.in : ""}`}>
         {links.map((link, idx) => (
-          <Link key={idx} href={link.href} className={styles.link}>
+          <Link
+            key={idx}
+            href={link.href}
+            onClick={() => setIsBurgerCollapsed(false)}
+            className={styles.link}
+          >
             {link.title}
           </Link>
         ))}

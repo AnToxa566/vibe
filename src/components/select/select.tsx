@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
+import { Button } from "../button/button";
 
 import styles from "./styles.module.scss";
 import arrow from "~/../public/svg/select-arrow.svg";
@@ -26,13 +27,12 @@ const Select: React.FC<Props> = ({ data, onChange, className = "" }) => {
 
       <div className={styles.options}>
         {data.map((it) => (
-          <div
+          <Button
             key={it.key}
+            title={it.value}
             onClick={() => onChange(it)}
             className={styles.option}
-          >
-            {it.value}
-          </div>
+          />
         ))}
       </div>
     </div>

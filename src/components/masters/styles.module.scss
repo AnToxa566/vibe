@@ -28,7 +28,7 @@
       }
 
       .mastersList {
-        @apply grid grid-cols-2 grid-flow-row justify-items-center gap-y-3 gap-x-5;
+        @apply grid grid-cols-2 grid-flow-row justify-items-center gap-5;
 
         .masterCard {
           @apply row-span-2;
