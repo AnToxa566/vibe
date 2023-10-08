@@ -1,7 +1,6 @@
 "use client";
 
 import Head from "next/head";
-import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -20,28 +19,6 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: AppTitle.MAIN,
-  description: AppSubtitle.MAIN,
-  keywords: [
-    "барбершоп",
-    "барбершоп мужские стрижки",
-    "барбершоп запорожье",
-    "барбершоп запорожье цены",
-    "барбершоп запоріжжя",
-    "барбершоп вайб",
-    "барбершоп центр",
-    "barber",
-    "barbershop",
-    "barbershop запоріжжя",
-    "barbershop запорожье",
-    "vibe barbershop",
-  ],
-  openGraph: {
-    images: "/images/og-image.png",
-  },
-};
-
 interface Props {
   children: React.ReactNode;
 }
@@ -56,7 +33,13 @@ const RootLayout: React.FC<Props> = ({ children }) => {
   return (
     <html lang="uk">
       <Head>
+        <meta name="description" content={AppSubtitle.MAIN} />
+        <meta
+          name="keywords"
+          content="барбершоп, мужские стрижки, запорожье, цены, запоріжжя, вайб, центр, barber, barbershop, vibe"
+        />
         <link rel="shortcut icon" href="/favicon.ico" />
+        <title>{AppTitle.MAIN}</title>
       </Head>
 
       <QueryClientProvider client={queryClient}>
