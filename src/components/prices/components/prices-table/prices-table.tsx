@@ -48,7 +48,7 @@ const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
       {graduations && services && (
         <div className={styles.mobileTable}>
           {graduations
-            .sort((a, b) => a.id - b.id)
+            .sort((a, b) => a.priority - b.priority)
             .map((graduation, index) => (
               <PricesBlock
                 key={graduation.id}

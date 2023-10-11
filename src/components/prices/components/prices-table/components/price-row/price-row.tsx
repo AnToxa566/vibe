@@ -23,9 +23,9 @@ const PriceRow: React.FC<Props> = ({
 }) => {
   const { barbershop } = useContext(BarbershopContext);
 
-  const prices = service.prices.filter(
-    (it) => it.barbershop.id === barbershop?.id
-  );
+  const prices = service.prices
+    .filter((it) => it.barbershop.id === barbershop?.id)
+    .sort((a, b) => a.graduation.priority - b.graduation.priority);
 
   return (
     <div className={`${styles.row} ${isMuted && styles.muted} ${className}`}>
