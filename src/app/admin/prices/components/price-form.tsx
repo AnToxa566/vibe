@@ -30,7 +30,11 @@ export interface PriceFields {
 }
 
 const PriceForm: FC<Props> = ({ price, onUpdate = () => {} }) => {
-  const { register, handleSubmit } = useForm<PriceFields>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PriceFields>({
     mode: "onChange",
   });
 
@@ -92,72 +96,72 @@ const PriceForm: FC<Props> = ({ price, onUpdate = () => {} }) => {
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit(onSubmit)}
-      isUpdate={!!price}
-      isLoading={addLoading || updateLoading}
-    >
-      <Input
-        type="number"
-        label="Value"
-        placeholder="Enter price's value"
-        defaultValue={price?.value.toString() ?? ""}
-        isRequired
-        isClearable
-        {...register("value", { required: true })}
-      />
-
-      <Select
-        label="Service"
-        placeholder="Select a service"
-        defaultSelectedKeys={[price?.service.id.toString() ?? ""]}
-        isRequired
-        isLoading={servicesLoading}
-        {...register("service", { required: true })}
+    services &&
+    graduations &&
+    barbershops && (
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        isUpdate={!!price}
+        isLoading={addLoading || updateLoading}
       >
-        {services
-          ? services.map((it) => (
-              <SelectItem key={it.id} value={it.id}>
-                {`${it.title} ${it.subtitle ? `(${it.subtitle})` : ""}`}
-              </SelectItem>
-            ))
-          : []}
-      </Select>
+        <Input
+          type="number"
+          label="Value"
+          placeholder="Enter price's value"
+          defaultValue={price?.value.toString() ?? ""}
+          isRequired
+          isClearable
+          {...register("value", { required: true })}
+        />
 
-      <Select
-        label="Barbershop"
-        placeholder="Select a barbershop"
-        defaultSelectedKeys={[price?.barbershop.id.toString() ?? ""]}
-        isRequired
-        isLoading={barbershopsLoading}
-        {...register("barbershop", { required: true })}
-      >
-        {barbershops
-          ? barbershops.map((it) => (
-              <SelectItem key={it.id} value={it.id}>
-                {it.address}
-              </SelectItem>
-            ))
-          : []}
-      </Select>
+        <Select
+          label="Service"
+          placeholder="Select a service"
+          defaultSelectedKeys={[price?.service.id.toString() ?? ""]}
+          isRequired
+          isLoading={servicesLoading}
+          {...register("service", { required: true })}
+        >
+          {services.map((it) => (
+            <SelectItem key={it.id} value={it.id}>
+              {`${it.title} ${it.subtitle ? `(${it.subtitle})` : ""}`}
+            </SelectItem>
+          ))}
+        </Select>
 
-      <Select
-        label="Graduation"
-        placeholder="Select a graduation"
-        defaultSelectedKeys={[price?.graduation.id.toString() ?? ""]}
-        isRequired
-        isLoading={graduationsLoading}
-        {...register("graduation", { required: true })}
-      >
-        {graduations
-          ? graduations.map((it) => (
-              <SelectItem key={it.id} value={it.id}>
-                {it.title}
-              </SelectItem>
-            ))
-          : []}
-      </Select>
-    </Form>
+        <Select
+          label="Barbershop"
+          placeholder="Select a barbershop"
+          defaultSelectedKeys={[price?.barbershop.id.toString() ?? ""]}
+          isRequired
+          isLoading={barbershopsLoading}
+          {...register("barbershop", { required: true })}
+        >
+          {barbershops.map((it) => (
+            <SelectItem key={it.id} value={it.id}>
+              {it.address}
+            </SelectItem>
+          ))}
+        </Select>
+
+        <Select
+          label="Graduation"
+          placeholder="Select a graduation"
+          defaultSelectedKeys={[price?.graduation.id.toString() ?? ""]}
+          isRequired
+          isLoading={graduationsLoading}
+          {...register("graduation", { required: true })}
+        >
+          {graduations.map((it) => (
+            <SelectItem key={it.id} value={it.id}>
+              {it.title}
+            </SelectItem>
+          ))}
+        </Select>
+
+        {errors.barbershop && "Errors"}
+      </Form>
+    )
   );
 };
 
