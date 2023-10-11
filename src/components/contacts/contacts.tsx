@@ -18,6 +18,8 @@ const mapOptions = {
   scaleControl: false,
   streetViewControl: false,
   fullscreenControl: false,
+  minZoom: 3,
+  maxZoom: 16,
 };
 
 const Contacts: React.FC<BaseProps> = ({ className = "" }) => {

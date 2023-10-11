@@ -42,9 +42,9 @@ const Map: React.FC<Props> = ({
         mapContainerStyle={containerStyle}
         center={center}
         options={mapOptions}
-        zoom={16}
         onLoad={onLoad}
         onUnmount={onUnmount}
+        zoom={15}
       >
         <Marker position={center} />
       </GoogleMap>
