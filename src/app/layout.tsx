@@ -1,12 +1,10 @@
-"use client";
-
 import Head from "next/head";
+import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { ToastContainer } from "react-toastify";
-import { QueryClient, QueryClientProvider } from "react-query";
 
+import { QueryProvider } from "~/providers/query-provider";
 import { BarbershopProvider } from "~/providers/barberhop-provider";
-import { AppSubtitle, AppTitle } from "~/common/enums/enums";
 
 import "./globals.scss";
 import styles from "./layout.module.scss";
@@ -23,26 +21,25 @@ interface Props {
   children: React.ReactNode;
 }
 
-const RootLayout: React.FC<Props> = ({ children }) => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: { refetchOnWindowFocus: false },
-    },
-  });
+export const metadata: Metadata = {
+  title: "VIBE Barbershop в Запорожье: Современные Стрижки и Бритье",
+  description:
+    "Почувствуйте настоящий вайб с Vibe Barbershop в Запорожье. Мы предлагаем стильные стрижки, бритье и уход за внешностью. Запишитесь сегодня! ☎️ 068 734 95 09",
+  keywords:
+    "барбершоп, барбершоп запорожье, барбершоп вайб, парикмахерская запорожье, мужская парикмахерская запорожье, стрижка бороды, мужская стрижка, барбершоп vibe, vibe barbershop, барбершоп запоріжжя, barbershop, barbershop запорожье",
+  openGraph: {
+    images: "/images/og-image.png",
+  },
+};
 
+const RootLayout: React.FC<Props> = ({ children }) => {
   return (
     <html lang="uk">
       <Head>
-        <meta name="description" content={AppSubtitle.MAIN} />
-        <meta
-          name="keywords"
-          content="барбершоп, мужские стрижки, запорожье, цены, запоріжжя, вайб, центр, barber, barbershop, vibe"
-        />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <title>{AppTitle.MAIN}</title>
       </Head>
 
-      <QueryClientProvider client={queryClient}>
+      <QueryProvider>
         <BarbershopProvider>
           <body className={montserrat.className}>
             {children}
@@ -62,7 +59,7 @@ const RootLayout: React.FC<Props> = ({ children }) => {
             />
           </body>
         </BarbershopProvider>
-      </QueryClientProvider>
+      </QueryProvider>
     </html>
   );
 };
