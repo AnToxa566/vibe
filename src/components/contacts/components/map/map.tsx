@@ -21,6 +21,8 @@ const Map: React.FC<Props> = ({
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: ENV.GOOGLE_MAPS_API_KEY,
+    language: "uk",
+    region: "UA",
   });
 
   const [map, setMap] = useState<google.maps.Map | null>(null);

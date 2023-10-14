@@ -11,7 +11,7 @@ import { BarbershopContext } from "~/providers/barberhop-provider";
 
 import styles from "./styles.module.scss";
 
-const mapOptions = {
+const mapOptions: google.maps.MapOptions = {
   styles: mapTheme,
   zoomControl: false,
   mapTypeControl: false,
