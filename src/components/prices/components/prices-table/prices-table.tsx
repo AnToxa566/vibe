@@ -3,13 +3,16 @@
 import { useContext } from "react";
 import { useQuery } from "react-query";
 
+import { IPrice } from "~/common/interfaces/price/price.interface";
+import { IService } from "~/common/interfaces/service/service.interface";
+import { IGraduation } from "~/common/interfaces/graduation/graduation.interface";
 import { BarbershopContext } from "~/providers/barberhop-provider";
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { QueryKey } from "~/common/enums/enums";
 import { FullSpinner } from "~/components/components";
 import { PriceRow } from "./components/price-row/price-row";
 import { PricesBlock } from "./components/prices-block/prices-block";
-import { graduationService, serviceService } from "~/services/services";
+import { serviceService } from "~/services/services";
 
 import styles from "./styles.module.scss";
 
@@ -21,12 +24,42 @@ const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
     serviceService.getAll
   );
 
-  const { data: graduations, isLoading: graduationsLoading } = useQuery(
-    QueryKey.GET_GRADUATIONS,
-    graduationService.getAll
-  );
+  const graduations = barbershop?.barbers
+    .map((barber) => barber.graduation)
+    .filter((graduation, index, self) => {
+      const id = graduation.id;
+      const isUnique = !self
+        .slice(0, index)
+        .some((otherGraduation) => otherGraduation.id === id);
+      return isUnique;
+    });
 
-  if (servicesLoading || graduationsLoading) {
+  const getServicePrices = (service: IService): IPrice[] => {
+    return service.prices
+      .filter(
+        (it) =>
+          it.barbershop.id === barbershop?.id &&
+          graduations?.map((it) => it.id).includes(it.graduation.id)
+      )
+      .sort((a, b) => a.graduation.priority - b.graduation.priority);
+  };
+
+  const getServices = (graduation: IGraduation) => {
+    return (
+      services?.map((service) => ({
+        title: service.title,
+        cost:
+          service.prices.find(
+            (price) =>
+              price.barbershop.id === barbershop?.id &&
+              price.graduation.title === graduation.title
+          )?.value || 0,
+        subtitle: service.subtitle,
+      })) || []
+    );
+  };
+
+  if (servicesLoading) {
     return <FullSpinner />;
   }
 
@@ -38,6 +71,7 @@ const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
             <PriceRow
               key={service.id}
               service={service}
+              prices={getServicePrices(service)}
               isMuted={index % 2 === 0}
               isFirstRow={index === 0}
             />
@@ -54,16 +88,7 @@ const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
                 key={graduation.id}
                 graduation={graduation.title}
                 reverse={index % 2 === 0}
-                services={services.map((service) => ({
-                  title: service.title,
-                  cost:
-                    service.prices.find(
-                      (price) =>
-                        price.barbershop.id === barbershop?.id &&
-                        price.graduation.title === graduation.title
-                    )?.value || 0,
-                  subtitle: service.subtitle,
-                }))}
+                services={getServices(graduation)}
               />
             ))}
         </div>
