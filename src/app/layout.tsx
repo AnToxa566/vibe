@@ -21,14 +21,28 @@ interface Props {
   children: React.ReactNode;
 }
 
+const MetaTitle = "VIBE Barbershop в Запоріжжі: Сучасні Стрижки та Гоління";
+
+const MetaDescription =
+  "Відчуй справжній вайб разом з Vibe Barbershop в Запоріжжі. Ми пропонуємо стильні стрижки, гоління та догляд за вашою зовнішністю. Запишіться вже сьогодні! ☎️ 068 734 95 09";
+
 export const metadata: Metadata = {
-  title: "VIBE Barbershop в Запоріжжі: Сучасні Стрижки та Гоління",
-  description:
-    "Відчуй справжній вайб разом з Vibe Barbershop в Запоріжжі. Ми пропонуємо стильні стрижки, гоління та догляд за вашою зовнішністю. Запишіться вже сьогодні! ☎️ 068 734 95 09",
+  title: MetaTitle,
+  description: MetaDescription,
   keywords:
     "барбершоп, барбершоп запорожье, барбершоп вайб, парикмахерская запорожье, мужская парикмахерская запорожье, стрижка бороды, мужская стрижка, барбершоп vibe, vibe barbershop, барбершоп запоріжжя, barbershop, barbershop запорожье",
   openGraph: {
-    images: "/images/og-image.png",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 500,
+        height: 500,
+        alt: "VIBE Barbershop",
+      },
+    ],
+    title: MetaTitle,
+    description: MetaDescription,
+    type: "website",
   },
 };
 

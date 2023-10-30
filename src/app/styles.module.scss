@@ -5,6 +5,21 @@
     @apply flex flex-col gap-[3.75rem];
   }
 
+  .altegio-btn {
+    @apply fixed z-[10000] right-7 bottom-7 bg-regular-grey w-24 h-24 rounded-full opacity-80;
+    @apply flex items-center justify-center cursor-pointer;
+
+    &--text {
+      @apply text-white font-bold text-sm text-center;
+    }
+
+    &--wave {
+      @apply absolute left-1/2 top-1/2 rounded-full border-2 border-solid border-regular-grey w-[105%] h-[105%] opacity-90;
+      transform: translate(-50%, -50%);
+      animation: wave-stroke 2s infinite cubic-bezier(0.37, 0, 0.8, 0.77);
+    }
+  }
+
   @media screen and (max-width: 768px) {
     .content {
       @apply gap-10;
@@ -14,4 +29,13 @@
 
 .option {
   @apply flex items-center gap-1 bg-regular-grey text-white p-5 rounded-tr-2xl rounded-bl-2xl cursor-pointer hover:bg-dark-grey;
+}
+
+@keyframes wave-stroke {
+  100% {
+    width: 200%;
+    height: 200%;
+    border-color: transparent;
+    opacity: 0;
+  }
 }

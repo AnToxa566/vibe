@@ -8,8 +8,8 @@ import {
   useDisclosure,
   ModalFooter,
 } from "@nextui-org/react";
+import Link from "next/link";
 import Image from "next/image";
-import Script from "next/script";
 import { useContext } from "react";
 
 import { Main } from "~/components/main/main";
@@ -76,12 +76,17 @@ const Home = () => {
           </ModalContent>
         </Modal>
 
-        {/* Фиксированная кнопка Altegio в правом нижнем углу */}
-        <Script
-          defer={true}
-          type="text/javascript"
-          src="https://w822098.alteg.io/widgetJS"
-        />
+        <Link
+          href="#"
+          className="ms_booking"
+          data-url="https://n822098.alteg.io/select-city"
+        >
+          <div className={styles["altegio-btn"]}>
+            <div className={styles["altegio-btn--text"]}>Онлайн запис</div>
+
+            <div className={styles["altegio-btn--wave"]}></div>
+          </div>
+        </Link>
       </main>
     )
   );

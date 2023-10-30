@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Pagination, Navigation } from "swiper/modules";
@@ -18,8 +18,6 @@ import "./swiper.scss";
 import styles from "./styles.module.scss";
 
 const Masters: React.FC<BaseProps> = ({ className = "" }) => {
-  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
-
   const { barbershop } = useContext(BarbershopContext);
 
   useEffect(() => {
@@ -28,9 +26,6 @@ const Masters: React.FC<BaseProps> = ({ className = "" }) => {
 
       script.type = "text/javascript";
       script.src = "https://w822235.alteg.io/widgetJS";
-      script.onload = () => {
-        setIsScriptLoaded(true);
-      };
 
       document.head.appendChild(script);
     }
