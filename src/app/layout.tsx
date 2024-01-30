@@ -1,4 +1,3 @@
-import Head from "next/head";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { ToastContainer } from "react-toastify";
@@ -9,6 +8,7 @@ import { BarbershopProvider } from "~/providers/barberhop-provider";
 import "./globals.scss";
 import styles from "./layout.module.scss";
 import "react-toastify/dist/ReactToastify.css";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "700", "900"],
@@ -49,13 +49,35 @@ export const metadata: Metadata = {
 const RootLayout: React.FC<Props> = ({ children }) => {
   return (
     <html lang="uk">
-      <Head>
+      <head>
         <link rel="shortcut icon" href="/favicon.ico" />
-      </Head>
+
+        {/* Google Tag Manager */}
+        <Script
+          id="gtag"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-KSLDPM4P');`,
+          }}
+        />
+        {/* End Google Tag Manager */}
+      </head>
 
       <QueryProvider>
         <BarbershopProvider>
           <body className={montserrat.className}>
+            <noscript>
+              <iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-KSLDPM4P"
+                height="0"
+                width="0"
+                style={{ display: "none", visibility: "hidden" }}
+              ></iframe>
+            </noscript>
+
             {children}
 
             <ToastContainer
