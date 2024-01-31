@@ -19,6 +19,7 @@ const MasterCard: React.FC<Props> = ({ barber, className = "" }) => {
   return (
     <div className={`${styles.card} ${className}`}>
       <Image
+        unoptimized
         src={`${ENV.API_URL}/${barber.imgPath}`}
         alt={`Барбер ${barber.name}`}
         width="190"

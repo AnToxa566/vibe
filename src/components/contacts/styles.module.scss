@@ -10,6 +10,10 @@
 
         .col {
           @apply flex flex-col gap-6;
+
+          .number {
+            @apply font-semibold hover:text-dark-grey;
+          }
         }
       }
 

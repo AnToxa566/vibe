@@ -13,6 +13,7 @@ const GalleryCard: React.FC<Props> = ({ imgPath, className = "" }) => {
   return (
     <div className={`${styles.card} ${className}`}>
       <Image
+        unoptimized
         src={`${ENV.API_URL}/${imgPath}`}
         alt="Photo in the gallery"
         width={180}

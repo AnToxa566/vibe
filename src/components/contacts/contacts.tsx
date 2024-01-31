@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useContext } from "react";
 
+import { getNumberForLink } from "~/common/utils";
 import { AppTitle, ModuleID } from "~/common/enums/enums";
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Container, Title } from "../components";
@@ -35,17 +37,31 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
               {barbershops.map((it) => (
                 <div key={it.id} className={styles.col}>
                   <ContactItem title="Адреса" content={it.address} />
+                  <ContactItem title="Час роботи" content={it.schedule} />
                   <ContactItem
                     title="Контакти"
                     content={
-                      <>
-                        {it.phoneNumbers[0]}
+                      <div>
+                        <Link
+                          target="_blank"
+                          className={styles.number}
+                          href={`tel:${getNumberForLink(it.phoneNumbers[0])}`}
+                        >
+                          {it.phoneNumbers[0]}
+                        </Link>
+
                         <br />
-                        {it.phoneNumbers[1]}
-                      </>
+
+                        <Link
+                          target="_blank"
+                          className={styles.number}
+                          href={`tel:${getNumberForLink(it.phoneNumbers[1])}`}
+                        >
+                          {it.phoneNumbers[1]}
+                        </Link>
+                      </div>
                     }
                   />
-                  <ContactItem title="Час роботи" content={it.schedule} />
                 </div>
               ))}
             </div>

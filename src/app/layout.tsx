@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { ToastContainer } from "react-toastify";
@@ -8,7 +9,6 @@ import { BarbershopProvider } from "~/providers/barberhop-provider";
 import "./globals.scss";
 import styles from "./layout.module.scss";
 import "react-toastify/dist/ReactToastify.css";
-import Script from "next/script";
 
 const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "700", "900"],

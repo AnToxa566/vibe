@@ -5,6 +5,7 @@ import { useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+import { getNumberForLink } from "~/common/utils";
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { AppSubtitle, ButtonTitle } from "~/common/enums/enums";
 import { Button, Container } from "../components";
@@ -20,10 +21,6 @@ import styles from "./styles.module.scss";
 const Main: React.FC<BaseProps> = ({ className = "" }) => {
   const { barbershop } = useContext(BarbershopContext);
 
-  const getNumberForLink = (phoneNumber: string) => {
-    return phoneNumber.replace(/\D/g, "");
-  };
-
   return (
     <div className={`${className}`}>
       <Header className={styles.header} />
@@ -31,8 +28,8 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
       <Container className={styles.main}>
         <Logo className={styles.logo} />
 
-        <Image src={man} alt="Adult man" className={styles.man} />
-        <Image src={elipse} alt="" className={styles.elipse} />
+        <Image unoptimized src={man} alt="Adult man" className={styles.man} />
+        <Image unoptimized src={elipse} alt="" className={styles.elipse} />
 
         <div className={styles.content}>
           <p className={styles.text}>{AppSubtitle.MAIN}</p>
