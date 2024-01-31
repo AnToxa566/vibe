@@ -11,7 +11,7 @@ const ContactItem: React.FC<Props> = ({ title, content, className }) => {
   return (
     <div className={`${styles.contact} ${className}`}>
       <h3 className={styles.title}>{title}</h3>
-      <p className={styles.content}>{content}</p>
+      <div className={styles.content}>{content}</div>
     </div>
   );
 };

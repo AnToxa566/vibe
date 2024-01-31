@@ -1,7 +1,9 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
+import { useOutsideClick } from "~/common/hooks";
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
+
 import { Button } from "../button/button";
 
 import styles from "./styles.module.scss";
@@ -18,20 +20,25 @@ interface Props extends BaseProps {
   onChange: (value: SelectOption) => void;
 }
 
-const Select: React.FC<Props> = ({ data, onChange, className = "" }) => {
-  const [optionSelected, setOptionSelected] = useState(false);
+const Select: React.FC<Props> = ({ data, onChange, className = "" }) => { 
+  const selectRef = useRef<HTMLDivElement>(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  useOutsideClick(selectRef, () => setIsOpen(false));
 
   const handleSelectionChange = (item: SelectOption) => {
     onChange(item);
-    setOptionSelected(true);
-    setTimeout(() => setOptionSelected(false));
+    setIsOpen(false);
   }
 
   return (
     <div
       className={`${styles.container} ${
-        optionSelected ? styles.selected : ""
+        isOpen ? styles.opened : ""
       } ${className}`}
+      ref={selectRef}
+      onClick={() => setIsOpen(!isOpen)}
     >
       <div className={styles.select}>
         <Image src={arrow} alt="" className={styles.selectArrow} />

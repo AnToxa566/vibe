@@ -21,19 +21,13 @@
     }
   }
 
-  &:hover {
+  &.opened {
     .options {
       @apply block;
     }
 
     .selectArrow {
       @apply rotate-180;
-    }
-  }
-
-  &.selected {
-    .options {
-      @apply hidden;
     }
   }
 }
