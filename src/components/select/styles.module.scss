@@ -1,5 +1,5 @@
 .container {
-  @apply relative w-max cursor-pointer z-30;
+  @apply relative w-max cursor-pointer z-30 pr-4;
 
   .select {
     @apply flex items-center gap-2 py-2;
@@ -13,7 +13,7 @@
     @apply hidden absolute w-full drop-shadow-md;
 
     .option {
-      @apply text-center text-white bg-regular-grey py-3 whitespace-nowrap border-b border-muted-grey max-w-full;
+      @apply text-center text-white bg-regular-grey py-3 whitespace-nowrap border-b border-muted-grey max-w-full w-full;
 
       &:hover {
         @apply bg-dark-grey;
@@ -28,6 +28,12 @@
 
     .selectArrow {
       @apply rotate-180;
+    }
+  }
+
+  &.selected {
+    .options {
+      @apply hidden;
     }
   }
 }

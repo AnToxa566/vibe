@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 
 import { BaseProps } from "~/common/interfaces/base-props/base-props.interface";
 import { Button } from "../button/button";
@@ -18,8 +19,20 @@ interface Props extends BaseProps {
 }
 
 const Select: React.FC<Props> = ({ data, onChange, className = "" }) => {
+  const [optionSelected, setOptionSelected] = useState(false);
+
+  const handleSelectionChange = (item: SelectOption) => {
+    onChange(item);
+    setOptionSelected(true);
+    setTimeout(() => setOptionSelected(false));
+  }
+
   return (
-    <div className={`${styles.container} ${className}`}>
+    <div
+      className={`${styles.container} ${
+        optionSelected ? styles.selected : ""
+      } ${className}`}
+    >
       <div className={styles.select}>
         <Image src={arrow} alt="" className={styles.selectArrow} />
         <div>{data.find((it) => it.current)?.value}</div>
@@ -30,7 +43,7 @@ const Select: React.FC<Props> = ({ data, onChange, className = "" }) => {
           <Button
             key={it.key}
             title={it.value}
-            onClick={() => onChange(it)}
+            onClick={() => handleSelectionChange(it)}
             className={styles.option}
           />
         ))}
