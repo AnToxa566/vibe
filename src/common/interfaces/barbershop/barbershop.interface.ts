@@ -13,6 +13,7 @@ interface IBarbershop extends IResource {
   schedule: string;
   barbers: IBarber[];
   prices: IPrice[];
+  priority: number;
 }
 
 interface ICreateBarbershop {
@@ -22,6 +23,7 @@ interface ICreateBarbershop {
   address: string;
   phoneNumbers: string[];
   schedule: string;
+  priority: number;
 }
 
 export type { IBarbershop, ICreateBarbershop };

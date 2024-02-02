@@ -25,6 +25,7 @@ export interface BarbershopFields {
   firstPhoneNumber: string;
   secondPhoneNumber: string;
   schedule: string;
+  priority: number;
 }
 
 const BarbershopForm: FC<Props> = ({ barbershop, onUpdate = () => {} }) => {
@@ -68,6 +69,7 @@ const BarbershopForm: FC<Props> = ({ barbershop, onUpdate = () => {} }) => {
       lng: Number(data.lng),
       companyId: Number(data.companyId),
       phoneNumbers: [data.firstPhoneNumber, data.secondPhoneNumber],
+      priority: Number(data.priority),
     };
 
     if (!barbershop) {
@@ -153,6 +155,17 @@ const BarbershopForm: FC<Props> = ({ barbershop, onUpdate = () => {} }) => {
         isRequired
         isClearable
         {...register("schedule", { required: true })}
+      />
+
+      <Input
+        type="number"
+        label="Priority"
+        placeholder="Enter priority"
+        defaultValue={barbershop?.priority.toString() ?? ""}
+        step="any"
+        isRequired
+        isClearable
+        {...register("priority", { required: true, min: 1 })}
       />
     </Form>
   );

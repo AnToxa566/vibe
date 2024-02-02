@@ -33,6 +33,10 @@ const columns = [
     key: "schedule",
     label: "SCHEDULE",
   },
+  {
+    key: "priority",
+    label: "PRIORITY",
+  },
 ];
 
 const renderCell = (item: IBarbershop, key: React.Key) => {
