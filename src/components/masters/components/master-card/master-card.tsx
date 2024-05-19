@@ -39,7 +39,7 @@ const MasterCard: React.FC<Props> = ({ barber, className = "" }) => {
       <Link
         href="#"
         className={`ms_booking ${styles.link}`}
-        data-url={`https://n822235.alteg.io/company/${barber.barbershop.companyId}/menu?o=m${barber.altegioId}`}
+        data-url={`https://n822235.alteg.io/company/${barber.barbershop.companyId}/personal/select-master?o=m${barber.altegioId}`}
       >
         <Button title={ButtonTitle.ONLINE_ENTRY} className={styles.btn} />
       </Link>
