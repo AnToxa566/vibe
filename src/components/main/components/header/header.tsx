@@ -20,7 +20,7 @@ const Header: React.FC<BaseProps> = ({ className = "" }) => {
   };
 
   useEffect(() => {
-    addEventListener("scroll", handleScroll);
+    addEventListener("scroll", handleScroll, { passive: true });
 
     if (window.scrollY > 20) {
       setScrolled(true);

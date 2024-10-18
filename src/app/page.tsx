@@ -30,7 +30,7 @@ const Home = () => {
     useContext(BarbershopContext);
 
   const { isOpen, onClose, onOpenChange } = useDisclosure({
-    defaultOpen: true,
+    defaultOpen: false,
   });
 
   const handleChooseBarbershop = (barbershop: IBarbershop) => {
