@@ -2,7 +2,7 @@
   @apply relative;
 
   .innerContainer {
-    @apply flex items-center gap-1.5 absolute top-0 left-0 origin-top-left rotate-90;
+    @apply flex items-center gap-1.5 absolute top-0 -left-2.5 origin-top-left rotate-90;
 
     .title {
       @apply text-3xl font-black uppercase whitespace-nowrap;
@@ -13,7 +13,7 @@
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1366px) {
     .innerContainer {
       @apply relative -rotate-0 gap-2;
 
