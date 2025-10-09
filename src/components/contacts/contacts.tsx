@@ -31,6 +31,7 @@ const Contacts: React.FC<BaseProps> = ({ className = "" }) => {
     <div className={`${styles.contacts} ${className}`} id={ModuleID.CONTACTS}>
       <Container className={styles.container}>
         <Title title={AppTitle.CONTACTS} />
+        
         <div className={styles.content}>
           {barbershops && (
             <div className={styles.data}>

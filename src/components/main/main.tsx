@@ -60,6 +60,8 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
           </div>
 
           <AddressSelect className={styles.address} />
+
+          <span className={styles.attention}>Увага! Ми змінили локацію!</span>
         </div>
       </Container>
     </div>
