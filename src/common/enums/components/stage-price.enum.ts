@@ -1,7 +1,7 @@
 enum StagePrice {
-  FIRST = 15000,
-  SECOND = 25000,
-  THIRD = 35000,
+  FIRST = 20000,
+  SECOND = 30000,
+  THIRD = 40000,
 }
 
 export { StagePrice };
