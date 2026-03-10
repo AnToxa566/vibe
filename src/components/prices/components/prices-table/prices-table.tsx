@@ -24,6 +24,8 @@ const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
     serviceService.getAll
   );
 
+  const filteredServices = services?.filter((service) => service.prices.length > 0);
+
   const graduations = barbershop?.barbers
     .map((barber) => barber.graduation)
     .filter((graduation, index, self) => {
@@ -46,7 +48,7 @@ const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
 
   const getServices = (graduation: IGraduation) => {
     return (
-      services?.map((service) => ({
+      filteredServices?.map((service) => ({
         title: service.title,
         cost:
           service.prices.find(
@@ -65,9 +67,9 @@ const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
 
   return (
     <div className={`${styles.container} ${className}`}>
-      {services && (
+      {filteredServices && (
         <div className={styles.table}>
-          {services.map((service, index) => (
+          {filteredServices.map((service, index) => (
             <PriceRow
               key={service.id}
               service={service}
@@ -79,7 +81,7 @@ const PricesTable: React.FC<BaseProps> = ({ className = "" }) => {
         </div>
       )}
 
-      {graduations && services && (
+      {graduations && filteredServices && (
         <div className={styles.mobileTable}>
           {graduations
             .sort((a, b) => a.priority - b.priority)

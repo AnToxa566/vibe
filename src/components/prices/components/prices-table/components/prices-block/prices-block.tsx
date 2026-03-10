@@ -23,38 +23,34 @@ const PricesBlock: FC<Props> = ({
   reverse = false,
   className = "",
 }) => {
-  const isMiss = services.find((service) => !service.cost);
-
   return (
-    !isMiss && (
-      <div className={`${styles.pricesBlock} ${className}`}>
-        <PriceTitle
-          title={graduation}
-          reverse={reverse}
-          className={styles.title}
-        />
+    <div className={`${styles.pricesBlock} ${className}`}>
+      <PriceTitle
+        title={graduation}
+        reverse={reverse}
+        className={styles.title}
+      />
 
-        <div className={styles.table}>
-          {services.map((service, index) => (
-            <div
-              key={`${
-                service.title + service.subtitle ? service.subtitle : ""
-              }`}
-              className={`${styles.row} ${!(index % 2) ? styles.muted : ""}`}
-            >
-              <div className={styles.priceTitle}>
-                <span>{service.title}</span>
-                {service.subtitle && (
-                  <span className={styles.subtitle}> ({service.subtitle})</span>
-                )}
-              </div>
-
-              <span className={styles.priceCost}>{service.cost} ₴</span>
+      <div className={styles.table}>
+        {services.filter((service) => !!service.cost).map((service, index) => (
+          <div
+            key={`${
+              service.title + service.subtitle ? service.subtitle : ""
+            }`}
+            className={`${styles.row} ${!(index % 2) ? styles.muted : ""}`}
+          >
+            <div className={styles.priceTitle}>
+              <span>{service.title}</span>
+              {service.subtitle && (
+                <span className={styles.subtitle}> ({service.subtitle})</span>
+              )}
             </div>
-          ))}
-        </div>
+
+            <span className={styles.priceCost}>{service.cost} ₴</span>
+          </div>
+        ))}
       </div>
-    )
+    </div>
   );
 };
 
