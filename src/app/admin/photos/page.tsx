@@ -24,10 +24,10 @@ const renderCell = (item: IPhoto, key: React.Key) => {
     case "path":
       return (
         <Image
-          src={`${ENV.API_URL}/${item.path}`}
           alt=""
           width={100}
           height={100}
+          src={item.path}
         />
       );
     default:

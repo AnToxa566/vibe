@@ -20,7 +20,7 @@ const MasterCard: React.FC<Props> = ({ barber, className = "" }) => {
     <div className={`${styles.card} ${className}`}>
       <Image
         unoptimized
-        src={`${ENV.API_URL}/${barber.imgPath}`}
+        src={barber.imgPath}
         alt={`Барбер ${barber.name}`}
         width="190"
         height="260"

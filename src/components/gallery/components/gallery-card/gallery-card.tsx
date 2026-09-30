@@ -14,7 +14,7 @@ const GalleryCard: React.FC<Props> = ({ imgPath, className = "" }) => {
     <div className={`${styles.card} ${className}`}>
       <Image
         unoptimized
-        src={`${ENV.API_URL}/${imgPath}`}
+        src={imgPath}
         alt="Photo in the gallery"
         width={180}
         height={200}
