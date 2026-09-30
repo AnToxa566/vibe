@@ -21,6 +21,7 @@ const MasterCard: React.FC<Props> = ({ barber, className = "" }) => {
       <Image
         unoptimized
         src={barber.imgPath}
+        referrerPolicy="no-referrer"
         alt={`Барбер ${barber.name}`}
         width="190"
         height="260"

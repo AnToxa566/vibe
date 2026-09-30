@@ -24,10 +24,12 @@ const renderCell = (item: IPhoto, key: React.Key) => {
     case "path":
       return (
         <Image
+          unoptimized
           alt=""
           width={100}
           height={100}
           src={item.path}
+          referrerPolicy="no-referrer"
         />
       );
     default:

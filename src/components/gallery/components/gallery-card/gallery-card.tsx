@@ -15,6 +15,7 @@ const GalleryCard: React.FC<Props> = ({ imgPath, className = "" }) => {
       <Image
         unoptimized
         src={imgPath}
+        referrerPolicy="no-referrer"
         alt="Photo in the gallery"
         width={180}
         height={200}
