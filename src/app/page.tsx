@@ -79,7 +79,7 @@ const Home = () => {
         <Link
           href="#"
           className="ms_booking"
-          data-url="https://n822098.alteg.io/select-city"
+          data-url="https://n822099.alteg.io/select-city"
         >
           <div className={styles["altegio-btn"]}>
             <div className={styles["altegio-btn--text"]}>Онлайн запис</div>

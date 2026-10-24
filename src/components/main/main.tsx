@@ -38,7 +38,7 @@ const Main: React.FC<BaseProps> = ({ className = "" }) => {
             <Link
               href="#"
               className="ms_booking"
-              data-url="https://n822098.alteg.io/select-city"
+              data-url="https://n822099.alteg.io/select-city"
             >
               <Button
                 title={ButtonTitle.ONLINE_ENTRY}
